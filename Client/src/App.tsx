@@ -1,5 +1,6 @@
 
 import './App.css'
+import LandingPage from './Components/LandingPage/LandingPage'
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
     <>
       <div>
 
-        jj
+        <LandingPage/>
       </div>
         
     </>
