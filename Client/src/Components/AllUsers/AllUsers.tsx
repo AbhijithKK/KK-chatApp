@@ -24,6 +24,8 @@ const AllUsers = () => {
         </div>
         <div className="conversation-box">
           <Conversation/>
+          <Conversation/>
+          <Conversation/>
       </div>
     </div>
   )
