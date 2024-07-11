@@ -1,0 +1,12 @@
+.landing-page{
+display: flex;
+justify-content: space-evenly;
+width: 100vw;
+height: 100vh;
+}
+.left-side{
+    width: 40%;
+}
+.right-side{
+width: 60%;
+}

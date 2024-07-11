@@ -1,11 +1,11 @@
 import React from 'react'
 
-const AllUsers = () => {
+const ChatSpace = () => {
   return (
     <div>
-      d
+      
     </div>
   )
 }
 
-export default AllUsers
+export default ChatSpace

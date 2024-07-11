@@ -1,10 +1,9 @@
-import React from 'react'
 
 const ChatWindow = () => {
   return (
-    <div>
-      
-    </div>
+    <div className='chat-window-container'>
+     
+          </div>
   )
 }
 
