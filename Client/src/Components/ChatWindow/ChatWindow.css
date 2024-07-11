@@ -1,0 +1,5 @@
+.chat-window-container{
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+    
+}
