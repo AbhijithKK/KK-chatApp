@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './LandingPage.css';
 import { io, Socket } from 'socket.io-client';
+import AllUsers from '../AllUsers/AllUsers';
+import ChatWindow from '../ChatWindow/ChatWindow';
 
 const LandingPage = () => {
   const [message, setMessage] = useState<string>('');
@@ -34,10 +36,10 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <div className="left-side">
-
+        <AllUsers/>
       </div>
       <div className="right-side">
-        
+        <ChatWindow/>
       </div>
     </div>
   );
