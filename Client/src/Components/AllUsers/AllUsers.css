@@ -1,0 +1,68 @@
+.allusers-container{
+display: grid;
+grid-template-rows: 10% 10% 80%;
+align-content: center;
+justify-content: space-around;
+height: 100vh;
+width: 100%;
+}
+.users-headding{
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
+.users-headding p{
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: green;
+}
+.app-logo{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.app-logo img{
+    border-radius: 50%;
+    width: 50%;
+}
+.app-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.usersblock-second-section{
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
+.search-people{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-people input{
+    height: 2rem;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid green;
+    cursor: pointer;
+}
+.search-people input:focus{
+   
+    border: 2px solid green;
+    cursor: pointer;
+
+}
+.settigs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.settigs img{
+    border-radius: 50%;
+    width: 50%;
+}
+.conversation-box{
+
+}

@@ -1,3 +1,4 @@
+import Conversation from '../Conversation-box/Conversation'
 import './AllUsers.css'
 
 const AllUsers = () => {
@@ -10,12 +11,19 @@ const AllUsers = () => {
         <div className="app-name">
           <p>KK-Chatapp</p>
         </div>
+        </div>
+        <div className="usersblock-second-section">
+
         <div className="search-people">
           <input type="search" placeholder='search here...' />
+
+        </div>
+        <div className="settigs">
+          <img src="" alt="settings" />
+        </div>
         </div>
         <div className="conversation-box">
-          
-        </div>
+          <Conversation/>
       </div>
     </div>
   )
