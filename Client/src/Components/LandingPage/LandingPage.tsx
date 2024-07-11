@@ -37,6 +37,7 @@ const LandingPage = () => {
     <div className="landing-page">
       <div className="left-side">
         <AllUsers/>
+        
       </div>
       <div className="right-side">
         <ChatWindow/>
