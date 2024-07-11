@@ -1,0 +1,31 @@
+.chat-space-container{
+ margin-top: 20px;
+}
+.receive-message{
+display: flex;
+justify-content: flex-start;
+margin: 10px;
+overflow: hidden;
+
+}
+.receive-message p{
+    background-color: aqua;
+    padding: 18px;
+    word-break: break-word; 
+    max-width: 300px;
+    border-radius: 5px;
+}
+
+.send-message{
+display: flex;
+justify-content: flex-end;
+margin: 10px;
+
+}
+.send-message p{
+    background-color: aqua;
+    padding: 18px;
+    word-break: break-word; 
+    max-width: 300px;
+    border-radius: 5px;
+}
