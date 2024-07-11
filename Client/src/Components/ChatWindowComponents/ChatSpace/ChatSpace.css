@@ -1,5 +1,6 @@
 .chat-space-container{
- margin-top: 20px;
+ margin-top: 10px;
+ overflow-x: hidden;
 }
 .receive-message{
 display: flex;

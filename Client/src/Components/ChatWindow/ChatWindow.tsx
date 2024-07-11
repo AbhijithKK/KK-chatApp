@@ -6,7 +6,15 @@ const ChatWindow = () => {
   return (
     <div className='chat-window-container'>
      <ChatHeadding/>
+     <div className="chatwindow-middle">
+
      <ChatSpace/>
+     <ChatSpace/>
+     <ChatSpace/>
+     <ChatSpace/>
+     <ChatSpace/>
+     <ChatSpace/>
+     </div>
       <InputSection/>
           </div>
   )

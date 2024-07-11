@@ -1,5 +1,10 @@
 .chat-window-container{
     display: grid;
     grid-template-rows: 20% 60% 20%;
+    overflow-x: hidden;
     
+}
+.chatwindow-middle{
+    margin-top: 100px;
+    margin-bottom: 80px;
 }
