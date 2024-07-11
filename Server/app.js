@@ -3,20 +3,19 @@ import {createServer} from 'http'
 import { Server } from "socket.io";
 import cors from 'cors';
 import { configDotenv } from "dotenv";
-import { log } from "console";
-
 configDotenv()
 const app =Express();
-const server=createServer(app)
+
 app.use(cors({
     origin:process.env.REACT_URL,
     credentials: true
 }))
+const server=createServer(app)
+
 const io=new Server(server,{
     cors: {
-        origin: process.env.REACT_URL, // Update this with your client's origin
+        origin: process.env.REACT_URL,
         methods: ['GET', 'POST'],
-        allowedHeaders: ['my-custom-header'],
         credentials: true
     }
 })
@@ -25,7 +24,7 @@ const io=new Server(server,{
 io.on('connection',(socket)=>{
     console.log('connected');
     socket.on('post',(msg)=>{
-        console.log(socket);
+        console.log(socket.id);
         socket.emit('get',msg)
     })
 })

@@ -1,31 +1,46 @@
-import { useState } from 'react'
-import './LandingPage.css'
-import { io } from 'socket.io-client'
+import { useState, useEffect } from 'react';
+import './LandingPage.css';
+import { io, Socket } from 'socket.io-client';
+
 const LandingPage = () => {
-    const socket=io(import.meta.env.VITE_SOCKET_URL)
-    console.log(import.meta.env.VITE_SOCKET_URL);
-    
-    const [message,setMessage]=useState<string>('')
-    const [Rmessage,setRMessage]=useState<string>('')
-    socket.on('get',(msg:string)=>{
-    setRMessage(msg)
-    })
-    const SendMessage=()=>{
-       socket.emit('post',message)
+  const [message, setMessage] = useState<string>('');
+  const [receivedMessage, setReceivedMessage] = useState<string>('');
+  const [socket, setSocket] = useState<Socket | null>(null);
 
-   }
-   
+  useEffect(() => {
+    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
+
+    newSocket.on('get', (msg: string) => {
+      setReceivedMessage(msg);
+    });
+
+    newSocket.on('connect_error', (err) => {
+      console.error('Connection error:', err);
+    });
+
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (socket) {
+      socket.emit('post', message);
+    }
+  };
+
   return (
-    <>
-     <textarea 
-     onChange={(e)=>setMessage(e.target.value)}
-     style={{
-        width:"100%"
-     }}  ></textarea>
-     <button onClick={SendMessage}>send</button>
-     <h1>{Rmessage}</h1>
-    </>
-  )
-}
+    <div className="landing-page">
+      <div className="left-side">
 
-export default LandingPage
+      </div>
+      <div className="right-side">
+        
+      </div>
+    </div>
+  );
+};
+
+export default LandingPage;
