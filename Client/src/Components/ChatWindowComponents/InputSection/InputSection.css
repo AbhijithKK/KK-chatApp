@@ -19,8 +19,9 @@ justify-content: center;
 align-items: center;
 }
 .media-picker img{
-    width: 30%;
+    width: 40%;
     border-radius: 50%;
+    cursor: pointer;
 }
 .input-box{
 width: 60%;
@@ -50,8 +51,10 @@ align-items: center;
 .send-btn button{
     height: 50px;
     width: 50px;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 8px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
     transition: all 0.3s ease-in-out;
     outline: none;
     border: 0;
@@ -60,7 +63,17 @@ align-items: center;
 }
 .send-btn button:hover{
     cursor: pointer;
-    background-color: blue;
+    background-color: rgb(10, 87, 8);
     color: white;
+    box-shadow: 1px 0.5px 30px green ;
+
+}
+.send-btn button img{
+    width: 100%;
+
+}
+.send-btn button img:hover{
+    width: 110%;
+    filter: brightness(300%) invert(100%)   ;
 
 }
