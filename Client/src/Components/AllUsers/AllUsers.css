@@ -12,7 +12,7 @@ position:fixed;
 .users-headding{
 display: flex;
 align-items: center;
-justify-content: space-around;
+justify-content: space-between;
 }
 .users-headding p{
     font-size: larger;
@@ -23,16 +23,16 @@ justify-content: space-around;
 .app-logo{
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: start;
 }
 .app-logo img{
     border-radius: 50%;
-    width: 50%;
+    width: 50px;
 }
 .app-name{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 }
 .usersblock-second-section{
 display: flex;

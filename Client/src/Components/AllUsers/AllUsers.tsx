@@ -1,12 +1,12 @@
 import Conversation from '../Conversation-box/Conversation'
 import './AllUsers.css'
-
+import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
 const AllUsers = () => {
   return (
     <div className='allusers-container'>
       <div className="users-headding">
         <div className="app-logo">
-          <img src="" alt="applogo" />
+          <img src={logo} alt="applogo" />
         </div>
         <div className="app-name">
           <p>KK-Chatapp</p>
