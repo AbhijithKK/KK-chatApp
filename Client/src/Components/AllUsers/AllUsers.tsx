@@ -1,6 +1,7 @@
 import Conversation from '../Conversation-box/Conversation'
 import './AllUsers.css'
 import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
+import settings from '../../assets/icons8-settings-64.png'
 const AllUsers = () => {
   return (
     <div className='allusers-container'>
@@ -19,7 +20,7 @@ const AllUsers = () => {
 
         </div>
         <div className="settigs">
-          <img src="" alt="settings" />
+          <img src={settings} alt="settings" />
         </div>
         </div>
         <div className="conversation-box">
