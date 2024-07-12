@@ -7,11 +7,14 @@ height: 5rem;
 border :1px solid green;
 border-radius: 5px;
 background-color: rgba(210, 105, 30, 0.747);
+gap: 10px;
 }
 .conversation-left{
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+width: 25%;
+margin-left: 10px;
 
 }
 .conversation-left img{
@@ -21,8 +24,10 @@ justify-content: center;
 .conversation-right{
     display: grid;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 5px;
+    width: 75%;
+
     
 }
 
