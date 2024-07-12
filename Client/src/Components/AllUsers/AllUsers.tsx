@@ -6,21 +6,25 @@ import { useEffect, useState } from 'react'
 const AllUsers = ({chats}) => {
   const [state,setState]=useState<[]>([])
   let idFilter=new Set()
-  console.log(chats);
+  console.log(idFilter);
   useEffect(()=>{
     
     let newdata=chats.filter((val)=>{
-      if (myId===val.receiverId && !idFilter.has(val.senderId)) {
+      if (myId===val.senderId && !idFilter.has(val.receiverId)) {
+        idFilter.add(val.receiverId)
+        return true
+      }
+      if (myId===val.receiverId  && !idFilter.has(val.senderId)) {
         idFilter.add(val.senderId)
-        console.log(val.senderId);
         
-        return true 
-      } 
-      return false
+        return true    
+      }   
+      
+      return false 
     }) 
 setState(newdata)
 return ()=>{ 
-  state 
+  state  
 } 
     },[])
   let myId=1

@@ -50,6 +50,14 @@ const LandingPage = () => {
     message:'here',
 
   },
+    {
+    senderId:1,
+    receiverId:4,
+    name:'abhihhfgdd',
+    status:true,
+    message:'here',
+
+  },
 ]
   useEffect(() => {
     setChat(arr)
