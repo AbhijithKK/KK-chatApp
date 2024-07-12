@@ -12,7 +12,7 @@ const ChatHeadding = () => {
         <p>status</p>
       </div>
       <div className="profile-options">
-        options
+        <img src="" alt="options" />
       </div>
     </div>
   )

@@ -72,5 +72,8 @@ gap: 5px;
 align-content: flex-start;
 overflow-y: scroll;
 scroll-behavior: smooth;
-scroll-snap-align: unset;
+scrollbar-color:#ffff;
+}
+.conversation-box::-webkit-scrollbar {
+    width: 0px;
 }
