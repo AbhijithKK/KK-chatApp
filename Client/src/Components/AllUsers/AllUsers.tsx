@@ -2,7 +2,28 @@ import Conversation from '../Conversation-box/Conversation'
 import './AllUsers.css'
 import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
 import settings from '../../assets/icons8-settings-64.png'
-const AllUsers = () => {
+import { useEffect, useState } from 'react'
+const AllUsers = ({chats}) => {
+  const [state,setState]=useState<[]>([])
+  let idFilter=new Set()
+  console.log(chats);
+  useEffect(()=>{
+    
+    let newdata=chats.filter((val)=>{
+      if (myId===val.receiverId && !idFilter.has(val.senderId)) {
+        idFilter.add(val.senderId)
+        console.log(val.senderId);
+        
+        return true 
+      } 
+      return false
+    }) 
+setState(newdata)
+return ()=>{ 
+  state 
+} 
+    },[])
+  let myId=1
   return (
     <div className='allusers-container'>
       <div className="users-headding">
@@ -22,18 +43,16 @@ const AllUsers = () => {
         <div className="settigs">
           <img src={settings} alt="settings" />
         </div>
-        </div>
+        </div> 
         <div className="conversation-box">
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
-          <Conversation/>
+          {
+            state.map((val,i)=>(
+             
+              <Conversation  data={val} />
+            ))
+          }
+        
+         
       </div>
     </div>
   )

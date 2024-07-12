@@ -42,6 +42,14 @@ const LandingPage = () => {
     message:'here',
 
   },
+    {
+    senderId:3,
+    receiverId:1,
+    name:'abhihh',
+    status:true,
+    message:'here',
+
+  },
 ]
   useEffect(() => {
     setChat(arr)
@@ -71,7 +79,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <div className="left-side">
-        <AllUsers/>
+        <AllUsers chats={chat} />
         
       </div>
       <div className="right-side">
