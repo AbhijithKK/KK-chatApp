@@ -15,9 +15,13 @@ display: flex;
 align-items: center;
 justify-content: space-around;
 }
-.profile-pic img{
+.profile-pic img:nth-child(1){
     width: 30%;
-    border: 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.profile-pic img:nth-child(2){
+    width: 40%;
     border-radius: 50%;
 }
 .profile-name p:nth-child(1){
@@ -37,8 +41,9 @@ color: green;
     justify-content: space-around;
 }
 .profile-options img{
-    width: 30%;
-    border: 1px solid;
+    width: 80%;
+    /* border: 1px solid; */
     border-radius: 50%;
+    cursor: pointer;
 
 }

@@ -65,6 +65,7 @@ justify-content: space-around;
 .settigs img{
     border-radius: 50%;
     width: 50%;
+    cursor: pointer;
 }
 .conversation-box{
     display: grid;
