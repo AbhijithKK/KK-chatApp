@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 let createMessage = mongoose.Schema(
   {
-    senderId: { type: string },
-    chatId: { type: string },
-    message: { type: string },
+    senderId: { type:String },
+    chatId: { type:String },
+    message: { type:String },
   },
   { timestamps: true }
 );

@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 let createUser = mongoose.Schema(
   {
-    name: {type:String,required},
-    email: {type:String,required},
-    number: {type:String,required},
-    password: {type:String,required},
-    cpassword: {type:String,required},
+    name: {type:String,required:true},
+    email: {type:String,required:true},
+    number: {type:String,required:true},
+    password: {type:String,required:true},
+    cpassword: {type:String,required:true},
     image: {type:String,},
   },
   { timestamps: true }
