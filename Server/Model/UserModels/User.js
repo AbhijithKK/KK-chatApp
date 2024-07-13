@@ -7,7 +7,7 @@ let createUser = mongoose.Schema(
     number: {type:String,required},
     password: {type:String,required},
     cpassword: {type:String,required},
-    image: {type:String,required},
+    image: {type:String,},
   },
   { timestamps: true }
 );
