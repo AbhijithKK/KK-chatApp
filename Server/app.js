@@ -6,6 +6,7 @@ import { configDotenv } from "dotenv";
 import { db } from "./Model/DB/DB.js";
 import morgan from "morgan";
 import userRouter from "./Routers/userRouter.js";
+import chatRouter from "./Routers/chatRoutes.js";
 import cookieParser from "cookie-parser";
 configDotenv();
 const app = Express();
@@ -30,6 +31,7 @@ const io = new Server(server, {
   },
 });
 app.use("/", userRouter);
+app.use("/chat", chatRouter);
 
 io.on("connection", (socket) => {
   console.log("connected");
