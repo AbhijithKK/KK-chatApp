@@ -4,9 +4,11 @@ import { Server } from "socket.io";
 import cors from 'cors';
 import { configDotenv } from "dotenv";
 import { db } from "./Model/DB/DB.js";
+import morgan from "morgan";
 configDotenv()
 const app =Express();
 
+app.use(morgan('dev'))
 app.use(cors({
     origin:process.env.REACT_URL,
     credentials: true
