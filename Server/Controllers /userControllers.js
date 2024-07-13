@@ -1,5 +1,6 @@
 
 export const signup=((req,res)=>{
+    console.log('hii');
     const {name,email,number,password,cpassword,image}=req.body;
     console.log(name,email,number,password,cpassword,image);
     try {

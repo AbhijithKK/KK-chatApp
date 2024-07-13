@@ -5,9 +5,12 @@ import cors from "cors";
 import { configDotenv } from "dotenv";
 import { db } from "./Model/DB/DB.js";
 import morgan from "morgan";
+import userRouter from "./Routers/userRouter.js";
+import cookieParser from "cookie-parser";
 configDotenv();
 const app = Express();
 
+app.use(cookieParser());
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json({ limit: "100mb" }));
 app.use(morgan("dev"));
@@ -26,6 +29,7 @@ const io = new Server(server, {
     credentials: true,
   },
 });
+app.use("/", userRouter);
 
 io.on("connection", (socket) => {
   console.log("connected");
