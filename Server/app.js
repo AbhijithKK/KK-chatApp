@@ -3,7 +3,7 @@ import {createServer} from 'http'
 import { Server } from "socket.io";
 import cors from 'cors';
 import { configDotenv } from "dotenv";
-import { db } from "./Model/Connection/DB.js";
+import { db } from "./Model/DB/DB.js";
 configDotenv()
 const app =Express();
 
