@@ -6,19 +6,25 @@ import { useEffect, useState } from 'react'
 const AllUsers = ({chats}) => {
   const [state,setState]=useState<[]>([])
   let idFilter=new Set()
-  console.log(idFilter);
   useEffect(()=>{
     
     let newdata=chats.filter((val)=>{
-      if (myId===val.senderId && !idFilter.has(val.receiverId)) {
-        idFilter.add(val.receiverId)
-        return true
-      }
-      if (myId===val.receiverId  && !idFilter.has(val.senderId)) {
-        idFilter.add(val.senderId)
+      if (myId===val.receiverId ) {
         
-        return true    
+          idFilter.add(val.receiverId)
       }   
+      if (myId===val.senderId ) {
+        
+          idFilter.add(val.senderId)
+      }   
+      if (myId==val.senderId && idFilter.has(val.senderId)) { 
+        //  idFilter.delete(val.senderId)
+         return true
+      }
+      if (myId==val.receverId && idFilter.has(val.receiverId)) { 
+        //  idFilter.delete(val.receiverId)
+         return true
+      }
       
       return false 
     }) 
@@ -26,7 +32,7 @@ setState(newdata)
 return ()=>{ 
   state  
 } 
-    },[])
+    },[chats])
   let myId=1
   return (
     <div className='allusers-container'>
@@ -51,7 +57,7 @@ return ()=>{
         <div className="conversation-box">
           {
             state.map((val,i)=>(
-             
+            
               <Conversation  data={val} />
             ))
           }

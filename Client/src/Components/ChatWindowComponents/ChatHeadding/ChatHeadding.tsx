@@ -13,7 +13,7 @@ const ChatHeadding = ({chat}) => {
      
     }
    });
- },[])
+ },[chat])
   return (
     <div className='chatheadding-container'>
       <div className="profile-pic">

@@ -13,7 +13,7 @@ const LandingPage = () => {
     {
     senderId:1,
     receiverId:2,
-    name:'abhijith',
+    name:'id1',
     status:true,
     message:'haiii',
 
@@ -21,7 +21,7 @@ const LandingPage = () => {
     {
     senderId:2,
     receiverId:1,
-    name:'abhi',
+    name:'id2',
     status:true,
     message:'hloo',
 
@@ -29,7 +29,7 @@ const LandingPage = () => {
     {
     senderId:1,
     receiverId:2,
-    name:'abhijith',
+    name:'id2',
     status:true,
     message:'where',
 
@@ -37,7 +37,7 @@ const LandingPage = () => {
     {
     senderId:2,
     receiverId:1,
-    name:'abhi',
+    name:'id2',
     status:true,
     message:'here',
 
@@ -45,7 +45,7 @@ const LandingPage = () => {
     {
     senderId:3,
     receiverId:1,
-    name:'abhihh',
+    name:'id3',
     status:true,
     message:'here',
 
@@ -53,7 +53,23 @@ const LandingPage = () => {
     {
     senderId:1,
     receiverId:4,
-    name:'abhihhfgdd',
+    name:'id4',
+    status:true,
+    message:'here',
+
+  },
+    {
+    senderId:1,
+    receiverId:4,
+    name:'id4',
+    status:true,
+    message:'here',
+
+  },
+    {
+    senderId:1,
+    receiverId:4,
+    name:'id4',
     status:true,
     message:'here',
 

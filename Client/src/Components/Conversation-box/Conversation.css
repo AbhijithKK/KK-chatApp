@@ -8,6 +8,11 @@ border :1px solid green;
 border-radius: 5px;
 background-color: rgba(210, 105, 30, 0.747);
 gap: 10px;
+cursor: pointer;
+}
+.conversation-container:active{
+    border :2px solid green;
+
 }
 .conversation-left{
 display: flex;

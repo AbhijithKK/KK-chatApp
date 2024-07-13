@@ -8,6 +8,8 @@ import morgan from "morgan";
 configDotenv()
 const app =Express();
 
+app.use(Express.urlencoded({extended:false}))
+app.use(Express.json({limit:"100mb"}))
 app.use(morgan('dev'))
 app.use(cors({
     origin:process.env.REACT_URL,
