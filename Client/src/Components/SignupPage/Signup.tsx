@@ -1,5 +1,7 @@
 import "./Signup.css";
+import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
 import { useFormik } from "formik";
+import { userSchema } from "../Utils/Validation";
 
 function Signup() {
   const formik = useFormik({
@@ -14,6 +16,7 @@ function Signup() {
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
+    validationSchema:userSchema
   });
   return (
     <>
@@ -22,7 +25,7 @@ function Signup() {
           <div className="signup-headder">
             <div className="signuplogo">
 
-            <img src="" alt="logo" />
+            <img src={logo} alt="logo" />
             </div>
             <p>KK-chatapp</p>
           </div>
@@ -39,7 +42,7 @@ function Signup() {
                   onBlur={formik.handleBlur}
                   value={formik.values.name}
                 />
-                <small>errmsg</small>
+                <small>{formik.errors.name}</small>
               </div>
               <div className="inputrow">
                 <label htmlFor="">
@@ -52,11 +55,11 @@ function Signup() {
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
                 />
-                <small>errmsg</small>
+                <small>{formik.errors.email}</small>
               </div>
               <div className="inputrow">
                 <label htmlFor="">
-                  Mob Number<span className="label-indicator">*</span>
+                  Mob Number <span className="label-indicator">*</span>
                 </label>
                 <input
                   type="number"
@@ -67,7 +70,7 @@ function Signup() {
                   max={10}
                   min={10}
                 />
-                <small>errmsg</small>
+                <small>{formik.errors.number}</small>
               </div>
               <div className="inputrow">
                 <label htmlFor="">
@@ -80,7 +83,7 @@ function Signup() {
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
                 />
-                <small>errmsg</small>
+                <small>{formik.errors.password}</small>
               </div>
               <div className="inputrow">
                 <label htmlFor="">
@@ -93,7 +96,7 @@ function Signup() {
                   onBlur={formik.handleBlur}
                   value={formik.values.cpassword}
                 />
-                <small>errmsg</small>
+                <small>{formik.errors.cpassword}</small>
               </div>
               <div className="inputrow">
                 <button type="submit">Sign Up</button>
