@@ -39,8 +39,8 @@ io.on("connection", (socket) => {
     console.log(socket.id);
     socket.emit("get", msg);
   });
-  db();
 });
+db();
 server.listen(3000, () => {
   console.log("server started on port 3000");
 });
