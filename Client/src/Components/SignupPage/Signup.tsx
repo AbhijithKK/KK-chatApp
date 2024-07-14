@@ -4,8 +4,11 @@ import { useFormik } from "formik";
 import { userSchema } from "../Utils/Validation";
 import { signupApi } from "../Utils/api";
 import { user } from "../Utils/Interface";
+import toast, { Toaster } from 'react-hot-toast';
+import { useState } from "react";
 
 function Signup() {
+    const [throttil,setThrottil]=useState<boolean>(true)
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -16,14 +19,30 @@ function Signup() {
     },
 
     onSubmit: async(values:user) => {
-        const result=await signupApi(values)
-        console.log(result);
+        if (throttil) {
         
+            setThrottil(false)
+            const result=await signupApi(values)
+            if(result){
+    
+            }else{
+                toast('Already you have an account')
+            }
+            
+            setTimeout(async() => {
+                setThrottil(true)
+            
+        }, 6000);
+    }
     },
     validationSchema:userSchema
   });
   return (
     <>
+    <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
       <div className="signup-container">
         <div className="form-outbox">
           <div className="signup-headder">

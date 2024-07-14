@@ -16,8 +16,9 @@ export const signup=async(req,res)=>{
             cpassword,
             image
         })
-        const result=await newUser.save()
+        await newUser.save()
         res.status(200).json(true)
+        return
     }else{
         res.status(201).json(false)
 
