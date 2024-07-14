@@ -6,8 +6,10 @@ import { signupApi } from "../Utils/api";
 import { user } from "../Utils/Interface";
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from "react";
+import {  useNavigate } from "react-router-dom";
 
 function Signup() {
+  const Navigate=useNavigate()
     const [throttil,setThrottil]=useState<boolean>(true)
   const formik = useFormik({
     initialValues: {
@@ -24,7 +26,7 @@ function Signup() {
             setThrottil(false)
             const result=await signupApi(values)
             if(result){
-    
+                Navigate('/')
             }else{
                 toast('Already you have an account')
             }
