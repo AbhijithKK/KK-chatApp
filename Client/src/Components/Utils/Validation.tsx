@@ -11,3 +11,11 @@ export let userSchema = Yup.object({
     .oneOf([Yup.ref("password")], "Passwords must match")
     .required("This field is required"),
 });
+
+export const loginScheema=Yup.object({
+  email: Yup.string()
+    .email("Please enter a valid email address")
+    .required("Please enter a valid email address"),
+    password: Yup.string().required("This field is required"),
+
+})

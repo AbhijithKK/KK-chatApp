@@ -1,6 +1,7 @@
 import './Login.css'
 import {useFormik}  from 'formik'
 import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
+import { loginScheema } from '../Utils/Validation'
 
 function Login() {
   const formik=useFormik({
@@ -10,7 +11,8 @@ function Login() {
     },
     onSubmit:(values)=>{
 
-    }
+    },
+    validationSchema:loginScheema
   })
   return (
     <>
