@@ -8,14 +8,20 @@ import { useState } from 'react'
 
 
 function Login() {
-  const [throttil,setThrottil]=useState<boolean>(false)
+  const [throttil,setThrottil]=useState<boolean>(true)
   const formik=useFormik({
     initialValues:{
       email:"",
       password:""
     },
     onSubmit:(values)=>{
-
+      if (throttil) {
+        setThrottil(false)
+        
+      }
+      setTimeout(() => {
+        setThrottil(true)
+      }, 6000);
     },
     validationSchema:loginScheema
   })
