@@ -3,7 +3,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import { configDotenv } from "dotenv";
-import { db } from "./Model/DB/DB.js";
+import { db } from "./Model/DB/DBconfig.js";
 import morgan from "morgan";
 import userRouter from "./Routers/userRouter.js";
 import chatRouter from "./Routers/chatRoutes.js";
@@ -39,7 +39,7 @@ io.on("connection", (socket) => {
     console.log(socket.id);
     socket.emit("get", msg);
   });
-  db;
+  db();
 });
 server.listen(3000, () => {
   console.log("server started on port 3000");
