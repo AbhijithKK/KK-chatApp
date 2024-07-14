@@ -4,9 +4,11 @@ import {useFormik}  from 'formik'
 import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
 import { loginScheema } from '../Utils/Validation'
 import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react'
 
 
 function Login() {
+  const [throttil,setThrottil]=useState<boolean>(false)
   const formik=useFormik({
     initialValues:{
       email:"",
@@ -19,6 +21,10 @@ function Login() {
   })
   return (
     <>
+    <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
       <div className="login-container">
         <div className="login-outer-box">
         <div className="signup-headder">
