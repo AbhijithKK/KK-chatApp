@@ -17,9 +17,9 @@ export const signup=async(req,res)=>{
             image
         })
         const result=await newUser.save()
-        res.status(200).json(result)
+        res.status(200).json(true)
     }else{
-        res.status(201).json('Already have an account')
+        res.status(201).json(false)
 
     }
     } catch (error) {
