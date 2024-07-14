@@ -1,4 +1,4 @@
-import { jwtSign } from "../Middleware/jwtAuth.js";
+import { jwtSign } from "../Middleware/jwt.js";
 import { userModel } from "../Model/UserModels/User.js";
 import bcrypt from 'bcrypt'
 
