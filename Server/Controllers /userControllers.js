@@ -1,3 +1,4 @@
+import { jwtVerify } from "../Middleware/Jwt.js";
 import { jwtSign } from "../Middleware/Jwt.js";
 import { userModel } from "../Model/UserModels/User.js";
 import bcrypt from 'bcrypt'
@@ -49,10 +50,21 @@ export const login=async(req,res)=>{
         res.status(500).json(error)
     }
 }
-export const home=(req,res)=>{
+export const home=async(req,res)=>{
     try {
-        res.json('welcome home')
+        const token=await req.cookies('token')
+        const result=await jwtVerify(token)
+        const data=await userModel.findOne({
+            _id:result.userId
+        })
+        const newData={
+            userId:data._id,
+            name:data.name,
+            image:data.image
+        }
+        res.json(newData)
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({data:false,
+        error:error})
     }
 }
