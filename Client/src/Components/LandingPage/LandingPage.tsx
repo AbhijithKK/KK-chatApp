@@ -3,84 +3,29 @@ import './LandingPage.css';
 import { io, Socket } from 'socket.io-client';
 import AllUsers from '../AllUsers/AllUsers';
 import ChatWindow from '../ChatWindow/ChatWindow';
+import { homeApi } from '../Utils/api';
 
 const LandingPage = () => {
-  const [message, setMessage] = useState<string>('');
-  const [receivedMessage, setReceivedMessage] = useState<string>('');
+ 
+  const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   const [socket, setSocket] = useState<Socket | null>(null);
-  const [chat,setChat]=useState<[]>([])
-  let arr=[
-    {
-    senderId:1,
-    receiverId:2,
-    name:'id1',
-    status:true,
-    message:'haiii',
+useEffect(()=>{
+const apiFetch=async()=>{
+  const data=await homeApi()
+}
+},[])
 
-  },
-    {
-    senderId:2,
-    receiverId:1,
-    name:'id2',
-    status:true,
-    message:'hloo',
 
-  },
-    {
-    senderId:1,
-    receiverId:2,
-    name:'id2',
-    status:true,
-    message:'where',
 
-  },
-    {
-    senderId:2,
-    receiverId:1,
-    name:'id2',
-    status:true,
-    message:'here',
 
-  },
-    {
-    senderId:3,
-    receiverId:1,
-    name:'id3',
-    status:true,
-    message:'here',
+  
+let arr=[]
 
-  },
-    {
-    senderId:1,
-    receiverId:4,
-    name:'id4',
-    status:true,
-    message:'here',
-
-  },
-    {
-    senderId:1,
-    receiverId:4,
-    name:'id4',
-    status:true,
-    message:'here',
-
-  },
-    {
-    senderId:1,
-    receiverId:4,
-    name:'id4',
-    status:true,
-    message:'here',
-
-  },
-]
   useEffect(() => {
-    setChat(arr)
-    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
+    
 
     newSocket.on('get', (msg: string) => {
-      setReceivedMessage(msg);
+     
     });
 
     newSocket.on('connect_error', (err) => {
@@ -96,18 +41,18 @@ const LandingPage = () => {
 
   const sendMessage = () => {
     if (socket) {
-      socket.emit('post', message);
+      socket.emit('post', );
     }
   };
 
   return (
     <div className="landing-page">
       <div className="left-side">
-        <AllUsers chats={chat} />
+        <AllUsers chats={arr} />
         
       </div>
       <div className="right-side">
-        <ChatWindow chat={chat} />
+        <ChatWindow chat={arr} />
       </div>
     </div>
   );

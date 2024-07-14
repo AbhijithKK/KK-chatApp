@@ -28,3 +28,12 @@ const api = axios.create({
       return false
     }
   }
+  export const homeApi=async()=>{
+    try {
+      const {data}=await api.get('/home')
+      return data
+
+    } catch (error) {
+      return false
+    }
+  }

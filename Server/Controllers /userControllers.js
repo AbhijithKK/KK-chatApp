@@ -62,7 +62,7 @@ export const home=async(req,res)=>{
             name:data.name,
             image:data.image
         }
-        res.json(newData)
+        res.json({data:newData,error:false})
     } catch (error) {
         res.status(500).json({data:false,
         error:error})
