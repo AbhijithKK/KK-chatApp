@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { user } from './Interface';
+import { loginFace, user } from './Interface';
 const api = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     
@@ -20,5 +20,11 @@ const api = axios.create({
   }
 
   export const loginApi=async({email,password}:loginFace)=>{
-    const {data}=api.post('/login',{email,password})
+    try {
+      const {data}=await api.post('/login',{email,password})
+      return data
+
+    } catch (error) {
+      return false
+    }
   }

@@ -32,17 +32,17 @@ export const login=async(req,res)=>{
     try {
         let verifyMail=await userModel.findOne({email})
         if (!verifyMail) {
-            res.status(200).json('Please enter currect Email and Password')
-
+            res.status(200).json(false)
+            return
         }else{
             let result=await bcrypt.compare(password,verifyMail.password)
             if(result){
                 const token=await jwtSign(verifyMail._id,verifyMail.name)
                 console.log(token);
-                res.status(200).cookie('token',token,{sameSite:'none',httpOnly:true}).json(result)
+                res.status(200).cookie('token',token,{sameSite:'none',httpOnly:true}).json(true)
                 return
             }
-            res.status(200).json('Please enter currect Email and Password')
+            res.status(200).json(false)
 
         }
     } catch (error) {

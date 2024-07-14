@@ -5,6 +5,7 @@ import logo from '../../assets/Generate A Logo Named KK .its For A Social Media 
 import { loginScheema } from '../Utils/Validation'
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react'
+import { loginApi } from '../Utils/api'
 
 
 function Login() {
@@ -14,10 +15,15 @@ function Login() {
       email:"",
       password:""
     },
-    onSubmit:(values)=>{
+    onSubmit:async(values)=>{
       if (throttil) {
         setThrottil(false)
-        
+        const result=await loginApi(values)
+        if (result) {
+          
+        }else{
+          toast('Plese enter currect email address and password')
+        }
       }
       setTimeout(() => {
         setThrottil(true)
