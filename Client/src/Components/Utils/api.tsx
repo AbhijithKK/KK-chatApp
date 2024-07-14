@@ -18,3 +18,7 @@ const api = axios.create({
         return false
     }
   }
+
+  export const loginApi=async({email,password}:loginFace)=>{
+    const {data}=api.post('/login',{email,password})
+  }
