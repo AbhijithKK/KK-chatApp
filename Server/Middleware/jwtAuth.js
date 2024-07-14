@@ -3,9 +3,24 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 
-export const jwtSign=(userId,name,)=>{
- let result=  Jwt.sign({
+export const jwtSign=async(userId,name,)=>{
+ try {
+    let result=await  Jwt.sign({
         userId,name
       }, process.env.JWT_SECRECT, { expiresIn: '1h' });
       return result
+
+ } catch (error) {
+    
+ }
+}
+export const jwtVerify=async(token)=>{
+ try {
+    let result=await  Jwt.verify({
+        token
+      }, process.env.JWT_SECRECT);
+      return result
+ } catch (error) {
+    
+ }
 }
