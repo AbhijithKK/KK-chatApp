@@ -20,7 +20,10 @@ function Signup() {
       <div className="signup-container">
         <div className="form-outbox">
           <div className="signup-headder">
+            <div className="signuplogo">
+
             <img src="" alt="logo" />
+            </div>
             <p>KK-chatapp</p>
           </div>
           <div className="signup-form">
