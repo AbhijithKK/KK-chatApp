@@ -1,3 +1,4 @@
+import { jwtSign } from "../Middleware/jwtAuth.js";
 import { userModel } from "../Model/UserModels/User.js";
 import bcrypt from 'bcrypt'
 
@@ -35,8 +36,9 @@ export const login=async(req,res)=>{
         }else{
             let result=await bcrypt.compare(password,verifyMail.password)
             if(result){
-
-                res.status(200).json(result)
+                const token=await jwtSign(verifyMail._id,verifyMail.name)
+                console.log(token);
+                res.status(200).cookie('token',token,{sameSite:'none',httpOnly:true}).json(result)
                 return
             }
             res.status(200).json('Please enter currect Email and Password')
