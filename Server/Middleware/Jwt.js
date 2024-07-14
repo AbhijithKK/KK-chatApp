@@ -17,12 +17,9 @@ export const jwtSign = async (userId, name) => {
 };
 export const jwtVerify = async (token) => {
   try {
-    let result = await Jwt.verify(
-      {
-        token,
-      },
-      process.env.JWT_SECRECT
-    );
+    let result = await Jwt.verify(token, process.env.JWT_SECRECT);
     return result;
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
 };
