@@ -5,3 +5,7 @@ export interface user{
     password:string
     cpassword:string
   }
+  export interface loginFace{
+    email:string
+    password:string
+  }
