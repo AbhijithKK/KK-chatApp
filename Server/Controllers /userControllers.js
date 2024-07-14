@@ -39,8 +39,7 @@ export const login=async(req,res)=>{
             let result=await bcrypt.compare(password,verifyMail.password)
             if(result){
                 const token=await jwtSign(verifyMail._id,verifyMail.name)
-                console.log(token);
-                res.status(200).cookie('token',token,{sameSite:'none',httpOnly:true}).json(true)
+                res.status(200).cookie('token',token,{sameSite:'lax',httpOnly:true,secure:true}).json(true)
                 return
             }
             res.status(200).json(false)
@@ -52,8 +51,9 @@ export const login=async(req,res)=>{
 }
 export const home=async(req,res)=>{
     try {
-        const token=await req.cookies('token')
+        const token=await req.cookies.token
         const result=await jwtVerify(token)
+        console.log(token);
         const data=await userModel.findOne({
             _id:result.userId
         })

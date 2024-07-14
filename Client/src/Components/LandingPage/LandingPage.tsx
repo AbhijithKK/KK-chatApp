@@ -12,7 +12,10 @@ const LandingPage = () => {
 useEffect(()=>{
 const apiFetch=async()=>{
   const data=await homeApi()
+  console.log(data);
+  
 }
+apiFetch()
 },[])
 
 
