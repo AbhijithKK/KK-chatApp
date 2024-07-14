@@ -6,9 +6,11 @@ import { loginScheema } from '../Utils/Validation'
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react'
 import { loginApi } from '../Utils/api'
+import { useNavigate } from 'react-router-dom'
 
 
 function Login() {
+  const Navigate=useNavigate()
   const [throttil,setThrottil]=useState<boolean>(true)
   const formik=useFormik({
     initialValues:{
@@ -20,7 +22,7 @@ function Login() {
         setThrottil(false)
         const result=await loginApi(values)
         if (result) {
-          
+          Navigate('/home')
         }else{
           toast('Plese enter currect email address and password')
         }
