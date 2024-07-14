@@ -8,7 +8,7 @@ function App() {
     <>
       <div>
 
-        <LandingPage/>
+        {/* <LandingPage/> */}
       </div>
         
     </>
