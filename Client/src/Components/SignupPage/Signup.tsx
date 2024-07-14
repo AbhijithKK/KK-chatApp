@@ -2,6 +2,8 @@ import "./Signup.css";
 import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
 import { useFormik } from "formik";
 import { userSchema } from "../Utils/Validation";
+import { signupApi } from "../Utils/api";
+import { user } from "../Utils/Interface";
 
 function Signup() {
   const formik = useFormik({
@@ -13,8 +15,10 @@ function Signup() {
       cpassword: "",
     },
 
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async(values:user) => {
+        const result=await signupApi(values)
+        console.log(result);
+        
     },
     validationSchema:userSchema
   });
@@ -67,8 +71,7 @@ function Signup() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.number}
-                  max={10}
-                  min={10}
+                 
                 />
                 <small>{formik.errors.number}</small>
               </div>
