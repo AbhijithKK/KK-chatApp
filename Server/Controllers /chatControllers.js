@@ -43,10 +43,9 @@ export const getMessages = async (req, res) => {
 // =========================================================
 export const findAllChat = async (req, res) => {
   try {
-      const token = await req.cookies.token;
+      const token = await req.cookies?.token;
       const data = await jwtVerify(token);
       const result = await chatModel.find({ members: { $in: [data?.userId] } });
-      console.log('ll',result);
     if (!data) {
       res.status(401).json({
         data: false,

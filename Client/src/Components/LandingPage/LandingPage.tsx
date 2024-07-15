@@ -9,10 +9,15 @@ const LandingPage = () => {
  
   const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   const [socket, setSocket] = useState<Socket | null>(null);
+  const [allUsers,setAllusers]=useState<[]>([])
 useEffect(()=>{
 const apiFetch=async()=>{
   const data=await homeApi()
-  console.log(data?.data);
+  if (!data?.error) {
+    setAllusers(data?.data)
+  }else{
+
+  }
   
 }
 apiFetch()

@@ -34,6 +34,6 @@ const api = axios.create({
       return data
 
     } catch (error) {
-      return false
+      return {error:true}
     }
   }
