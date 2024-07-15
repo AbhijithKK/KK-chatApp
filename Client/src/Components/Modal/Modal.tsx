@@ -1,15 +1,15 @@
 import './Modal.css'
 
-const Modal = () => {
+const Modal = ({content,closeFnc}) => {
   return (
     <div className='modal-container'>
         <div className="modal-content">
           <div className='modal-ss'>
             <div className="modal-hedding">
               <p>hedding</p>
-              <button className='modal-close-btn'>X</button>
+              <button className='modal-close-btn' onClick={()=>closeFnc(false)}>X</button>
             </div>
-            v
+            {content}
           </div>
         </div>
       

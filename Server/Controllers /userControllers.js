@@ -49,19 +49,19 @@ export const login=async(req,res)=>{
         res.status(500).json(error)
     }
 }
-export const home=async(req,res)=>{
+export const allUsers=async(req,res)=>{
     try {
-        const token=await req.cookies.token
-        const result=await jwtVerify(token)
-        console.log(token);
-        const data=await userModel.findOne({
-            _id:result.userId
-        })
-        const newData={
-            userId:data._id,
-            name:data.name,
-            image:data.image
-        }
+        const newData=[]
+        const data=await userModel.find();
+        data.forEach(value => {
+            
+            let user={
+                userId:data._id,
+                name:data.name,
+                image:data.image
+            }
+            newData.push(user)
+        });
         res.json({data:newData,error:false})
     } catch (error) {
         res.status(500).json({data:false,

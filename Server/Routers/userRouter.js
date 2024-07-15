@@ -1,4 +1,4 @@
-import { home, login, signup } from "../Controllers /userControllers.js";
+import { allUsers,  login, signup } from "../Controllers /userControllers.js";
 import  Express  from 'express'
 import  {auth} from "../Middleware/Auth.js";
 
@@ -6,5 +6,5 @@ import  {auth} from "../Middleware/Auth.js";
 
 router.post('/signup',signup)
 router.post('/login',login)
-router.get('/home',auth,home)
+router.get('/alluser',auth,allUsers)
 export default router
