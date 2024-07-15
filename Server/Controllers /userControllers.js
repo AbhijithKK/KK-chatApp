@@ -39,7 +39,7 @@ export const login=async(req,res)=>{
             let result=await bcrypt.compare(password,verifyMail.password)
             if(result){
                 const token=await jwtSign(verifyMail._id,verifyMail.name)
-                res.status(200).cookie('token',token,{sameSite:'lax',httpOnly:true,secure:true}).json(true)
+                res.status(200).cookie('token',token,{sameSite:'none',httpOnly:true,secure:true}).json(true)
                 return
             }
             res.status(200).json(false)

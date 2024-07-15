@@ -16,63 +16,63 @@ export const createChat = async (req, res) => {
 };
 
 // ====================================================
-export const postMessages = async(req, res) => {
-    const{chatId,senderId,message}=req.body;
+export const postMessages = async (req, res) => {
+  const { chatId, senderId, message } = req.body;
   try {
-    const newMessage=new messageModel({
-        chatId,senderId,message
-    })
-    const result=await newMessage.save()
-    res.status(200).json(result)
+    const newMessage = new messageModel({
+      chatId,
+      senderId,
+      message,
+    });
+    const result = await newMessage.save();
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);
   }
 };
 // ========================================================
-export const getMessages = async(req, res) => {
-    const {chatId}=req.params;
+export const getMessages = async (req, res) => {
+  const { chatId } = req.params;
   try {
-    const result=await messageModel.find({chatId:chatId})
-    res.status(200).json(result)
+    const result = await messageModel.find({ chatId: chatId });
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);
   }
 };
 // =========================================================
-export const findAllChat = async(req, res) => {
+export const findAllChat = async (req, res) => {
   try {
-    const token=await req.cookies.token
-    const data=await jwtVerify(token)
-    console.log(data);
-    const result=await chatModel.find(
-        {members:{$in:[userId]}})
-        if (!data) {
-            res.status(401).json({
-                data:false,
-                error:true
-            });
-            return
-        }
-        res.status(200).json({
-            data:result,
-            error:false
-        })
+      const token = await req.cookies.token;
+      const data = await jwtVerify(token);
+      const result = await chatModel.find({ members: { $in: [data?.userId] } });
+      console.log('ll',result);
+    if (!data) {
+      res.status(401).json({
+        data: false,
+        error: true,
+      });
+      return;
+    }
+    res.status(200).json({
+      data: result,
+      error: false,
+    });
   } catch (error) {
     res.status(500).json({
-        data:false,
-        error:true
+      data: false,
+      error: true,
     });
   }
 };
 // ========================================================
-export const findOneChat = async(req, res) => {
-    const{senderId,receiverId}=req.params;
+export const findOneChat = async (req, res) => {
+  const { senderId, receiverId } = req.params;
   try {
-    const result=await chatModel.findOne({
-        members:{$all:[senderId,receiverId]}
-    })
-    res.status(200).json(result)
-
+    const result = await chatModel.findOne({
+      members: { $all: [senderId, receiverId] },
+    });
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);
   }
