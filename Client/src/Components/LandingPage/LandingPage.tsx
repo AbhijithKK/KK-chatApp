@@ -56,7 +56,8 @@ let arr=[]
   return (
     <div className="landing-page">
       <div className="left-side">
-        <AllUsers chats={arr} />
+        <AllUsers chats={allUsers} />
+         
         
       </div>
       <div className="right-side">

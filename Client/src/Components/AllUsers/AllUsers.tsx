@@ -3,6 +3,7 @@ import './AllUsers.css'
 import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
 import settings from '../../assets/icons8-settings-64.png'
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom';
 const AllUsers = ({chats}) => {
   const [state,setState]=useState<[]>([])
   let idFilter=new Set()
@@ -56,14 +57,22 @@ return ()=>{
         </div> 
         <div className="conversation-box">
           {
-            state.map((val,i)=>(
+            chats.length==0
+            ?<div> Search and find your friends</div>
+            :
+              state.map((val,i)=>(
+              
+                <Conversation  data={val} />
+              ))
             
-              <Conversation  data={val} />
-            ))
           }
         
          
       </div>
+      {createPortal(
+        <p>This child is placed in the document body.</p>,
+        document.body
+      )}
     </div>
   )
 }
