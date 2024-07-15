@@ -30,7 +30,7 @@ const api = axios.create({
   }
   export const homeApi=async()=>{
     try {
-      const {data}=await api.get('/home')
+      const {data}=await api.get('/chat/findall')
       return data
 
     } catch (error) {
