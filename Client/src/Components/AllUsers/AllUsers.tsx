@@ -7,11 +7,11 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import { allUserApi, createChatApi } from "../Utils/api";
 import { selectData } from "../Utils/Interface";
-const AllUsers = ({ chats }) => {
+const AllUsers = ({ chats }:allusers) => {
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
-  const [searchUsers, seSerchUsers] = useState<[]>([]);
+  const [searchUsers, setSerchUsers] = useState<[]>([]);
 
   const closeFnc = (f: boolean) => {
     setIsclose(f);
@@ -23,7 +23,7 @@ const AllUsers = ({ chats }) => {
     setIsclose(true);
     setSearch(e?.target?.value);
     const data=await allUserApi(search)
-    seSerchUsers(data.data)
+    setSerchUsers(data.data)
   }
 
 

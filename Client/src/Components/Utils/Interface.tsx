@@ -14,3 +14,11 @@ export interface user{
     userId:string
     image:string
   }
+  export interface allusers{
+    
+      
+        createdAt:string
+        members:[string,string]
+        _id:string
+        updatedAt:string 
+  }
