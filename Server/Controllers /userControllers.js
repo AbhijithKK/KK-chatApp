@@ -50,15 +50,17 @@ export const login=async(req,res)=>{
     }
 }
 export const allUsers=async(req,res)=>{
+    let name=req.query.search||''
+    console.log(name);
     try {
         const newData=[]
-        const data=await userModel.find();
+        const data = await userModel.find({ name: new RegExp(name, 'i') });
         data.forEach(value => {
             
             let user={
-                userId:data._id,
-                name:data.name,
-                image:data.image
+                userId:value._id,
+                name:value.name,
+                image:value.image
             }
             newData.push(user)
         });

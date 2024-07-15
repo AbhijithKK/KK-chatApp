@@ -37,9 +37,9 @@ const api = axios.create({
       return {error:true}
     }
   }
-  export const allUserApi=async()=>{
+  export const allUserApi=async(search:string)=>{
     try {
-      const {data}=await api.get('/alluser')
+      const {data}=await api.get(`/alluser?search=${search}`)
       return data
 
     } catch (error) {

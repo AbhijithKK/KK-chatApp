@@ -1,6 +1,6 @@
 import './Conversation.css'
 import proicon from '../../assets/icons8-test-account-48.png'
-const Conversation = ({data}) => {
+const Conversation = ({data,status}) => {
   return (
     <div className='conversation-container'>
       
@@ -12,7 +12,10 @@ const Conversation = ({data}) => {
         <p>{data.name}</p>
     </div>
     <div className="conversaton-status">
+      {
+        status&&
         <p>{data.status?'online':'ofline'}</p>
+      }
     </div>
     </div>
     </div>
