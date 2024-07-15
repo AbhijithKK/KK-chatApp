@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loginFace, user } from './Interface';
+import { allusers, loginFace, user } from './Interface';
 const api = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     
@@ -49,6 +49,15 @@ const api = axios.create({
   export const createChatApi=async(receiverId:string)=>{
     try {
       const {data}=await api.post('/chat/create',{receiverId})
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
+  export const fetchChatUserApi=async(allusers:allusers[])=>{
+    try {
+      const {data}=await api.post('/userdata',{allusers})
       return data
 
     } catch (error) {

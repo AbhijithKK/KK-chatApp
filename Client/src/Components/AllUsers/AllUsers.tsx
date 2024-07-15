@@ -5,14 +5,13 @@ import settings from "../../assets/icons8-settings-64.png";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
-import { allUserApi, createChatApi } from "../Utils/api";
+import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
 import { allusers, selectData } from "../Utils/Interface";
 interface AllUsersProps {
   chats: allusers[];
 }
 
 const AllUsers: React.FC<AllUsersProps> = ({ chats }) => {
-  console.log(chats);
   
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -34,38 +33,18 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats }) => {
 
 
 const selectUser=async(userdata:selectData)=>{
+  // search to create user
   const data=await createChatApi(userdata?.userId)
   setIsclose(false)
-
-console.log(data);
-
 }
-  let idFilter = new Set();
+ 
   useEffect(() => {
-    let newdata = chats.filter((val) => {
-      if (myId === val.receiverId) {
-        idFilter.add(val.receiverId);
-      }
-      if (myId === val.senderId) {
-        idFilter.add(val.senderId);
-      }
-      if (myId == val.senderId && idFilter.has(val.senderId)) {
-        //  idFilter.delete(val.senderId)
-        return true;
-      }
-      if (myId == val.receverId && idFilter.has(val.receiverId)) {
-        //  idFilter.delete(val.receiverId)
-        return true;
-      }
-
-      return false;
-    });
-    setState(newdata);
-    return () => {
-      state;
-    };
+  const userDataFetcher=async()=>{
+    const data=await fetchChatUserApi(chats)
+  }
+    userDataFetcher()
   }, [chats]);
-  let myId = 1;
+  
   return (
     <div className="allusers-container">
       <div className="users-headding">
