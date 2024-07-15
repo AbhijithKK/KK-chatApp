@@ -65,6 +65,6 @@ export const allUsers=async(req,res)=>{
         res.json({data:newData,error:false})
     } catch (error) {
         res.status(500).json({data:false,
-        error:error})
+        error:true})
     }
 }

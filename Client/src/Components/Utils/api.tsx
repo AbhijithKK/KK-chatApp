@@ -37,3 +37,12 @@ const api = axios.create({
       return {error:true}
     }
   }
+  export const allUserApi=async()=>{
+    try {
+      const {data}=await api.get('/alluser')
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
