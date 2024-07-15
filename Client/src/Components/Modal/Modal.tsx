@@ -1,8 +1,17 @@
-import React from 'react'
+import './Modal.css'
 
 const Modal = () => {
   return (
-    <div>
+    <div className='modal-container'>
+        <div className="modal-content">
+          <div className='modal-ss'>
+            <div className="modal-hedding">
+              <p>hedding</p>
+              <button className='modal-close-btn'>X</button>
+            </div>
+            v
+          </div>
+        </div>
       
     </div>
   )

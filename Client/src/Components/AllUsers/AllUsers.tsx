@@ -4,6 +4,7 @@ import logo from '../../assets/Generate A Logo Named KK .its For A Social Media 
 import settings from '../../assets/icons8-settings-64.png'
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom';
+import Modal from '../Modal/Modal'
 const AllUsers = ({chats}) => {
   const [state,setState]=useState<[]>([])
   let idFilter=new Set()
@@ -70,7 +71,7 @@ return ()=>{
          
       </div>
       {createPortal(
-        <p>This child is placed in the document body.</p>,
+        <Modal/>,
         document.body
       )}
     </div>
