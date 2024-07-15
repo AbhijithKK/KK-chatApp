@@ -5,7 +5,7 @@ import settings from "../../assets/icons8-settings-64.png";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
-import { allUserApi } from "../Utils/api";
+import { allUserApi, createChatApi } from "../Utils/api";
 import { selectData } from "../Utils/Interface";
 const AllUsers = ({ chats }) => {
   const [state, setState] = useState<[]>([]);
@@ -22,9 +22,11 @@ const AllUsers = ({ chats }) => {
     setSearch(e?.target?.value);
     const data=await allUserApi(search)
     seSerchUsers(data.data)
+    setIsclose(false)
   }
 
-const selectUser=(data:selectData)=>{
+const selectUser=async(userdata:selectData)=>{
+  const data=await createChatApi(userdata?.userId)
 console.log(data);
 
 }

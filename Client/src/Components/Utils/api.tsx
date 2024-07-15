@@ -46,3 +46,12 @@ const api = axios.create({
       return {error:true}
     }
   }
+  export const createChatApi=async(receiverId:string)=>{
+    try {
+      const {data}=await api.post('/chat/create',{receiverId})
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
