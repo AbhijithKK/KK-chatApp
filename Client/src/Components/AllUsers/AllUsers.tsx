@@ -76,12 +76,12 @@ const AllUsers = ({ chats }) => {
         {chats.length == 0 ? (
           <div> Search and find your friends</div>
         ) : (
-          state.map((val, i) => <Conversation key={i} data={val} />)
+          state.map((val, i) => <Conversation status={true} key={i} data={val} />)
         )}
       </div>
       {isOpen &&
-        createPortal(<Modal 
-        content={ searchUsers.map((val, i) => <Conversation key={i} data={val} />)
+        createPortal(<Modal headding={'All users'}
+        content={ searchUsers.map((val, i) => <Conversation status={false} key={i} data={val} />)
       } 
         closeFnc={closeFnc} />, document.body)}
     </div>
