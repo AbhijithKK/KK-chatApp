@@ -2,12 +2,18 @@ import Conversation from "../Conversation-box/Conversation";
 import "./AllUsers.css";
 import logo from "../../assets/Generate A Logo Named KK .its For A Social Media .png";
 import settings from "../../assets/icons8-settings-64.png";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import { allUserApi, createChatApi } from "../Utils/api";
-import { selectData } from "../Utils/Interface";
-const AllUsers = ({ chats }:allusers) => {
+import { allusers, selectData } from "../Utils/Interface";
+interface AllUsersProps {
+  chats: allusers[];
+}
+
+const AllUsers: React.FC<AllUsersProps> = ({ chats }) => {
+  console.log(chats);
+  
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");

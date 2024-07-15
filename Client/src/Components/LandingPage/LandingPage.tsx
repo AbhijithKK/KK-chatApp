@@ -4,12 +4,13 @@ import { io, Socket } from 'socket.io-client';
 import AllUsers from '../AllUsers/AllUsers';
 import ChatWindow from '../ChatWindow/ChatWindow';
 import { homeApi } from '../Utils/api';
+import { allusers } from '../Utils/Interface';
 
 const LandingPage = () => {
  
   const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   const [socket, setSocket] = useState<Socket | null>(null);
-  const [allUsers,setAllusers]=useState<[]>([])
+  const [allUsers,setAllusers]=useState<allusers[]>([])
 useEffect(()=>{
 const apiFetch=async()=>{
   const data=await homeApi()
