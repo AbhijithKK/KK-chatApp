@@ -9,9 +9,11 @@ import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
 import { allusers, selectData } from "../Utils/Interface";
 interface AllUsersProps {
   chats: allusers[];
+  refresh:(a:boolean)=>{}
+  refreshV:boolean
 }
 
-const AllUsers: React.FC<AllUsersProps> = ({ chats }) => {
+const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV}) => {
   
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -34,16 +36,20 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats }) => {
 
 const selectUser=async(userdata:selectData)=>{
   // search to create user
-  const data=await createChatApi(userdata?.userId)
+ await createChatApi(userdata?.userId)
   setIsclose(false)
+  refresh(refreshV)
 }
  
   useEffect(() => {
   const userDataFetcher=async()=>{
     const data=await fetchChatUserApi(chats)
+    if (!data.error) {
+      setState(data.data)
+    }
   }
     userDataFetcher()
-  }, [chats]);
+  }, [chats,refresh]);
   
   return (
     <div className="allusers-container">

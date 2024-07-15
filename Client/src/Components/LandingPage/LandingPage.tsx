@@ -11,6 +11,8 @@ const LandingPage = () => {
   const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers,setAllusers]=useState<allusers[]>([])
+  const [refresh, setRefresh] = useState<boolean>(false);
+
 useEffect(()=>{
 const apiFetch=async()=>{
   const data=await homeApi()
@@ -22,7 +24,7 @@ const apiFetch=async()=>{
   
 }
 apiFetch()
-},[])
+},[refresh])
 
 
 
@@ -57,7 +59,7 @@ let arr=[]
   return (
     <div className="landing-page">
       <div className="left-side">
-        <AllUsers chats={allUsers} />
+        <AllUsers chats={allUsers} refresh={setRefresh} refreshV={refresh} />
          
         
       </div>
