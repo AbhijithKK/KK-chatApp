@@ -3,15 +3,22 @@ import { chatModel } from "../Model/ChatModels/Chat.js";
 import { messageModel } from "../Model/ChatModels/Message.js";
 
 export const createChat = async (req, res) => {
-  const { senderId, receiverId } = req.body;
+  const {  receiverId } = req.body;
   try {
+    const token = await req.cookies?.token;
+    const data = await jwtVerify(token);
+    let senderId=data.userId
+
+    const verify=await chatModel.find({members:{$all:[senderId, receiverId]}})
+   if(!verify.length){
     const newChat = new chatModel({
       members: [senderId, receiverId],
     });
     const result = await newChat.save();
-    res.status(200).json(result);
+}
+res.status(200).json(true);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json(false);
   }
 };
 

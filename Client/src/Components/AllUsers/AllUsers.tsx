@@ -17,16 +17,20 @@ const AllUsers = ({ chats }) => {
     setIsclose(f);
     setSearch('')
   };
+
+
   const searchHelper=async(e:any)=>{
     setIsclose(true);
     setSearch(e?.target?.value);
     const data=await allUserApi(search)
     seSerchUsers(data.data)
-    setIsclose(false)
   }
+
 
 const selectUser=async(userdata:selectData)=>{
   const data=await createChatApi(userdata?.userId)
+  setIsclose(false)
+
 console.log(data);
 
 }
