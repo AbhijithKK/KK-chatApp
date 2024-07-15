@@ -55,9 +55,9 @@ const api = axios.create({
       return {error:true}
     }
   }
-  export const fetchChatUserApi=async(allusers:allusers[])=>{
+  export const fetchChatUserApi=async(allUsers:allusers[])=>{
     try {
-      const {data}=await api.post('/userdata',{allusers})
+      const {data}=await api.post('/userdata',{allUsers})
       return data
 
     } catch (error) {

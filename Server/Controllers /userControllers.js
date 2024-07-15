@@ -71,10 +71,18 @@ export const allUsers=async(req,res)=>{
     }
 }
 
-export const allUserData=async()=>{
+export const allUserData=async(req,res)=>{
+    const {allUsers}=req.body
+    let ids=[]
     try {
-        
-    } catch (error) {
-        
+allUsers.forEach((val)=>{
+    ids.push(val.members[1])
+})        
+const result=await userModel.find({_id:{$in:ids}}).select('-password -cpassword')
+res.json({data:result,error:false})
+
+        } catch (error) {
+        res.status(500).json({data:false,
+            error:true})
     }
 }
