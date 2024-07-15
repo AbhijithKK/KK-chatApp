@@ -25,6 +25,7 @@ const AllUsers = ({ chats }) => {
   }
 
 const selectUser=(data:selectData)=>{
+console.log(data);
 
 }
   let idFilter = new Set();
@@ -86,7 +87,7 @@ const selectUser=(data:selectData)=>{
       {isOpen &&
         createPortal(<Modal headding={'All users'}
         content={ 
-          searchUsers.map((val, i) =>      <div onClick={()=>selectUser(val)} className="modal-conversation-box"> <Conversation status={false} key={i} data={val} /> </div>)
+          searchUsers.map((val, i) =>      <div key={i} onClick={()=>selectUser(val)} className="modal-conversation-box"> <Conversation status={false}  data={val} /> </div>)
       } 
         closeFnc={closeFnc} />, document.body)}
     </div>
