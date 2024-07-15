@@ -1,3 +1,4 @@
+import { jwtVerify } from "../Middleware/Jwt.js";
 import { chatModel } from "../Model/ChatModels/Chat.js";
 import { messageModel } from "../Model/ChatModels/Message.js";
 
@@ -39,13 +40,27 @@ export const getMessages = async(req, res) => {
 };
 // =========================================================
 export const findAllChat = async(req, res) => {
-    const{userId}=req.params;
   try {
+    const token=await req.cookies.token
+    const data=await jwtVerify(token)
     const result=await chatModel.find(
         {members:{$in:[userId]}})
-        res.status(200).json(result)
+        if (!data) {
+            res.status(401).json({
+                data:false,
+                error:true
+            });
+            return
+        }
+        res.status(200).json({
+            data:result,
+            error:false
+        })
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({
+        data:false,
+        error:true
+    });
   }
 };
 // ========================================================
