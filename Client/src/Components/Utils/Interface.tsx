@@ -9,3 +9,8 @@ export interface user{
     email:string
     password:string
   }
+  export interface selectData{
+    name:string
+    userId:string
+    image:string
+  }

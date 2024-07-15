@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import { allUserApi } from "../Utils/api";
+import { selectData } from "../Utils/Interface";
 const AllUsers = ({ chats }) => {
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -23,6 +24,9 @@ const AllUsers = ({ chats }) => {
     seSerchUsers(data.data)
   }
 
+const selectUser=(data:selectData)=>{
+
+}
   let idFilter = new Set();
   useEffect(() => {
     let newdata = chats.filter((val) => {
@@ -81,7 +85,8 @@ const AllUsers = ({ chats }) => {
       </div>
       {isOpen &&
         createPortal(<Modal headding={'All users'}
-        content={ searchUsers.map((val, i) => <Conversation status={false} key={i} data={val} />)
+        content={ 
+          searchUsers.map((val, i) =>      <div onClick={()=>selectUser(val)} className="modal-conversation-box"> <Conversation status={false} key={i} data={val} /> </div>)
       } 
         closeFnc={closeFnc} />, document.body)}
     </div>

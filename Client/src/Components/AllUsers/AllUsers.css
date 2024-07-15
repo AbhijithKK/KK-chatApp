@@ -80,3 +80,8 @@ scrollbar-color:#ffff;
 .conversation-box::-webkit-scrollbar {
     width: 0px;
 }
+
+.modal-conversation-box{
+    margin: 2px;
+    
+}
