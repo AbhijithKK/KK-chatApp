@@ -70,3 +70,11 @@ export const allUsers=async(req,res)=>{
         error:true})
     }
 }
+
+export const allUserData=async()=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+}
