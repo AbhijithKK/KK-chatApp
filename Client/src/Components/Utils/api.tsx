@@ -73,3 +73,12 @@ const api = axios.create({
       return {error:true}
     }
   }
+  export const getChatTextApi=async(chatId:string)=>{
+    try {
+      const {data}=await api.get('/chat/message',{params:{chatId}})
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
