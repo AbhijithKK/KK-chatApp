@@ -19,7 +19,6 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV}) => {
   const [isOpen, setIsclose] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [searchUsers, setSerchUsers] = useState<[]>([]);
-  const [refresh2,setRefresh]=useState<boolean>(false)
 // modal close fnc
   const closeFnc = (f: boolean) => {
     setIsclose(f);
@@ -32,7 +31,7 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV}) => {
     setSearch(e?.target?.value);
     const data=await allUserApi(search)
     setSerchUsers(data.data)
-    refresh(refreshV)
+    refresh(!refreshV)
 
 
   }
@@ -44,9 +43,9 @@ const selectUser=async(userdata:selectData)=>{
  console.log(data);
  
   setIsclose(false)
-  refresh(refreshV)
+  refresh(!refreshV)
   setSearch('')
-  setRefresh(data)
+  
 
 
 }
@@ -61,7 +60,7 @@ useEffect(() => {
     }
   };
   userDataFetcher();
-}, [memoizedChats, refreshV,refresh2]);
+}, [memoizedChats, refreshV]);
   return (
     <div className="allusers-container">
       <div className="users-headding">
