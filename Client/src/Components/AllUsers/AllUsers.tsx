@@ -11,9 +11,10 @@ interface AllUsersProps {
   chats: allusers[];
   refresh:Dispatch<SetStateAction<boolean>>;
   refreshV:boolean
+  chatSelector:(data:{})=>{}
 }
 
-const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV}) => {
+const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelector}) => {
   
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -87,7 +88,7 @@ useEffect(() => {
         {chats.length == 0 ? (
           <div> Search and find your friends</div>
         ) : (
-          state.map((val, i) => <Conversation status={true} key={i} data={val} />)
+          state.map((val, i) => <Conversation chatSelector={chatSelector} status={true} key={i} data={val} />)
         )}
       </div>
       {isOpen &&

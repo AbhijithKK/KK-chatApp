@@ -25,8 +25,9 @@ const apiFetch=async()=>{
 }
 apiFetch()
 },[refresh])
+const chatSelector=async({data}:singleUserInterface)=>{
 
-
+}
 
 
   
@@ -59,7 +60,7 @@ let arr=[]
   return (
     <div className="landing-page">
       <div className="left-side">
-        <AllUsers chats={allUsers} refresh={setRefresh} refreshV={refresh} />
+        <AllUsers chatSelector={chatSelector} chats={allUsers} refresh={setRefresh} refreshV={refresh} />
          
         
       </div>

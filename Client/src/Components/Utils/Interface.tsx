@@ -26,6 +26,15 @@ export interface user{
     data:{
       name:string
       status:boolean
+      _id:string
+      image:string
     }
     status:boolean
+    chatSelector:(data:{})=>{}
+  }
+
+  export interface singleUserInterface{
+    _id:string
+    name:string
+    image:string
   }
