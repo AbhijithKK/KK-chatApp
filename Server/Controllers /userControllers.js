@@ -75,10 +75,16 @@ export const allUserData=async(req,res)=>{
     const {allUsers}=req.body
     let ids=[]
     try {
+        const token = await req.cookies?.token;
+      const data = await jwtVerify(token);
 allUsers.forEach((val)=>{
-    ids.push(val.members[1])
+
+    ids.push(...val.members)
 })        
-const result=await userModel.find({_id:{$in:ids}}).select('-password -cpassword')
+let newIds=new Set(ids)
+newIds.delete(data?.userId)
+let updatedIds = Array.from(newIds);
+const result=await userModel.find({_id:{$in:updatedIds}}).select('-password -cpassword')
 res.json({data:result,error:false})
 
         } catch (error) {
