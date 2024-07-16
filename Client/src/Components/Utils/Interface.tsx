@@ -22,3 +22,10 @@ export interface user{
         _id:string
         updatedAt:string 
   }
+  export interface conversationInterface{
+    data:{
+      name:string
+      status:boolean
+    }
+    status:boolean
+  }

@@ -1,6 +1,8 @@
 import './Conversation.css'
 import proicon from '../../assets/icons8-test-account-48.png'
-const Conversation = ({data,status}) => {
+import { conversationInterface } from '../Utils/Interface'
+
+const Conversation = ({data,status}:conversationInterface) => {
   return (
     <div className='conversation-container'>
       

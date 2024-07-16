@@ -51,7 +51,6 @@ const selectUser=async(userdata:selectData)=>{
 }
 //  fetch all user data
 const memoizedChats = useMemo(() => chats, [chats]);
-
 useEffect(() => {
   const userDataFetcher = async () => {
     const data = await fetchChatUserApi(memoizedChats);
