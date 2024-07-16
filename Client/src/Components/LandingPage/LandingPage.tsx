@@ -4,7 +4,7 @@ import { io, Socket } from 'socket.io-client';
 import AllUsers from '../AllUsers/AllUsers';
 import ChatWindow from '../ChatWindow/ChatWindow';
 import { homeApi } from '../Utils/api';
-import { allusers } from '../Utils/Interface';
+import { allusers, singleUserInterface } from '../Utils/Interface';
 
 const LandingPage = () => {
  
@@ -12,6 +12,12 @@ const LandingPage = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers,setAllusers]=useState<allusers[]>([])
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [singleChat, setSingleChat] = useState<singleUserInterface>({
+    name: '',
+    _id:'',
+    image:'',
+    status:false
+  });
 
 useEffect(()=>{
 const apiFetch=async()=>{
@@ -25,31 +31,30 @@ const apiFetch=async()=>{
 }
 apiFetch()
 },[refresh])
-const chatSelector=async({data}:singleUserInterface)=>{
+const chatSelector=(data:singleUserInterface):void=>{
+  
+setSingleChat(data)
 
 }
 
 
   
-let arr=[]
+
 
   useEffect(() => {
-    
-
     newSocket.on('get', (msg: string) => {
-     
     });
 
     newSocket.on('connect_error', (err) => {
       console.error('Connection error:', err);
     });
-
     setSocket(newSocket);
-
     return () => {
       newSocket.disconnect();
     };
   }, []);
+
+
 
   const sendMessage = () => {
     if (socket) {
@@ -60,12 +65,10 @@ let arr=[]
   return (
     <div className="landing-page">
       <div className="left-side">
-        <AllUsers chatSelector={chatSelector} chats={allUsers} refresh={setRefresh} refreshV={refresh} />
-         
-        
+        <AllUsers chatSelector={chatSelector} chats={allUsers} refresh={setRefresh} refreshV={refresh} />  
       </div>
       <div className="right-side">
-        <ChatWindow chat={arr} />
+        <ChatWindow chat={singleChat} />
       </div>
     </div>
   );

@@ -6,12 +6,12 @@ import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from "r
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
-import { allusers, selectData } from "../Utils/Interface";
+import { allusers, selectData, singleUserInterface } from "../Utils/Interface";
 interface AllUsersProps {
   chats: allusers[];
   refresh:Dispatch<SetStateAction<boolean>>;
   refreshV:boolean
-  chatSelector:(data:{})=>{}
+  chatSelector:(data: singleUserInterface) => void;
 }
 
 const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelector}) => {

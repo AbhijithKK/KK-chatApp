@@ -23,18 +23,15 @@ export interface user{
         updatedAt:string 
   }
   export interface conversationInterface{
-    data:{
-      name:string
-      status:boolean
-      _id:string
-      image:string
-    }
+    data:singleUserInterface
     status:boolean
-    chatSelector:(data:{})=>{}
+    chatSelector:(data:singleUserInterface)=>void
   }
 
   export interface singleUserInterface{
     _id:string
     name:string
     image:string
+    status:boolean
+
   }
