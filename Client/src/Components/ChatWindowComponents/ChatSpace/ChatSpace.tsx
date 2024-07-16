@@ -1,8 +1,11 @@
+import { chatText } from '../../Utils/Interface'
 import './ChatSpace.css'
-
-const ChatSpace = ({chat}) => {
+interface chatSpace{
+  chat:chatText
+}
+const ChatSpace = ({chat}:chatSpace) => {
   
-  let myid=1
+  let myid='1'
   return (
     <div className='chat-space-container'>
       {
