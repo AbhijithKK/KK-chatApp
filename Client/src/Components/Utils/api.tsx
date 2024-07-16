@@ -64,9 +64,9 @@ const api = axios.create({
       return {error:true}
     }
   }
-  export const getChatApi=async(senderId:string,receiverId:string)=>{
+  export const getChatApi=async(receiverId:string)=>{
     try {
-      const {data}=await api.get('/chat/findone',{params:{senderId,receiverId}})
+      const {data}=await api.get('/chat/findone',{params:{receiverId}})
       return data
 
     } catch (error) {

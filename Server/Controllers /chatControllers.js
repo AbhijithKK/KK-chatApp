@@ -73,14 +73,24 @@ export const findAllChat = async (req, res) => {
 };
 // ========================================================
 export const findOneChat = async (req, res) => {
-  const { senderId, receiverId } = req.params;
+  const {receiverId } = req.params;
   try {
+    const token = await req.cookies?.token;
+      const data = await jwtVerify(token);
     const result = await chatModel.findOne({
-      members: { $all: [senderId, receiverId] },
+      members: { $all: [data?.userId, receiverId] },
     });
-    res.status(200).json(result);
+    res.status(200).json({
+        data:result,
+        error:false
+    });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json(
+        {
+            data:false,
+            error:true
+        }
+    );
   }
 };
 // ===================================================================
