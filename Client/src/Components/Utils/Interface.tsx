@@ -35,3 +35,10 @@ export interface user{
     status:boolean
 
   }
+  export interface chatText{
+    senderId:string
+    chatId:string
+    message:string
+    updatedAt:string
+    createdAt:string
+  }

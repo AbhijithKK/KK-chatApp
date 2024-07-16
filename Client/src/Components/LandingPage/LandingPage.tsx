@@ -68,7 +68,7 @@ setSingleChat(data)
         <AllUsers chatSelector={chatSelector} chats={allUsers} refresh={setRefresh} refreshV={refresh} />  
       </div>
       <div className="right-side">
-        <ChatWindow chat={singleChat} />
+        <ChatWindow refresh={refresh} chat={singleChat} />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import './ChatSpace.css'
 
 const ChatSpace = ({chat}) => {
+  
   let myid=1
   return (
     <div className='chat-space-container'>

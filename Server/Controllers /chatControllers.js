@@ -74,6 +74,9 @@ export const findAllChat = async (req, res) => {
 // ========================================================
 export const findOneChat = async (req, res) => {
   const {receiverId } = req.params;
+  console.log(receiverId);
+console.log('gg',req.params);  
+
   try {
     const token = await req.cookies?.token;
       const data = await jwtVerify(token);

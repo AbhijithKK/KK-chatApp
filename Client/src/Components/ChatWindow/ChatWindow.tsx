@@ -2,17 +2,14 @@ import { useEffect, useState } from "react"
 import ChatHeadding from "../ChatWindowComponents/ChatHeadding/ChatHeadding"
 import ChatSpace from "../ChatWindowComponents/ChatSpace/ChatSpace"
 import InputSection from "../ChatWindowComponents/InputSection/InputSection"
-import { singleUserInterface } from "../Utils/Interface"
+import { chatText, singleUserInterface } from "../Utils/Interface"
 import './ChatWindow.css'
 import { getChatApi, getChatTextApi } from "../Utils/api"
-interface chatText{
-  senderId:string
-  chatId:string
-  message:string
-  updatedAt:string
-  createdAt:string
+interface chatWindow{
+  chat:singleUserInterface
+  refresh:boolean
 }
-const   ChatWindow = (chat:singleUserInterface) => {
+const   ChatWindow = ({chat,refresh}:chatWindow) => {
   const [chatText,setChatText]=useState<[chatText]>([
     {
       senderId:'',
@@ -22,24 +19,34 @@ const   ChatWindow = (chat:singleUserInterface) => {
   createdAt:'',
     }
   ])
-  console.log(chat);
+  const[getTextId,setGetTextId]=useState<string>('')
   useEffect(()=>{
     const apiHelper=async()=>{
-      const data=await getChatApi(chat._id)
-      if (!data.error) {
-        const result=await getChatTextApi(data.data._id)
-        if (!result.error) {
-          setChatText(result.data)
+      if (chat) {
+        
+        const data=await getChatApi(chat._id)
+        if (!data.error) {
+         setGetTextId(data?.data?._id)
         }
       }
     }
     apiHelper()
-  },[])
+  },[refresh])
+  useEffect(()=>{
+    const apiHelper=async()=>{
+          const result=await getChatTextApi(getTextId)
+          if (!result.error) {
+            setChatText(result.data)
+          }
+    }
+    apiHelper()
+  },[getTextId,refresh])
+  
   return (
     <div className='chat-window-container'>
      <ChatHeadding chat={chat} />
      <div className="chatwindow-middle">
-    {chatText.length ?
+    {!chatText.length ?
       chatText.map((val,i)=>(
         
         <ChatSpace key={i} chat={val} />
@@ -49,6 +56,7 @@ const   ChatWindow = (chat:singleUserInterface) => {
      
      </div>
       <InputSection/>
+
           </div>
   )
 }
