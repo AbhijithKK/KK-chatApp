@@ -22,11 +22,13 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
   const[getTextId,setGetTextId]=useState<string>('')
   useEffect(()=>{
     const apiHelper=async()=>{
-      if (chat) {
+      if (chat?._id) {
         
-        const data=await getChatApi(chat._id)
-        if (!data.error) {
-         setGetTextId(data?.data?._id)
+          
+          const data=await getChatApi(chat._id)
+          if (!data.error) {
+            setGetTextId(data?.data?._id)
+          
         }
       }
     }

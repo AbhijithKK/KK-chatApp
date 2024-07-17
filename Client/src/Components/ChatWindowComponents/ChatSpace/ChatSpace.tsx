@@ -1,15 +1,18 @@
+import { useSelector } from 'react-redux'
 import { chatText } from '../../Utils/Interface'
 import './ChatSpace.css'
+import { RootState } from '../../Utils/Redux/Store'
 interface chatSpace{
   chat:chatText
 }
 const ChatSpace = ({chat}:chatSpace) => {
+  const selector=useSelector((state:RootState)=>state.userData)
+
   
-  let myid='1'
   return (
     <div className='chat-space-container'>
       {
-        chat.senderId!==myid ?
+        chat.senderId!==selector.userId ?
       
       <div className="receive-message">
        <p>{chat.message}</p>
