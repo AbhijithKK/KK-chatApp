@@ -19,6 +19,9 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
   createdAt:'',
     }
   ])
+  const [msgSnt,setMsgSnt]=useState<boolean>(false)
+  const [refresher,setRefresher]=useState<boolean>(false)
+
   const[getTextId,setGetTextId]=useState<string>('')
   useEffect(()=>{
     const apiHelper=async()=>{
@@ -26,41 +29,51 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
         
           
           const data=await getChatApi(chat._id)
+          
           if (!data.error) {
             setGetTextId(data?.data?._id)
-          
+// members array
         }
       }
     }
     apiHelper()
-  },[refresh])
+  },[chat,refresh,msgSnt])
   useEffect(()=>{
     const apiHelper=async()=>{
       if (getTextId) {
         
         const result=await getChatTextApi(getTextId)
+        
         if (!result.error) {
+          console.log(result.data);
+          
           setChatText(result.data)
         }
       }
     }
     apiHelper()
-  },[getTextId,refresh])
+  },[getTextId,refresh,msgSnt,chatText])
+
+  useEffect(()=>{
+    if (chatText) {
+      setRefresher(!refresher)
+    }
+  },[chatText])
   
   return (
     <div className='chat-window-container'>
      <ChatHeadding chat={chat} />
      <div className="chatwindow-middle">
-    {!chatText.length ?
-      chatText.map((val,i)=>(
+    {
+      chatText?.map((val,i)=>(
         
         <ChatSpace key={i} chat={val} />
       ))
-      :<div>Send message to start conversation</div>
+      // :<div>Send message to start conversation</div>
     }
      
      </div>
-      <InputSection/>
+      <InputSection msgSnt={msgSnt} setMsgSnt={setMsgSnt} chatId={getTextId}/>
 
           </div>
   )

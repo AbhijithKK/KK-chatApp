@@ -24,12 +24,13 @@ res.status(200).json(true);
 
 // ====================================================
 export const postMessages = async (req, res) => {
-  const { chatId, senderId, message } = req.body;
+  const { chatId, userId, messages } = req.body;
+  console.log(req.body);
   try {
     const newMessage = new messageModel({
       chatId,
-      senderId,
-      message,
+      senderId:userId,
+      message:messages,
     });
     const result = await newMessage.save();
     res.status(200).json(result);
@@ -42,9 +43,16 @@ export const getMessages = async (req, res) => {
   const { chatId } = req.params;
   try {
     const result = await messageModel.find({ chatId: chatId });
-    res.status(200).json(result);
+    console.log(result);
+    res.status(200).json({
+        data:result,
+        error:false
+    });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({
+        data:false,
+        error:true
+    });
   }
 };
 // =========================================================

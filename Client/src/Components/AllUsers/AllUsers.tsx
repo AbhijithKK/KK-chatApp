@@ -40,6 +40,8 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelecto
 
   // search to create user
 const selectUser=async(userdata:selectData)=>{
+  console.log('kk');
+  
  let data=await createChatApi(userdata?.userId)
  console.log(data);
  

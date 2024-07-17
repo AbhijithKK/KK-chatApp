@@ -33,6 +33,7 @@ apiFetch()
 },[refresh])
 const chatSelector=(data:singleUserInterface):void=>{
   
+  
 setSingleChat(data)
 
 }

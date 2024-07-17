@@ -65,7 +65,6 @@ const api = axios.create({
     }
   }
   export const getChatApi=async(receiverId:string)=>{
-    console.log(receiverId);
     
     try {
       const {data}=await api.get(`/chat/findone/${receiverId}`)
@@ -77,7 +76,16 @@ const api = axios.create({
   }
   export const getChatTextApi=async(chatId:string)=>{
     try {
-      const {data}=await api.get('/chat/message',{params:{chatId}})
+      const {data}=await api.get(`/chat/message/${chatId}`)
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
+  export const postChatTextApi=async(chatId:string,userId:string,messages:string)=>{
+    try {
+      const {data}=await api.post('/chat/message',{chatId,userId,messages})
       return data
 
     } catch (error) {
