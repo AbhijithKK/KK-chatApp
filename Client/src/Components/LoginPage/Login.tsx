@@ -21,7 +21,7 @@ function Login() {
       if (throttil) {
         setThrottil(false)
         const result=await loginApi(values)
-        if (result) {
+        if (!result.error) {
           Navigate('/home')
         }else{
           toast('Plese enter currect email address and password')
