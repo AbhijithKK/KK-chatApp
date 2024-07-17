@@ -52,7 +52,7 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
       }
     }
     apiHelper()
-  },[getTextId,refresh,msgSnt,chatText])
+  },[getTextId,refresh,msgSnt])
 
   useEffect(()=>{
     if (chatText) {
