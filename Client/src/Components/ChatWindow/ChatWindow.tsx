@@ -34,10 +34,13 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
   },[refresh])
   useEffect(()=>{
     const apiHelper=async()=>{
-          const result=await getChatTextApi(getTextId)
-          if (!result.error) {
-            setChatText(result.data)
-          }
+      if (getTextId) {
+        
+        const result=await getChatTextApi(getTextId)
+        if (!result.error) {
+          setChatText(result.data)
+        }
+      }
     }
     apiHelper()
   },[getTextId,refresh])

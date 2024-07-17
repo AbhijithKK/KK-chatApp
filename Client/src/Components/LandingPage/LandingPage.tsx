@@ -5,8 +5,12 @@ import AllUsers from '../AllUsers/AllUsers';
 import ChatWindow from '../ChatWindow/ChatWindow';
 import { homeApi } from '../Utils/api';
 import { allusers, singleUserInterface } from '../Utils/Interface';
+import { useSelector } from 'react-redux';
+import { RootState } from '../Utils/Redux/Store';
 
 const LandingPage = () => {
+ const selector=useSelector((state:RootState)=>state.userData)
+ console.log('lll',selector);
  
   const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   const [socket, setSocket] = useState<Socket | null>(null);

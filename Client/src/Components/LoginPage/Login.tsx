@@ -7,9 +7,12 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react'
 import { loginApi } from '../Utils/api'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { userUpdate } from '../Utils/Redux/Reducers'
 
 
 function Login() {
+  const Dispatch=useDispatch()
   const Navigate=useNavigate()
   const [throttil,setThrottil]=useState<boolean>(true)
   const formik=useFormik({
@@ -22,6 +25,10 @@ function Login() {
         setThrottil(false)
         const result=await loginApi(values)
         if (!result.error) {
+          console.log('login',result.data);
+          
+          Dispatch(userUpdate(result.data))
+
           Navigate('/home')
         }else{
           toast('Plese enter currect email address and password')
