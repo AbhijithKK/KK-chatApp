@@ -35,11 +35,11 @@ app.use("/chat", chatRouter);
 
 const connectedUsers=new Map();
 io.on("connection", (socket) => {
-    socket.on("register",(msg)=>{
-        console.log(msg);
-    })
+    socket.on("register",(userId)=>{
+connectedUsers.set(userId,socket.id)    })
   console.log("connected");
   socket.on("post", (msg) => {
+
     console.log(msg);
     socket.emit("get", msg);
   });
