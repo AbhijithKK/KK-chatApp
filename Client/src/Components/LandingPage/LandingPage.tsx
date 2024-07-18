@@ -23,8 +23,21 @@ const LandingPage = () => {
   const dispatch=useDispatch()
   const userId:string=useSelector((state:RootState)=>state.userData.userId)
   useEffect(() => {
+    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
+    newSocket.emit("register",userId)
+    newSocket.on("connect_error", (err) => {
+      console.error("Connection error:", err);
+    });
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
+  useEffect(() => {
     dispatch(socketUpdate(socket));
   }, [socket, dispatch]);
+  
   useEffect(() => {
     const apiFetch = async () => {
       const data = await homeApi();
@@ -39,18 +52,7 @@ const LandingPage = () => {
     setSingleChat(data);
   };
 
-  useEffect(() => {
-    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
-    newSocket.emit("register",userId)
-    newSocket.on("connect_error", (err) => {
-      console.error("Connection error:", err);
-    });
-    setSocket(newSocket);
 
-    return () => {
-      newSocket.disconnect();
-    };
-  }, []);
   
 
   return (

@@ -37,10 +37,8 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
   useEffect(()=>{
     const apiHelper=async()=>{
       if (chat?._id) {
-        
-          
+        // get members array
           const data=await getChatApi(chat._id)
-          
           if (!data.error) {
             setGetTextId(data?.data)
         }
@@ -50,10 +48,9 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
   },[chat,refresh,msgSnt])
   useEffect(()=>{
     const apiHelper=async()=>{
-      if (getTextId) {
-        
+      if (getTextId._id) {
+        // get all chat data
         const result=await getChatTextApi(getTextId?._id)
-        
         if (!result.error) {          
           setChatText(result.data)
         }
@@ -68,15 +65,12 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
     }
   },[chatText])
   
-  // const [receivedMessage,setReceivedMessage]=useState<chatText[]>(chatText)
   useEffect(()=>{
 if (socket) {
 socket.on("get",(msg:chatText)=>{
     console.log('sockr,msg',msg);
     
-    setChatText((prev)=>{
-     return  [...prev,msg]
-    })
+    setChatText([...chatText,msg])
   })
 }
   },[chatText])
@@ -87,8 +81,8 @@ socket.on("get",(msg:chatText)=>{
      <div className="chatwindow-middle">
     {chatText.length?
       chatText?.map((val,i)=>(
-        
-        <ChatSpace key={i} chat={val} />
+        getTextId._id===val.chatId ?
+        <ChatSpace key={i} chat={val} />:''
       ))
       :<div>Send message to start conversation</div>
     }
