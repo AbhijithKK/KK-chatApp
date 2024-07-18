@@ -39,9 +39,13 @@ io.on("connection", (socket) => {
 connectedUsers.set(userId,socket.id)    })
   console.log("connected");
   socket.on("post", (msg) => {
-
+    const {receiverId}=msg;
+    const ReceiverSocketId=connectedUsers.get(receiverId)
+    if (ReceiverSocketId) {
+        
+        io.to(ReceiverSocketId).emit("get", msg);
+    }
     console.log(msg);
-    socket.emit("get", msg);
   });
 });
 db();
