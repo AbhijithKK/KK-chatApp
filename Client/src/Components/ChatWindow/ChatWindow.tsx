@@ -44,9 +44,7 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
         
         const result=await getChatTextApi(getTextId)
         
-        if (!result.error) {
-          console.log(result.data);
-          
+        if (!result.error) {          
           setChatText(result.data)
         }
       }
@@ -64,12 +62,12 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
     <div className='chat-window-container'>
      <ChatHeadding chat={chat} />
      <div className="chatwindow-middle">
-    {
+    {chatText.length?
       chatText?.map((val,i)=>(
         
         <ChatSpace key={i} chat={val} />
       ))
-      // :<div>Send message to start conversation</div>
+      :<div>Send message to start conversation</div>
     }
      
      </div>

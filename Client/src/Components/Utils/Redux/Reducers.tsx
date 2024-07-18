@@ -23,7 +23,21 @@ export const userSlice = createSlice({
    
   },
 })
+const socketState:any=null
+export const sockerSlice = createSlice({
+  name: 'socketIo',
+  initialState:socketState,
+  reducers: {
+    socketUpdate: (state,action:PayloadAction<any>) => {
+     
+      return  action.payload
+    },
+   
+  },
+})
 
 export const { userUpdate } = userSlice.actions
+export const { socketUpdate } = sockerSlice.actions
 
-export default userSlice.reducer
+export const userSlices= userSlice.reducer
+export const socketSlices= sockerSlice.reducer
