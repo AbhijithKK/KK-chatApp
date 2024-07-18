@@ -47,6 +47,16 @@ connectedUsers.set(userId,socket.id)    })
     }
     console.log(msg);
   });
+  // Handle disconnection
+  socket.on("disconnect", () => {
+    for (const [userId, socketId] of connectedUsers.entries()) {
+      if (socketId === socket.id) {
+        connectedUsers.delete(userId);
+        break;
+      }
+    }
+    console.log("disconnected");
+  });
 });
 db();
 server.listen(3000, () => {
