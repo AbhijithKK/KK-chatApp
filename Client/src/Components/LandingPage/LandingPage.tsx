@@ -5,8 +5,11 @@ import AllUsers from "../AllUsers/AllUsers";
 import ChatWindow from "../ChatWindow/ChatWindow";
 import { homeApi } from "../Utils/api";
 import { allusers, singleUserInterface } from "../Utils/Interface";
+import { useDispatch } from "react-redux";
+import { socketUpdate } from "../Utils/Redux/Reducers";
 
 const LandingPage = () => {
+  const Dispatch=useDispatch()
   const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers, setAllusers] = useState<allusers[]>([]);
@@ -17,7 +20,6 @@ const LandingPage = () => {
     image: "",
     status: false,
   });
-
   useEffect(() => {
     const apiFetch = async () => {
       const data = await homeApi();
@@ -31,8 +33,9 @@ const LandingPage = () => {
   const chatSelector = (data: singleUserInterface): void => {
     setSingleChat(data);
   };
-
+Dispatch(socketUpdate(socket))
   useEffect(() => {
+    
     newSocket.on("get", (msg: string) => {});
 
     newSocket.on("connect_error", (err) => {
