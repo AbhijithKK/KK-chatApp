@@ -5,32 +5,39 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Utils/Redux/Store";
 import { postChatTextApi } from "../../Utils/api";
+import { MembersData } from "../../ChatWindow/ChatWindow";
 interface inputSection {
-  chatId: string;
+  membersData: MembersData;
   setMsgSnt: (data: boolean) => void;
   msgSnt: boolean;
 }
 const InputSection: React.FC<inputSection> = ({
-  chatId,
+  membersData,
   setMsgSnt,
   msgSnt,
 }) => {
+  const {socket}=useSelector((state:RootState)=>state.socketData)
+
   const [message, setMessage] = useState<string>("");
-  const [refresh, setRefresh] = useState<boolean>(false);
-  const userId = useSelector((state: RootState) => state.userData.userId);
-  const sendMessage = async () => {
-    setRefresh(!refresh);
-  };
-  useEffect(() => {
+  const senderId = useSelector((state: RootState) => state.userData.userId);
+ 
+  
+ 
     const sendMessage = async () => {
-      if (chatId && message.trim()) {
-         await postChatTextApi(chatId, userId, message);
+      let receiverId=membersData.members.find((val)=>val!=senderId)
+      if (membersData._id && message.trim()) {
+        if (socket) {
+        console.log('sss',socket);
+        
+            socket.emit('post',{chatId:membersData._id, senderId, message,receiverId})
+          }
+         await postChatTextApi(membersData._id, senderId, message);
         setMsgSnt(!msgSnt);
         setMessage("");
       }
     };
-    sendMessage();
-  }, [chatId, refresh]);
+  
+ 
   return (
     <div className="input-section-container">
       <div className="media-picker">

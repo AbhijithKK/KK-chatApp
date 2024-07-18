@@ -9,8 +9,7 @@ import { useDispatch } from "react-redux";
 import { socketUpdate } from "../Utils/Redux/Reducers";
 
 const LandingPage = () => {
-  const Dispatch=useDispatch()
-  const newSocket = io(import.meta.env.VITE_SOCKET_URL);
+  
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers, setAllusers] = useState<allusers[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
@@ -20,6 +19,10 @@ const LandingPage = () => {
     image: "",
     status: false,
   });
+  const dispatch=useDispatch()
+  useEffect(() => {
+    dispatch(socketUpdate(socket));
+  }, [socket, dispatch]);
   useEffect(() => {
     const apiFetch = async () => {
       const data = await homeApi();
@@ -33,25 +36,20 @@ const LandingPage = () => {
   const chatSelector = (data: singleUserInterface): void => {
     setSingleChat(data);
   };
-Dispatch(socketUpdate(socket))
+
   useEffect(() => {
-    
-    newSocket.on("get", (msg: string) => {});
+    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
 
     newSocket.on("connect_error", (err) => {
       console.error("Connection error:", err);
     });
     setSocket(newSocket);
+
     return () => {
       newSocket.disconnect();
     };
   }, []);
-
-  const sendMessage = () => {
-    if (socket) {
-      socket.emit("post");
-    }
-  };
+  
 
   return (
     <div className="landing-page">
