@@ -33,7 +33,7 @@ const io = new Server(server, {
 app.use("/", userRouter);
 app.use("/chat", chatRouter);
 
-
+const connectedUsers=new Map();
 io.on("connection", (socket) => {
   console.log("connected");
   socket.on("post", (msg) => {
