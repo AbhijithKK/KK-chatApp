@@ -5,8 +5,9 @@ import AllUsers from "../AllUsers/AllUsers";
 import ChatWindow from "../ChatWindow/ChatWindow";
 import { homeApi } from "../Utils/api";
 import { allusers, singleUserInterface } from "../Utils/Interface";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { socketUpdate } from "../Utils/Redux/Reducers";
+import { RootState } from "../Utils/Redux/Store";
 
 const LandingPage = () => {
   
@@ -20,6 +21,7 @@ const LandingPage = () => {
     status: false,
   });
   const dispatch=useDispatch()
+  const userId:string=useSelector((state:RootState)=>state.userData.userId)
   useEffect(() => {
     dispatch(socketUpdate(socket));
   }, [socket, dispatch]);
@@ -39,7 +41,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     const newSocket = io(import.meta.env.VITE_SOCKET_URL);
-
+    newSocket.emit("register",userId)
     newSocket.on("connect_error", (err) => {
       console.error("Connection error:", err);
     });
