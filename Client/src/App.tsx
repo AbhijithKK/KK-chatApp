@@ -5,8 +5,11 @@ import Login from "./Components/LoginPage/Login";
 import Signup from "./Components/SignupPage/Signup";
 import { Route, Routes } from "react-router-dom";
 import { checkAuthApi } from "./Components/Utils/api";
+import { useSelector } from "react-redux";
+import { RootState } from "./Components/Utils/Redux/Store";
 
 function App() {
+  const {auth}=useSelector((state:RootState)=>state.authData)
   const [autht, setAuth] = useState<boolean>(false);
   useEffect(()=>{
     const apiHelper=async()=>{
@@ -14,7 +17,7 @@ function App() {
       setAuth(res)
     }
     apiHelper()
-  },[])
+  },[auth])
   return (
     <>
       <Routes>
