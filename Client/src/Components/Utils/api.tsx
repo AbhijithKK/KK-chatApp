@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { allusers, loginFace, user } from './Interface';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './Redux/Store';
+import { updateAuth } from './Redux/AuthReducer';
 const api = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     
@@ -7,7 +10,8 @@ const api = axios.create({
     withCredentials:true
   });
   
-
+  const {auth}=useSelector((state:RootState)=>state.authData)
+  const Dispatch=useDispatch()
   export const signupApi=async({name,email,number,password,cpassword}:user)=>{
     try {
         const {data}=await api.post('/signup',{name,email,number,password,cpassword})
@@ -30,6 +34,8 @@ const api = axios.create({
   }
   export const homeApi=async()=>{
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.get('/chat/findall')
       return data
 
@@ -39,6 +45,8 @@ const api = axios.create({
   }
   export const allUserApi=async(search:string)=>{
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.get(`/alluser?search=${search}`)
       return data
 
@@ -48,6 +56,8 @@ const api = axios.create({
   }
   export const createChatApi=async(receiverId:string)=>{
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.post('/chat/create',{receiverId})
       return data
 
@@ -57,6 +67,8 @@ const api = axios.create({
   }
   export const fetchChatUserApi=async(allUsers:allusers[])=>{
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.post('/userdata',{allUsers})
       return data
 
@@ -67,6 +79,8 @@ const api = axios.create({
   export const getChatApi=async(receiverId:string)=>{
     
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.get(`/chat/findone/${receiverId}`)
       return data
 
@@ -76,6 +90,8 @@ const api = axios.create({
   }
   export const getChatTextApi=async(chatId:string)=>{
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.get(`/chat/message/${chatId}`)
       return data
 
@@ -85,6 +101,8 @@ const api = axios.create({
   }
   export const postChatTextApi=async(chatId:string,userId:string,messages:string)=>{
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.post('/chat/message',{chatId,userId,messages})
       return data
 
@@ -94,6 +112,8 @@ const api = axios.create({
   }
   export const checkAuthApi=async()=>{
     try {
+      Dispatch(updateAuth(!auth))
+
       const {data}=await api.post('/checkauth')
       return data
 

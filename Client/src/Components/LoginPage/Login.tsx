@@ -7,11 +7,14 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react'
 import { loginApi } from '../Utils/api'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userUpdate } from '../Utils/Redux/Reducers'
+import { RootState } from '../Utils/Redux/Store'
+import { updateAuth } from '../Utils/Redux/AuthReducer'
 
 
 function Login() {
+  const {auth}=useSelector((state:RootState)=>state.authData)
   const Dispatch=useDispatch()
   const Navigate=useNavigate()
   const [throttil,setThrottil]=useState<boolean>(true)
@@ -25,9 +28,10 @@ function Login() {
         setThrottil(false)
         const result=await loginApi(values)
         if (!result.error) {
-          console.log('login',result.data);
+          
           
           Dispatch(userUpdate(result.data))
+          Dispatch(updateAuth(!auth))
 
           Navigate('/home')
         }else{

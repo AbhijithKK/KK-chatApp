@@ -11,11 +11,11 @@ export const authSlice = createSlice({
   name: "checkAuth",
   initialState,
   reducers: {
-    userAuth: (state, action: PayloadAction<AuthState>) => {
+    updateAuth: (state, action: PayloadAction<boolean>) => {
       state.auth = action.payload as any;
     },
   },
 });
 
-export const { userAuth } = authSlice.actions;
+export const { updateAuth } = authSlice.actions;
 export const authSlices = authSlice.reducer;
