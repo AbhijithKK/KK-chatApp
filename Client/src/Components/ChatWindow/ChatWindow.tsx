@@ -18,15 +18,7 @@ export interface MembersData {
 
 const   ChatWindow = ({chat,refresh}:chatWindow) => {
   const {socket}=useSelector((state:RootState)=>state.socketData)
-  const [chatText,setChatText]=useState<chatText[]>([
-    {
-      senderId:'',
-  chatId:'',
-  message:'',
-  updatedAt:'',
-  createdAt:'',
-    }
-  ])
+  const [chatText,setChatText]=useState<chatText[]>([])
   const [msgSnt,setMsgSnt]=useState<boolean>(false)
   const [refresher,setRefresher]=useState<boolean>(false)
 
@@ -74,13 +66,14 @@ socket.on("get",(msg:chatText)=>{
   })
 }
   },[chatText])
+  console.log(chatText);
   
   return (
     <div className='chat-window-container'>
      <ChatHeadding chat={chat} />
      <div className="chatwindow-middle">
     {chatText.length?
-      chatText?.map((val,i)=>(
+          chatText?.map((val,i)=>(
         getTextId._id===val.chatId ?
         <ChatSpace key={i} chat={val} />:''
       ))

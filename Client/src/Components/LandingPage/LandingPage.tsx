@@ -11,7 +11,6 @@ import { RootState } from "../Utils/Redux/Store";
 import { updateAuth } from "../Utils/Redux/AuthReducer";
 
 const LandingPage = () => {
-  
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers, setAllusers] = useState<allusers[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
@@ -21,13 +20,15 @@ const LandingPage = () => {
     image: "",
     status: false,
   });
-  const {auth}=useSelector((state:RootState)=>state.authData)
-  const dispatch=useDispatch()
- 
-  const userId:string=useSelector((state:RootState)=>state.userData.userId)
+  const { auth } = useSelector((state: RootState) => state.authData);
+  const dispatch = useDispatch();
+
+  const userId: string = useSelector(
+    (state: RootState) => state.userData.userId
+  );
   useEffect(() => {
     const newSocket = io(import.meta.env.VITE_SOCKET_URL);
-    newSocket.emit("register",userId)
+    newSocket.emit("register", userId);
     newSocket.on("connect_error", (err) => {
       console.error("Connection error:", err);
     });
@@ -40,7 +41,7 @@ const LandingPage = () => {
   useEffect(() => {
     dispatch(socketUpdate(socket));
   }, [socket, dispatch]);
-  
+
   useEffect(() => {
     const apiFetch = async () => {
       const data = await homeApi();
@@ -51,29 +52,27 @@ const LandingPage = () => {
     };
     apiFetch();
   }, [refresh]);
-  useEffect(()=>{
-    dispatch(updateAuth(!auth))
-
-  },[])
+  useEffect(() => {
+    dispatch(updateAuth(!auth));
+  }, []);
   const chatSelector = (data: singleUserInterface): void => {
     setSingleChat(data);
   };
 
-
-  useEffect(()=>{
-    const apiHelper=async()=>{
-    const data=await userDetailsApi()
-    if (!data.error) {
-      const newData={
-        userId:data.data._id,
-        name:data.name,
-        image:data?.image
+  useEffect(() => {
+    const apiHelper = async () => {
+      const data = await userDetailsApi();
+      if (!data.error) {
+        const newData = {
+          userId: data.data._id,
+          name: data.name,
+          image: data?.image,
+        };
+        dispatch(userUpdate(newData));
       }
-      dispatch(userUpdate(newData))
-    }
-    }
-    apiHelper()
-  },[])
+    };
+    apiHelper();
+  }, []);
 
   return (
     <div className="landing-page">
