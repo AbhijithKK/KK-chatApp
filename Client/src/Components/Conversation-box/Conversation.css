@@ -58,7 +58,11 @@ margin-left: 10px;
     font-family: sans-serif;
     color: white;
 }
-.conversaton-status{
-color: rgb(255, 255, 255);
+.conversaton-status-off{
+color: rgb(233, 65, 65);
+font-style: italic;
+}
+.conversaton-status-on{
+color: rgb(82, 250, 110);
 font-style: italic;
 }

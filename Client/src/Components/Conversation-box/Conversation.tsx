@@ -46,7 +46,7 @@ const Conversation = ({
         <div className="conversation-name">
           <p>{data?.name}</p>
         </div>
-        <div className="conversaton-status">
+        <div className={data.status ?"conversaton-status-on":"conversaton-status-off"}>
           {status && <p>{data?.status ? "online" : "ofline"}</p>}
         </div>
       </div>

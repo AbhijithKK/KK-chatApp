@@ -10,6 +10,7 @@
     background-color: rgba(24, 103, 177, 0.842);
     border-bottom: 1px solid;
     color: white;
+    right: 0px;
 }
 .profile-pic{
 display: flex;
