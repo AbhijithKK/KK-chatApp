@@ -7,6 +7,8 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
 import { allusers, selectData, singleUserInterface } from "../Utils/Interface";
+import { useSelector } from "react-redux";
+import { RootState } from "../Utils/Redux/Store";
 interface AllUsersProps {
   chats: allusers[];
   refresh:Dispatch<SetStateAction<boolean>>;
@@ -51,13 +53,34 @@ const selectUser=async(userdata:selectData)=>{
 
 
 }
+const [onlineIds,setOnlineIds]=useState<[]>([])
+const { socket } = useSelector((state: RootState) => state.socketData);
+  useEffect(() => {
+    if (socket) {
+      socket?.on("onlineusers", (msg) => {
+        setOnlineIds(msg)
+      });
+    }
+    return () => {
+      socket?.off("onlineusers");
+    };
+  }, [socket, chatIndex]);
 //  fetch all user data
 const memoizedChats = useMemo(() => chats, [chats]);
 useEffect(() => {
   const userDataFetcher = async () => {
     const data = await fetchChatUserApi(memoizedChats);
     if (!data.error) {
-      setState(data.data);
+      const updatedData=data.data.map((val:any)=>{
+        let status=false
+        for (const onlineId of onlineIds ) {
+          if (val._id==onlineId) {
+            status=true
+          }
+        }
+        return{...val,status:status}
+      })
+      setState(updatedData);
     }
   };
   userDataFetcher();

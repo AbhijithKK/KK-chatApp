@@ -28,8 +28,8 @@ const LandingPage = () => {
   const userId: string = useSelector(
     (state: RootState) => state.userData.userId
   );
-  const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   useEffect(() => {
+    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
     newSocket.emit("register", userId);
 
     newSocket.on("connect_error", (err) => {

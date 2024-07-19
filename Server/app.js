@@ -35,12 +35,14 @@ app.use("/chat", chatRouter);
 
 const connectedUsers=new Map();
 const emitOnlineUsers = () => {
-    const onlineUsers = Array.from(connectedUsers.keys()); // Convert the keys of the Map to an array
+    const onlineUsers = Array.from(connectedUsers.keys()); 
     io.emit('onlineusers', onlineUsers);
   };
 io.on("connection", (socket) => {
     socket.on("register",(userId)=>{
-connectedUsers.set(userId,socket.id)    })
+connectedUsers.set(userId,socket.id)   
+emitOnlineUsers()
+})
   console.log("connected");
   socket.on("post", (msg) => {
     const {receiverId}=msg;
@@ -57,8 +59,12 @@ connectedUsers.set(userId,socket.id)    })
         break;
       }
     }
+    emitOnlineUsers()
+
     console.log("disconnected");
   });
+  emitOnlineUsers()
+
 });
 db();
 server.listen(3000, () => {
