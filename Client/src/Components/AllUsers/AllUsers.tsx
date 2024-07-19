@@ -84,7 +84,7 @@ useEffect(() => {
     }
   };
   userDataFetcher();
-}, [memoizedChats, refreshV]);
+}, [memoizedChats, refreshV,socket]);
 
 
   return (

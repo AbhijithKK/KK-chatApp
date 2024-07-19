@@ -59,9 +59,7 @@ const   ChatWindow = ({chat,refresh}:chatWindow) => {
   
   useEffect(()=>{
 if (socket) {
-socket.on("get",(msg:chatText)=>{
-    console.log('sockr,msg',msg);
-    
+socket.on("get",(msg:chatText)=>{    
     setChatText([...chatText,msg])
   })
 }
@@ -86,7 +84,7 @@ useEffect(()=>{
       ))
       :<div className="empty-conv">(Send Message to Start Conversation)</div>
     }
-     <div ref={scrollRef} ></div>
+     <div ref={scrollRef} className="empty-space" > &nbsp;</div>
      </div>
      {
       getTextId._id
