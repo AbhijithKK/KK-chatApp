@@ -3,33 +3,35 @@ import "./App.css";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import Login from "./Components/LoginPage/Login";
 import Signup from "./Components/SignupPage/Signup";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { checkAuthApi } from "./Components/Utils/api";
 import { useSelector } from "react-redux";
 import { RootState } from "./Components/Utils/Redux/Store";
 
 function App() {
-  const {auth}=useSelector((state:RootState)=>state.authData)
+  const { auth } = useSelector((state: RootState) => state.authData);
   const [autht, setAuth] = useState<boolean>(false);
-  const Memo=useMemo(()=>{return auth},[auth])
-  useEffect(()=>{
-    const apiHelper=async()=>{
-      const res=await checkAuthApi()
-      setAuth(res)
-    }
-    apiHelper()
-  },[Memo])
+  const Memo = useMemo(() => {
+    return auth;
+  }, [auth]);
+  useEffect(() => {
+    const apiHelper = async () => {
+      const res = await checkAuthApi();
+      setAuth(res);
+    };
+    apiHelper();
+  }, [Memo]);
 
   return (
     <>
       <Routes>
         {!autht && (
           <>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={autht?<Navigate to={'/home'}/>:<Signup />} />
+            <Route path="/" element={autht ? <Navigate to={'/home'}/> :<Login />} />
           </>
         )}
-        {autht && <Route path="/home" element={<LandingPage />} />}
+        {autht && <Route path="/home" element={!autht ? <Navigate to={'/login'}/> :<LandingPage />} />}
       </Routes>
     </>
   );
