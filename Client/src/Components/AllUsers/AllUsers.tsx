@@ -39,9 +39,7 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelecto
 
 
   // search to create user
-const selectUser=async(userdata:selectData)=>{
-  console.log('kk');
-  
+const selectUser=async(userdata:selectData)=>{  
  let data=await createChatApi(userdata?.userId)
  console.log(data);
  
@@ -96,7 +94,8 @@ useEffect(() => {
       {isOpen &&
         createPortal(<Modal headding={'All users'}
         content={ 
-          searchUsers.map((val, i) =>      <div key={i} onClick={()=>selectUser(val)} className="modal-conversation-box"> <Conversation status={false}  data={val} /> </div>)
+          searchUsers.map((val, i) =>      <div key={i} onClick={()=>selectUser(val)} className="modal-conversation-box"> 
+          <Conversation status={false}  data={val} /> </div>)
       } 
         closeFnc={closeFnc} />, document.body)}
     </div>

@@ -6,12 +6,11 @@ position: fixed;
 bottom: 10px;
 width: 60%;
 background-color: white;
-right: 3px;
 margin-bottom: -10px;
 padding-bottom: 20px;
 padding-top: 10px;
 border-top: 1px solid;
-background-color: rgb(166, 245, 255);
+background-color: rgba(24, 103, 177, 0.842);
 
 
 }
@@ -41,7 +40,7 @@ align-items: center;
 }
 .input-box textarea:focus{
     outline: none;
-    border: 2px solid green;
+    border: 2px solid rgb(64, 175, 240);
 
 }
 .send-btn{
@@ -66,9 +65,9 @@ align-items: center;
 }
 .send-btn button:hover{
     cursor: pointer;
-    background-color: rgb(10, 87, 8);
+    background-color: rgb(43, 132, 192);
     color: white;
-    box-shadow: 1px 0.5px 30px green ;
+    box-shadow: 1px 0.5px 30px rgb(0, 0, 0) ;
 
 }
 .send-btn button img{

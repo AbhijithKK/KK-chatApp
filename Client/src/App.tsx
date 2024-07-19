@@ -16,8 +16,11 @@ function App() {
   }, [auth]);
   useEffect(() => {
     const apiHelper = async () => {
-      const res = await checkAuthApi();
-      setAuth(res);
+    
+        
+        const res = await checkAuthApi();
+        setAuth(res);
+      
     };
     apiHelper();
   }, [Memo]);

@@ -70,18 +70,28 @@ socket.on("get",(msg:chatText)=>{
   
   return (
     <div className='chat-window-container'>
-     <ChatHeadding chat={chat} />
+      {
+        getTextId._id
+        ?
+        <ChatHeadding chat={chat} />
+        :''
+      }
      <div className="chatwindow-middle">
     {chatText.length?
           chatText?.map((val,i)=>(
         getTextId._id===val.chatId ?
         <ChatSpace key={i} chat={val} />:''
       ))
-      :<div>Send message to start conversation</div>
+      :<div className="">Send message to start conversation</div>
     }
      
      </div>
+     {
+      getTextId._id
+      ?
       <InputSection msgSnt={msgSnt} setMsgSnt={setMsgSnt} membersData={getTextId}/>
+      :''
+     }
 
           </div>
   )

@@ -5,12 +5,11 @@
     padding-bottom: 20px;
     position: fixed;
     top: 0;
-    right: 2px;
     width: 60%;
     justify-content: space-between;
-    background-color: white;
-    background-color: rgb(166, 245, 255);
-border-bottom: 1px solid;
+    background-color: rgba(24, 103, 177, 0.842);
+    border-bottom: 1px solid;
+    color: white;
 }
 .profile-pic{
 display: flex;
@@ -35,7 +34,7 @@ letter-spacing: 1px;
 font-weight: lighter;
 font-family: sans-serif;
 font-style: italic;
-color: green;
+color: rgb(255, 255, 255);
 }
 .profile-options{
     display: flex;

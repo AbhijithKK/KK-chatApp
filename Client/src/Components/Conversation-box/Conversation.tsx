@@ -4,7 +4,7 @@ import { conversationInterface } from "../Utils/Interface";
 
 const Conversation = ({ data, status,chatSelector }: conversationInterface) => {
   return (
-    <div onClick={()=>chatSelector(data)} className="conversation-container">
+    <div onClick={()=>chatSelector(data)} className={data._id ?"conversation-containe conversation-container-select":"conversation-container"}>
       <div className="conversation-left">
         <img src={data?.image ?data?.image:proicon} alt="logo" />
       </div>

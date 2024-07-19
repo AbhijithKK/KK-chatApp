@@ -2,10 +2,8 @@
     display: grid;
     grid-template-rows: 20% 60% 20%;
     overflow-x: hidden;
-    background-color: rgb(236, 147, 84);
 }
 .chatwindow-middle{
     margin-top: 100px;
     margin-bottom: 80px;
-    border-left: 1px solid blue;
 }
