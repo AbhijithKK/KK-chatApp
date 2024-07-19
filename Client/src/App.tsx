@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import Login from "./Components/LoginPage/Login";
@@ -11,13 +11,15 @@ import { RootState } from "./Components/Utils/Redux/Store";
 function App() {
   const {auth}=useSelector((state:RootState)=>state.authData)
   const [autht, setAuth] = useState<boolean>(false);
+  const Memo=useMemo(()=>{return auth},[auth])
   useEffect(()=>{
     const apiHelper=async()=>{
       const res=await checkAuthApi()
       setAuth(res)
     }
     apiHelper()
-  },[auth])
+  },[Memo])
+
   return (
     <>
       <Routes>
