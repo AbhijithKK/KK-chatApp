@@ -19,6 +19,7 @@ justify-content: space-between;
     font-size: larger;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    filter: drop-shadow(0px 0px 5px  white);
 }
 .app-logo{
 display: flex;
@@ -66,6 +67,7 @@ justify-content: space-around;
     border-radius: 50%;
     width: 50%;
     cursor: pointer;
+    filter:contrast(10%) invert(100%) brightness(200%) ;
 }
 .conversation-box{
     display: grid;

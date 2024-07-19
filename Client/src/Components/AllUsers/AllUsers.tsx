@@ -90,11 +90,11 @@ useEffect(() => {
   return (
     <div className="allusers-container">
       <div className="users-headding">
-        <div className="app-logo">
-          <img src={logo} alt="applogo" />
+        <div className="app-logo" title="Settings">
+          <img  src={logo} alt="applogo" />
         </div>
         <div className="app-name">
-          <p>KK-Chatapp</p>
+          <p>KK-ChatApp</p>
         </div>
       </div>
       <div className="usersblock-second-section">
@@ -112,7 +112,7 @@ useEffect(() => {
       </div>
       <div className="conversation-box">
         {chats.length == 0 ? (
-          <div> Search and find your friends</div>
+          <div style={{textAlign:"center",color:"white"}}> Search and find your friends</div>
         ) : (
           state.map((val, i) =>
           

@@ -84,7 +84,7 @@ useEffect(()=>{
         getTextId._id===val.chatId ?
         <ChatSpace key={i} chat={val} />:''
       ))
-      :<div className="">Send message to start conversation</div>
+      :<div className="empty-conv">(Send Message to Start Conversation)</div>
     }
      <div ref={scrollRef} ></div>
      </div>
