@@ -105,7 +105,7 @@ export const allUserData = async (req, res) => {
   }
 };
 
-export const checkAuth = async (req, res, next) => {
+export const checkAuth = async (req, res) => {
     try {
       const token = await req.cookies.token;
       const result = await jwtVerify(token);

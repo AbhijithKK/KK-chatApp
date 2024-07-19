@@ -92,3 +92,12 @@ const api = axios.create({
       return {error:true}
     }
   }
+  export const checkAuthApi=async()=>{
+    try {
+      const {data}=await api.post('/checkauth')
+      return data
+
+    } catch (error) {
+      return false
+    }
+  }
