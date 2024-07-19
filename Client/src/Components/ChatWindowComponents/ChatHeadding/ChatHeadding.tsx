@@ -3,12 +3,11 @@ import backbtn from '../../../assets/icons8-back-button-50.png'
 import dummypro from '../../../assets/icons8-test-account-48.png'
 import optionsicon from '../../../assets/icons8-menu-button-30.png'
 import { singleUserInterface } from '../../Utils/Interface'
-import React from 'react'
+
 interface ChatComponentProps {
   chat: singleUserInterface;
 }
 const ChatHeadding:React.FC<ChatComponentProps> = ({chat}) => {
- 
 
   return (
     <div className='chatheadding-container'>

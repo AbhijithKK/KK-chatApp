@@ -1,10 +1,23 @@
 import "./Conversation.css";
 import proicon from "../../assets/icons8-test-account-48.png";
 import { conversationInterface } from "../Utils/Interface";
+import { RootState } from "../Utils/Redux/Store";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-const Conversation = ({ data, status,chatSelector }: conversationInterface) => {
+const Conversation = ({ data, status,chatSelector,index,chatIndex }: conversationInterface) => {
+  const {socket}=useSelector((state:RootState)=>state.socketData)
+useEffect(()=>{
+  if (socket) {
+    socket?.on('onlineusers',(msg)=>{
+      console.log('mk',msg);
+      
+          })
+  }
+  
+},[socket,chatIndex])
   return (
-    <div onClick={()=>chatSelector(data)} className={data._id ?"conversation-containe conversation-container-select":"conversation-container"}>
+    <div onClick={()=>chatSelector(data,index)} className={index===chatIndex ? "conversation-container-select":"conversation-container"}>
       <div className="conversation-left">
         <img src={data?.image ?data?.image:proicon} alt="logo" />
       </div>

@@ -14,6 +14,8 @@ const LandingPage = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers, setAllusers] = useState<allusers[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [refreshSocket, setRefreshSocket] = useState<boolean>(false);
+  const [chatIndex, setSelectedChatIndex] = useState<number|null>(null);
   const [singleChat, setSingleChat] = useState<singleUserInterface>({
     name: "",
     _id: "",
@@ -26,9 +28,10 @@ const LandingPage = () => {
   const userId: string = useSelector(
     (state: RootState) => state.userData.userId
   );
+  const newSocket = io(import.meta.env.VITE_SOCKET_URL);
   useEffect(() => {
-    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
     newSocket.emit("register", userId);
+
     newSocket.on("connect_error", (err) => {
       console.error("Connection error:", err);
     });
@@ -37,7 +40,7 @@ const LandingPage = () => {
     return () => {
       newSocket.disconnect();
     };
-  }, []);
+  }, [refreshSocket]);
   useEffect(() => {
     dispatch(socketUpdate(socket));
   }, [socket, dispatch]);
@@ -55,8 +58,10 @@ const LandingPage = () => {
   useEffect(() => {
     dispatch(updateAuth(!auth));
   }, []);
-  const chatSelector = (data: singleUserInterface): void => {
+  const chatSelector = (data: singleUserInterface,i:number): void => {
     setSingleChat(data);
+    setSelectedChatIndex(i)
+    setRefreshSocket(!refreshSocket)
   };
 
   useEffect(() => {
@@ -82,6 +87,7 @@ const LandingPage = () => {
           chats={allUsers}
           refresh={setRefresh}
           refreshV={refresh}
+          chatIndex={chatIndex}
         />
       </div>
       <div className="right-side">

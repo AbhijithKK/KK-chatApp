@@ -11,19 +11,16 @@ import { RootState } from "./Components/Utils/Redux/Store";
 function App() {
   const { auth } = useSelector((state: RootState) => state.authData);
   const [autht, setAuth] = useState<boolean>(false);
-  const Memo = useMemo(() => {
-    return auth;
-  }, [auth]);
+
   useEffect(() => {
-    const apiHelper = async () => {
-    
-        
+    const apiHelper = async () => { 
         const res = await checkAuthApi();
         setAuth(res);
-      
     };
     apiHelper();
-  }, [Memo]);
+  }, [auth]);
+console.log('selector',auth);
+console.log('aa',autht);
 
   return (
     <>

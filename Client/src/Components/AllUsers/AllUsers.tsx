@@ -2,7 +2,7 @@ import Conversation from "../Conversation-box/Conversation";
 import "./AllUsers.css";
 import logo from "../../assets/Generate A Logo Named KK .its For A Social Media .png";
 import settings from "../../assets/icons8-settings-64.png";
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
@@ -11,10 +11,11 @@ interface AllUsersProps {
   chats: allusers[];
   refresh:Dispatch<SetStateAction<boolean>>;
   refreshV:boolean
-  chatSelector:(data: singleUserInterface) => void;
+  chatSelector:(data: singleUserInterface,i:number) => void;
+  chatIndex:number|null
 }
 
-const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelector}) => {
+const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelector,chatIndex}) => {
   
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -61,6 +62,8 @@ useEffect(() => {
   };
   userDataFetcher();
 }, [memoizedChats, refreshV]);
+
+
   return (
     <div className="allusers-container">
       <div className="users-headding">
@@ -81,14 +84,23 @@ useEffect(() => {
           />
         </div>
         <div className="settigs">
-          <img src={settings} alt="settings" />
+          <img src={settings} alt="settings"  />
         </div>
       </div>
       <div className="conversation-box">
         {chats.length == 0 ? (
           <div> Search and find your friends</div>
         ) : (
-          state.map((val, i) => <Conversation chatSelector={chatSelector} status={true} key={i} data={val} />)
+          state.map((val, i) =>
+          
+           <Conversation  
+           key={i}
+           chatSelector={chatSelector} 
+           status={true}  data={val} index={i}
+           chatIndex={chatIndex}
+           />
+          
+           )
         )}
       </div>
       {isOpen &&

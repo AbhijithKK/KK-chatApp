@@ -12,6 +12,17 @@ gap: 10px;
 cursor: pointer;
 }
 .conversation-container-select{
+    display: flex;
+align-items: center;
+width: 100%;
+justify-content: space-around;
+height: 5rem;
+border :1px solid rgb(255, 255, 255);
+border-radius: 5px;
+background-color: rgba(20, 57, 92, 0.747);
+background-color:transparent;
+gap: 10px;
+cursor: pointer;
     background-color: rgba(20, 57, 92, 0.747);
 
 }

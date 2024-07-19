@@ -25,7 +25,9 @@ export interface user{
   export interface conversationInterface{
     data:singleUserInterface
     status:boolean
-    chatSelector:(data:singleUserInterface)=>void
+    chatSelector:(data:singleUserInterface,i:number)=>void
+    index:number
+    chatIndex:number|null
   }
 
   export interface singleUserInterface{
