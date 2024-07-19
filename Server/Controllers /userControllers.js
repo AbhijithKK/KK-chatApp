@@ -104,3 +104,20 @@ export const allUserData = async (req, res) => {
     res.status(500).json({ data: false, error: true });
   }
 };
+
+export const checkAuth = async (req, res, next) => {
+    try {
+      const token = await req.cookies.token;
+      const result = await jwtVerify(token);
+      const data = await userModel.findOne({ _id: result?.userId });
+      if (!data) {
+        res.status(500).json(false);
+        return
+      } else {
+        res.status(200).json(true);
+        return
+      }
+    } catch (error) {
+      res.status(500).json(false);
+    }
+  };
