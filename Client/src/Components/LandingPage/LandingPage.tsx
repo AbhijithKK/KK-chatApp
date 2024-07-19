@@ -8,6 +8,7 @@ import { allusers, singleUserInterface } from "../Utils/Interface";
 import { useDispatch, useSelector } from "react-redux";
 import { socketUpdate } from "../Utils/Redux/Reducers";
 import { RootState } from "../Utils/Redux/Store";
+import { updateAuth } from "../Utils/Redux/AuthReducer";
 
 const LandingPage = () => {
   
@@ -20,7 +21,9 @@ const LandingPage = () => {
     image: "",
     status: false,
   });
+  const {auth}=useSelector((state:RootState)=>state.authData)
   const dispatch=useDispatch()
+ 
   const userId:string=useSelector((state:RootState)=>state.userData.userId)
   useEffect(() => {
     const newSocket = io(import.meta.env.VITE_SOCKET_URL);
@@ -48,6 +51,10 @@ const LandingPage = () => {
     };
     apiFetch();
   }, [refresh]);
+  useEffect(()=>{
+    dispatch(updateAuth(!auth))
+
+  },[])
   const chatSelector = (data: singleUserInterface): void => {
     setSingleChat(data);
   };

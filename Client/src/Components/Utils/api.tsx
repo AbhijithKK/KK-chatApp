@@ -94,10 +94,11 @@ const api = axios.create({
   }
   export const checkAuthApi=async()=>{
     try {
-      const {data}=await api.post('/checkauth')
+      const {data}=await api.get('/checkauth')
       return data
 
     } catch (error) {
       return false
     }
   }
+  
