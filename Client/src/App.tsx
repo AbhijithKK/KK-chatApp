@@ -25,13 +25,14 @@ function App() {
   return (
     <>
       <Routes>
-        {!autht && (
+        
           <>
             <Route path="/signup" element={autht?<Navigate to={'/home'}/>:<Signup />} />
             <Route path="/" element={autht ? <Navigate to={'/home'}/> :<Login />} />
+            <Route path="/*" element={autht ? <Navigate to={'/home'}/> :<Login />} />
           </>
-        )}
-        {autht && <Route path="/home" element={!autht ? <Navigate to={'/login'}/> :<LandingPage />} />}
+        
+        <Route path="/home" element={!autht ? <Navigate to={'/'}/> :<LandingPage />} />
       </Routes>
     </>
   );
