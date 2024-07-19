@@ -7,7 +7,7 @@ interface chatSpace{
 }
 const ChatSpace = ({chat}:chatSpace) => {
   const selector=useSelector((state:RootState)=>state.userData)
-
+ 
   
   return (
     <div className='chat-space-container'>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ChatHeadding from "../ChatWindowComponents/ChatHeadding/ChatHeadding"
 import ChatSpace from "../ChatWindowComponents/ChatSpace/ChatSpace"
 import InputSection from "../ChatWindowComponents/InputSection/InputSection"
@@ -66,8 +66,10 @@ socket.on("get",(msg:chatText)=>{
   })
 }
   },[chatText])
-  console.log(chatText);
-  
+const scrollRef=useRef(null)  
+useEffect(()=>{
+  scrollRef?.current?.scrollIntoView({behavior:"smooth"})
+},[chat,chatText]) 
   return (
     <div className='chat-window-container'>
       {
@@ -84,7 +86,7 @@ socket.on("get",(msg:chatText)=>{
       ))
       :<div className="">Send message to start conversation</div>
     }
-     
+     <div ref={scrollRef} ></div>
      </div>
      {
       getTextId._id

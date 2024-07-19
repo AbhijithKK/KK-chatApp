@@ -28,8 +28,7 @@ const Conversation = ({
   //     socket?.off("onlineusers");
   //   };
   // }, [socket, chatIndex]);
-  console.log('conv',data);
-  
+ 
   return (
     <div
       onClick={() => chatSelector(data, index)}
