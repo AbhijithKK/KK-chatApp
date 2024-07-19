@@ -102,3 +102,13 @@ const api = axios.create({
     }
   }
   
+  export const userDetailsApi=async()=>{
+    try {
+      const {data}=await api.get('/userdetails')
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
+  

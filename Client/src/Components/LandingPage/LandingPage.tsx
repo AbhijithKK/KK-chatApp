@@ -3,10 +3,10 @@ import "./LandingPage.css";
 import { io, Socket } from "socket.io-client";
 import AllUsers from "../AllUsers/AllUsers";
 import ChatWindow from "../ChatWindow/ChatWindow";
-import { homeApi } from "../Utils/api";
+import { homeApi, userDetailsApi } from "../Utils/api";
 import { allusers, singleUserInterface } from "../Utils/Interface";
 import { useDispatch, useSelector } from "react-redux";
-import { socketUpdate } from "../Utils/Redux/Reducers";
+import { socketUpdate, userUpdate } from "../Utils/Redux/Reducers";
 import { RootState } from "../Utils/Redux/Store";
 import { updateAuth } from "../Utils/Redux/AuthReducer";
 
@@ -60,7 +60,20 @@ const LandingPage = () => {
   };
 
 
-  
+  useEffect(()=>{
+    const apiHelper=async()=>{
+    const data=await userDetailsApi()
+    if (!data.error) {
+      const newData={
+        userId:data.data._id,
+        name:data.name,
+        image:data?.image
+      }
+      dispatch(userUpdate(newData))
+    }
+    }
+    apiHelper()
+  },[])
 
   return (
     <div className="landing-page">
