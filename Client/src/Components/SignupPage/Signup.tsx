@@ -11,7 +11,14 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 
 function Signup() {
-  const [isOpen,setIsopen]=useState<boolean>(true)
+  const [isOpen,setIsopen]=useState<boolean>(false)
+  const [userData,setUserData]=useState<user>({
+    name: "",
+      email: "",
+      number: "",
+      password: "",
+      cpassword: "",
+  })
   const Navigate=useNavigate()
     const [throttil,setThrottil]=useState<boolean>(true)
   const formik = useFormik({
@@ -24,24 +31,28 @@ function Signup() {
     },
 
     onSubmit: async(values:user) => {
-        if (throttil) {
-        
-            setThrottil(false)
-            const result=await signupApi(values)
-            if(result){
-                Navigate('/')
-            }else{
-                toast('Already you have an account')
-            }
-            
-            setTimeout(async() => {
-                setThrottil(true)
-            
-        }, 6000);
-    }
+      setUserData(values)
+        setIsopen(true)
     },
     validationSchema:userSchema
   });
+  const handleCreateAccount=async()=>{
+    if (throttil) {
+        
+      setThrottil(false)
+      const result=await signupApi(userData)
+      if(result){
+          Navigate('/')
+      }else{
+          toast('Already you have an account')
+      }
+      
+      setTimeout(async() => {
+          setThrottil(true)
+      
+  }, 6000);
+}
+  }
   return (
     <>
     <Toaster
@@ -139,7 +150,11 @@ function Signup() {
       </div>
       {isOpen &&
         createPortal(<Modal headding={'Verify OTP '}
-        content={ <div></div>} 
+        content={ <div className="Otp-container">
+          <input className="Otp-input" type="text" max={6}  maxLength={6}/>
+          <p>Resend OTP</p>
+          <button type="button" onClick={handleCreateAccount} className="Otp-btn">Verify</button>
+        </div>} 
         closeFnc={setIsopen} />, document.body)}
     </>
   );
