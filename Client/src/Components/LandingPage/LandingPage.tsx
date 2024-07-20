@@ -93,7 +93,7 @@ const LandingPage = () => {
         />
       </div>
       <div className={mobileView ?"right-side ":"right-side landing-page-block" }>
-        <ChatWindow refresh={refresh} chat={singleChat} />
+        <ChatWindow setMobileView={setMobileView} refresh={refresh} chat={singleChat} />
       </div>
     </div>
   );

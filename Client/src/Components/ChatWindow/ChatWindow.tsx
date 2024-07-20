@@ -11,13 +11,14 @@ import '../Utils/Common.css'
 interface chatWindow{
   chat:singleUserInterface
   refresh:boolean
+  setMobileView:(a:boolean)=>void
 }
 export interface MembersData {
   _id: string;
   members: [string, string];
 }
 
-const   ChatWindow = ({chat,refresh}:chatWindow) => {
+const   ChatWindow = ({chat,refresh,setMobileView}:chatWindow) => {
   const {socket}=useSelector((state:RootState)=>state.socketData)
   const [chatText,setChatText]=useState<chatText[]>([])
   const [msgSnt,setMsgSnt]=useState<boolean>(false)
@@ -74,7 +75,7 @@ useEffect(()=>{
       {
         getTextId._id
         ?
-        <ChatHeadding chat={chat} />
+        <ChatHeadding setMobileView={setMobileView} chat={chat} />
         :''
       }
      <div className="chatwindow-middle">

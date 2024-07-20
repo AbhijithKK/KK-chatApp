@@ -6,13 +6,14 @@ import { singleUserInterface } from '../../Utils/Interface'
 import '../../Utils/Common.css'
 interface ChatComponentProps {
   chat: singleUserInterface;
+  setMobileView:(a:boolean)=>void
 }
-const ChatHeadding:React.FC<ChatComponentProps> = ({chat}) => {
+const ChatHeadding:React.FC<ChatComponentProps> = ({chat,setMobileView}) => {
 
   return (
     <div className='chatheadding-container'>
       <div className="profile-pic">
-        <img src={backbtn} alt="backbtn" />
+        <img onClick={()=>setMobileView(false)} src={backbtn} alt="backbtn" />
         <img src={chat.image?chat?.image:dummypro} alt="propic" />
       </div>
       <div className="profile-name">
