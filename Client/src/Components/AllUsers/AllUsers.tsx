@@ -130,8 +130,12 @@ useEffect(() => {
       {isOpen &&
         createPortal(<Modal headding={'All users'}
         content={ 
-          searchUsers.map((val, i) =>      <div key={i} onClick={()=>selectUser(val)} className="modal-conversation-box"> 
-          <Conversation status={false}  data={val} /> </div>)
+          searchUsers.map((val, i) =>     
+           <div key={i} onClick={()=>selectUser(val)} 
+           className="modal-conversation-box"> 
+          <Conversation status={false} data={val} 
+          chatSelector={()=>{}}
+          index={i} chatIndex={null}   /> </div>)
       } 
         closeFnc={closeFnc} />, document.body)}
     </div>

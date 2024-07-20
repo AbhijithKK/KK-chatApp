@@ -66,7 +66,7 @@ socket.on("get",(msg:chatText)=>{
   })
 }
   },[chatText])
-const scrollRef=useRef(null)  
+const scrollRef:any=useRef(null)  
 useEffect(()=>{
   scrollRef?.current?.scrollIntoView({behavior:"smooth"})
 },[chat,chatText]) 
