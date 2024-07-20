@@ -139,3 +139,21 @@ export const userDetails = async (req, res) => {
         res.status(500).json({data:false,
             error:true});    }
   };
+export const verifyOtp = async (req, res) => {
+    try {
+      const token = await req.cookies.token;
+      const result = await jwtVerify(token);
+      const data = await userModel.findOne({ _id: result?.userId }).select('-password -cpassword -number');
+      if (!data) {
+        res.status(500).json({data:false,
+        error:true});
+        return
+      } else {
+        res.status(200).json({data:data,
+        error:false});
+        return
+      }
+    } catch (error) {
+        res.status(500).json({data:false,
+            error:true});    }
+  };

@@ -1,4 +1,4 @@
-import { allUserData, allUsers,  checkAuth,  login, signup, userDetails } from "../Controllers /userControllers.js";
+import { allUserData, allUsers,  checkAuth,  login, signup, userDetails, verifyOtp } from "../Controllers /userControllers.js";
 import  Express  from 'express'
 import  {auth} from "../Middleware/Auth.js";
 
@@ -6,6 +6,7 @@ import  {auth} from "../Middleware/Auth.js";
 
 router.post('/signup',signup)
 router.post('/login',login)
+router.post('/verifyotp',verifyOtp)
 router.post('/userdata',auth,allUserData)
 router.get('/alluser',auth,allUsers)
 router.get('/checkauth',checkAuth)
