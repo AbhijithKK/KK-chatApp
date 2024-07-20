@@ -1,0 +1,43 @@
+@media (max-width: 500px) {
+    /* landing page =========================================*/
+  .landing-page {
+  }
+  .right-side {
+    width: 100%;
+
+  }
+  .left-side {
+    width: 100%;
+  }
+  .landing-page-block{
+    display: none;
+    width: 100%;
+
+  }
+  /* inpout section =========================================*/
+  .input-section-container {
+    width: 100% !important;
+  }
+  .media-picker {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .media-picker img {
+    width: 40%;
+    cursor: pointer;
+    filter: invert(100%) brightness(200%);
+  }
+  /* chat hedding ===========================================*/
+  .chatheadding-container {
+    width: 100% !important;
+  }
+  /* chat window ============================================*/
+  .chat-window-container {
+    width: 100%;
+  }
+  /* all users ==============================================*/
+  .allusers-container {
+    width: 100%;
+  }
+}

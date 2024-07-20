@@ -9,11 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { socketUpdate, userUpdate } from "../Utils/Redux/Reducers";
 import { RootState } from "../Utils/Redux/Store";
 import { updateAuth } from "../Utils/Redux/AuthReducer";
-
+import '../Utils/Common.css'
 const LandingPage = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers, setAllusers] = useState<allusers[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [mobileView, setMobileView] = useState<boolean>(false);
   const [refreshSocket, setRefreshSocket] = useState<boolean>(false);
   const [chatIndex, setSelectedChatIndex] = useState<number|null>(null);
   const [singleChat, setSingleChat] = useState<singleUserInterface>({
@@ -62,6 +63,7 @@ const LandingPage = () => {
     setSingleChat(data);
     setSelectedChatIndex(i)
     setRefreshSocket(!refreshSocket)
+    setMobileView(true)
   };
 
   useEffect(() => {
@@ -81,7 +83,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <div className="left-side">
+      <div className={mobileView ?"left-side landing-page-block":"left-side"}>
         <AllUsers
           chatSelector={chatSelector}
           chats={allUsers}
@@ -90,7 +92,7 @@ const LandingPage = () => {
           chatIndex={chatIndex}
         />
       </div>
-      <div className="right-side">
+      <div className={mobileView ?"right-side ":"right-side landing-page-block" }>
         <ChatWindow refresh={refresh} chat={singleChat} />
       </div>
     </div>

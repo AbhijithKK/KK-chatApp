@@ -1,11 +1,12 @@
 import "./InputSection.css";
 import sendbtn from "../../../assets/icons8-send-button-100.png";
 import filepicer from "../../../assets/icons8-add-file-50.png";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Utils/Redux/Store";
 import { postChatTextApi } from "../../Utils/api";
 import { MembersData } from "../../ChatWindow/ChatWindow";
+import '../../Utils/Common.css'
 interface inputSection {
   membersData: MembersData;
   setMsgSnt: (data: boolean) => void;

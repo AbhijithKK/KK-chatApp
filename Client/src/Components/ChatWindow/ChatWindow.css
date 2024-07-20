@@ -15,9 +15,3 @@
     padding: 30px;
     height: 20px;
 }
-@media (max-width:500px) {
-    .chat-window-container{
-        width: 100%;
-        
-    }
-}

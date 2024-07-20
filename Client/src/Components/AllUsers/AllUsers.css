@@ -87,9 +87,3 @@ scrollbar-color:#ffff;
     
 }
 
-@media (max-width:500px) {
-    .allusers-container{
-        display: none;
-        width: 100%;
-    }
-}

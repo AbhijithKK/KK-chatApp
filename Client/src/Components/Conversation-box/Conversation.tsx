@@ -1,34 +1,13 @@
 import "./Conversation.css";
 import proicon from "../../assets/icons8-test-account-48.png";
 import { conversationInterface } from "../Utils/Interface";
-import { RootState } from "../Utils/Redux/Store";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-
 const Conversation = ({
   data,
   status,
   chatSelector,
   index,
   chatIndex,
-}: conversationInterface) => {
-  // const { socket } = useSelector((state: RootState) => state.socketData);
-  // useEffect(() => {
-  //   if (socket) {
-  //     socket?.on("onlineusers", (msg) => {
-  //       const id=msg.find((val:string)=>val===data._id)
-  //       if (id) {
-  //         data.status=true
-  //       }else{
-  //         data.status=false
-  //       }
-  //     });
-  //   }
-  //   return () => {
-  //     socket?.off("onlineusers");
-  //   };
-  // }, [socket, chatIndex]);
- 
+}: conversationInterface) => { 
   return (
     <div
       onClick={() => chatSelector(data, index)}

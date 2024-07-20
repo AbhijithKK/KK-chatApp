@@ -9,6 +9,7 @@ import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
 import { allusers, selectData, singleUserInterface } from "../Utils/Interface";
 import { useSelector } from "react-redux";
 import { RootState } from "../Utils/Redux/Store";
+import '../Utils/Common.css'
 interface AllUsersProps {
   chats: allusers[];
   refresh:Dispatch<SetStateAction<boolean>>;

@@ -53,9 +53,3 @@ color: rgb(255, 255, 255);
 
 }
 
-@media (max-width:500px) {
-    .chatheadding-container{
-        
-  width: 100%;
-    }
-}

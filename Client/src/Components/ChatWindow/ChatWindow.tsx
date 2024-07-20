@@ -7,6 +7,7 @@ import './ChatWindow.css'
 import { getChatApi, getChatTextApi } from "../Utils/api"
 import { useSelector } from "react-redux"
 import { RootState } from "../Utils/Redux/Store"
+import '../Utils/Common.css'
 interface chatWindow{
   chat:singleUserInterface
   refresh:boolean
