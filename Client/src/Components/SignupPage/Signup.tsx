@@ -12,6 +12,8 @@ import Modal from "../Modal/Modal";
 
 function Signup() {
   const [isOpen,setIsopen]=useState<boolean>(false)
+  const [otp,setotp]=useState<string>('')
+  const [getOtp,setgetotp]=useState<string>('')
   const [userData,setUserData]=useState<user>({
     name: "",
       email: "",
@@ -37,6 +39,9 @@ function Signup() {
     validationSchema:userSchema
   });
   const handleCreateAccount=async()=>{
+if (getOtp===otp) {
+  
+
     if (throttil) {
         
       setThrottil(false)
@@ -51,6 +56,9 @@ function Signup() {
           setThrottil(true)
       
   }, 6000);
+}
+}else{
+  // otp ender faild
 }
   }
   return (
@@ -151,7 +159,7 @@ function Signup() {
       {isOpen &&
         createPortal(<Modal headding={'Verify OTP '}
         content={ <div className="Otp-container">
-          <input className="Otp-input" type="text" max={6}  maxLength={6}/>
+          <input onChange={(e)=>setotp(e.target.value)} value={otp} className="Otp-input" type="text" max={6}  maxLength={6}/>
           <p>Resend OTP</p>
           <button type="button" onClick={handleCreateAccount} className="Otp-btn">Verify</button>
         </div>} 
