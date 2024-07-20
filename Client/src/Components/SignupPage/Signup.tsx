@@ -7,6 +7,8 @@ import { user } from "../Utils/Interface";
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from "react";
 import {  Link, useNavigate } from "react-router-dom";
+import { createPortal } from "react-dom";
+import Modal from "../Modal/Modal";
 
 function Signup() {
   const Navigate=useNavigate()
@@ -134,6 +136,10 @@ function Signup() {
           </div>
         </div>
       </div>
+      {isOpen &&
+        createPortal(<Modal headding={'All users'}
+        content={ } 
+        closeFnc={closeFnc} />, document.body)}
     </>
   );
 }
