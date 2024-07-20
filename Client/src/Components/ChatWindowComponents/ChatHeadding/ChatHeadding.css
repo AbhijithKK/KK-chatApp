@@ -52,3 +52,10 @@ color: rgb(255, 255, 255);
     filter: invert(100%) brightness(200%);
 
 }
+
+@media (max-width:500px) {
+    .chatheadding-container{
+        
+  width: 100%;
+    }
+}

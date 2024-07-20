@@ -18,3 +18,19 @@ overflow-y: scroll;
 .right-side::-webkit-scrollbar{
     width: 0;
 }
+
+@media (max-width:500px) {
+    .landing-page{
+
+    }
+    .right-side{
+        /* display: none; */
+
+        width: 100%;
+    }
+    .left-side{
+        /* width: 100%; */
+        width: 0;
+    }
+  
+}
