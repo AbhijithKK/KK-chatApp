@@ -111,4 +111,13 @@ const api = axios.create({
       return {error:true}
     }
   }
+  export const otpGenerateApi=async(mail:string)=>{
+    try {
+      const {data}=await api.post('/verifyotp',{mail})
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
   

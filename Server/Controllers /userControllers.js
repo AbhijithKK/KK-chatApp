@@ -143,12 +143,13 @@ export const userDetails = async (req, res) => {
   };
 export const verifyOtp = async (req, res) => {
     try {
-     let otp= otpGenerator.generate(6, 
-        { upperCaseAlphabets: false, specialChars: false });
+      console.log('kk');
+     let otp= otpGen.generate(6, 
+        {digits:true, lowerCaseAlphabets: false,upperCaseAlphabets: false, specialChars: false });
         console.log(otp);
-      nodeMailer()
+      nodeMailer(otp,req.body.mail)
       
-        res.status(500).json({ })
+        res.status(200).json({data:otp,error:false })
     } catch (error) {
         res.status(500).json({data:false,
             error:true});    }

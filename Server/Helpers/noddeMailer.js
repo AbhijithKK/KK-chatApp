@@ -19,7 +19,6 @@ export async function nodeMailer(otp,receiverMail) {
     text: `Your OTP :${otp} `, 
   });
 
-  console.log("Message sent: %s", info.messageId);
+  console.log("Message sent: %s", info);
 }
 
-main().catch(console.error);

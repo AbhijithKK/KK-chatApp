@@ -2,7 +2,7 @@ import "./Signup.css";
 import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
 import { useFormik } from "formik";
 import { userSchema } from "../Utils/Validation";
-import { signupApi } from "../Utils/api";
+import { otpGenerateApi, signupApi } from "../Utils/api";
 import { user } from "../Utils/Interface";
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from "react";
@@ -23,6 +23,7 @@ function Signup() {
   })
   const Navigate=useNavigate()
     const [throttil,setThrottil]=useState<boolean>(true)
+    const [throttil1,setThrottil1]=useState<boolean>(true)
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -35,6 +36,21 @@ function Signup() {
     onSubmit: async(values:user) => {
       setUserData(values)
         setIsopen(true)
+        if (throttil1) {
+        
+          setThrottil1(false)
+          const result=await otpGenerateApi(values.email)
+          if(!result.error){
+             setgetotp(result.data)
+          }else{
+              toast('Something wrong Plese try again')
+          }
+          
+          setTimeout(async() => {
+              setThrottil1(true)
+          
+      }, 6000);
+    }
     },
     validationSchema:userSchema
   });
@@ -58,7 +74,7 @@ if (getOtp===otp) {
   }, 6000);
 }
 }else{
-  // otp ender faild
+  toast('Wrong Otp')
 }
   }
   return (
