@@ -38,3 +38,6 @@ color: red;
 font-size: 20px;
 
 }
+.modal-ss::-webkit-scrollbar{
+    width: 0;
+}

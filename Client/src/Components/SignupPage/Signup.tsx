@@ -11,6 +11,7 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 
 function Signup() {
+  const [isOpen,setIsopen]=useState<boolean>(true)
   const Navigate=useNavigate()
     const [throttil,setThrottil]=useState<boolean>(true)
   const formik = useFormik({
@@ -137,9 +138,9 @@ function Signup() {
         </div>
       </div>
       {isOpen &&
-        createPortal(<Modal headding={'All users'}
-        content={ } 
-        closeFnc={closeFnc} />, document.body)}
+        createPortal(<Modal headding={'Verify OTP '}
+        content={ <div></div>} 
+        closeFnc={setIsopen} />, document.body)}
     </>
   );
 }
