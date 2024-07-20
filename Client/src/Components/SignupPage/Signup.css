@@ -5,10 +5,13 @@ justify-content: center;
 /* width: 100vw; */
 height: 100vh;
 flex-wrap: wrap;
+background-color: rgba(57, 104, 148, 0.973);
+
 }
 .form-outbox{
-background-color: antiquewhite;
-padding: 20px;
+    background-color: rgba(117, 186, 226, 0.795);
+    box-shadow: 1px 1px 8px 15px rgb(25, 73, 100); 
+    padding: 20px;
 border-radius: 5px;
 
 
@@ -90,6 +93,14 @@ opacity: 1;
     cursor: pointer;
     box-shadow: 1px 0px 8px rgb(12, 134, 12);
 }
+.login-link{
+margin-top: 10px;
+margin-left: 3px;
+}
+.login-link-color{
+    color: white;
+    font-weight: 800;
+}
 @media (max-width:350px) {
     .inputrow input ,button{
         height: 30px;
@@ -101,8 +112,7 @@ opacity: 1;
         
         }
         .signup-container{
-            background-color: antiquewhite;
-
+            background-color: rgba(57, 104, 148, 0.973);
         }
         .signup-headder{
             display: grid;
@@ -132,7 +142,6 @@ opacity: 1;
         
         }
         .signup-container{
-            background-color: antiquewhite;
-
+            background-color: rgba(57, 104, 148, 0.973);
         }
 }

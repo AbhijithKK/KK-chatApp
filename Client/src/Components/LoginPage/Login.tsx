@@ -6,7 +6,7 @@ import { loginScheema } from '../Utils/Validation'
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react'
 import { loginApi } from '../Utils/api'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userUpdate } from '../Utils/Redux/Reducers'
 import { RootState } from '../Utils/Redux/Store'
@@ -93,7 +93,14 @@ function Login() {
               <div className="inputrow">
                 <button type="submit">Login</button>
               </div>
+              <div className="signup-link">
+                <p> 
+              Don't have an account? &nbsp;
+                <Link className='signup-link-color' to={'/signup'}>Sign up </Link>
+                </p>
+              </div>
             </form>
+            
           </div>
         </div>
       </div>

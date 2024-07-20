@@ -18,3 +18,9 @@ box-shadow: 1px 1px 8px 15px rgb(25, 73, 100);
     display: flex;
 flex-wrap: wrap;
 }
+.signup-link{
+margin-top: 15px;}
+.signup-link-color{
+    color: white;
+    font-weight: 800;
+}

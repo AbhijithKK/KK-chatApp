@@ -6,7 +6,7 @@ import { signupApi } from "../Utils/api";
 import { user } from "../Utils/Interface";
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const Navigate=useNavigate()
@@ -126,6 +126,11 @@ function Signup() {
                 <button type="submit">Sign Up</button>
               </div>
             </form>
+            
+          </div>
+          <div className="login-link">
+            <p>Already have an account? &nbsp;
+               <Link className="login-link-color" to={'/'}>Log in here</Link></p>
           </div>
         </div>
       </div>
