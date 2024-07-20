@@ -3,6 +3,7 @@ import { jwtVerify } from "../Middleware/Jwt.js";
 import { jwtSign } from "../Middleware/Jwt.js";
 import { userModel } from "../Model/UserModels/User.js";
 import bcrypt from "bcrypt";
+import otpGen from 'otp-generator'
 
 export const signup = async (req, res) => {
   const { name, email, number, password, cpassword, image } = req.body;
@@ -142,7 +143,9 @@ export const userDetails = async (req, res) => {
   };
 export const verifyOtp = async (req, res) => {
     try {
-      
+     let otp= otpGenerator.generate(6, 
+        { upperCaseAlphabets: false, specialChars: false });
+        console.log(otp);
       nodeMailer()
       
         res.status(500).json({ })
