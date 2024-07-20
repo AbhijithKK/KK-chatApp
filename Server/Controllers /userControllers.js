@@ -1,3 +1,4 @@
+import { nodeMailer } from "../Helpers/noddeMailer.js";
 import { jwtVerify } from "../Middleware/Jwt.js";
 import { jwtSign } from "../Middleware/Jwt.js";
 import { userModel } from "../Model/UserModels/User.js";
@@ -142,6 +143,7 @@ export const userDetails = async (req, res) => {
 export const verifyOtp = async (req, res) => {
     try {
       
+      nodeMailer()
       
         res.status(500).json({ })
     } catch (error) {
