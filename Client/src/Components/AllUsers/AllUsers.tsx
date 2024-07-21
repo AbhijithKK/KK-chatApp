@@ -89,7 +89,8 @@ useEffect(() => {
   };
   userDataFetcher();
 }, [memoizedChats, refreshV,socket]);
-const [updateData,setUpdate]=useState()
+const [updateName,setUpdateName]=useState<string>(name)
+const [updateImage,setUpdateImage]=useState<any>(image)
 const handleUpdate=async()=>{
 
 }
@@ -149,11 +150,10 @@ const handleUpdate=async()=>{
           settingsOpen&&
           createPortal(<Modal headding={'Settings'}
           content={<div>
+            <input type="text" onChange={(e)=>setUpdateName(e.target.value)} />
+            
             <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
+            
             <button type="button" onClick={handleUpdate}>update</button>
           </div> } closeFnc={setSettings}/>,document.body )
         }
