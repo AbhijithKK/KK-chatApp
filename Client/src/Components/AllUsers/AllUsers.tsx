@@ -3,7 +3,7 @@ import "./AllUsers.css";
 import logOut from '../../assets/icons8-logout-50.png'
 import logo from "../../assets/Generate A Logo Named KK .its For A Social Media .png";
 import settings from "../../assets/icons8-settings-64.png";
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
@@ -23,6 +23,7 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelecto
   
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
+  const [settingsOpen, setSettings] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [searchUsers, setSerchUsers] = useState<[]>([]);
 // modal close fnc
@@ -111,7 +112,7 @@ useEffect(() => {
           />
         </div>
         <div className="settigs">
-          <img src={settings} alt="settings"  />
+          <img onClick={()=>setSettings(true)} src={settings} alt="settings"  />
         </div>
       </div>
       <div className="conversation-box">
@@ -141,6 +142,11 @@ useEffect(() => {
           index={i} chatIndex={null}   /> </div>)
       } 
         closeFnc={closeFnc} />, document.body)}
+        {
+          settingsOpen&&
+          createPortal(<Modal headding={'Settings'}
+          content={<div></div> } closeFnc={setSettings}/>,document.body )
+        }
     </div>
   );
 };
