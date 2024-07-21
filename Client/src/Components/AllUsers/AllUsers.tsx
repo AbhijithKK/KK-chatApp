@@ -6,7 +6,7 @@ import settings from "../../assets/icons8-settings-64.png";
 import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
-import { allUserApi, createChatApi, fetchChatUserApi } from "../Utils/api";
+import { allUserApi, createChatApi, fetchChatUserApi, updateUserApi } from "../Utils/api";
 import { allusers, selectData, singleUserInterface } from "../Utils/Interface";
 import { useSelector } from "react-redux";
 import { RootState } from "../Utils/Redux/Store";
@@ -101,8 +101,10 @@ useEffect(()=>{
 },[settingsOpen])
 const handleUpdate=async()=>{
 if (updateName.trim()) {
-  
-}
+}  const data=await updateUserApi({userId:userId,name:updateName,image:updateImage})
+console.log(data.data);
+
+
 }
 const handleImageChange=(e:any)=>{
   setUpdateImage(e.target.files[0])
