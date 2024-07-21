@@ -56,7 +56,7 @@ function Signup() {
   });
   const handleCreateAccount=async()=>{
 if (getOtp===otp) {
-  
+  setotp('')
 
     if (throttil) {
         
@@ -74,6 +74,8 @@ if (getOtp===otp) {
   }, 6000);
 }
 }else{
+  setotp('')
+
   toast('Wrong Otp')
 }
   }
@@ -176,7 +178,7 @@ if (getOtp===otp) {
         createPortal(<Modal headding={'Verify OTP '}
         content={ <div className="Otp-container">
           <input onChange={(e)=>setotp(e.target.value)} value={otp} className="Otp-input" type="text" max={6}  maxLength={6}/>
-          <p>Resend OTP</p>
+          
           <button type="button" onClick={handleCreateAccount} className="Otp-btn">Verify</button>
         </div>} 
         closeFnc={setIsopen} />, document.body)}

@@ -84,6 +84,7 @@ scrollbar-color:#ffff;
 
 .modal-conversation-box{
     margin: 2px;
-    
+    background-color: rgba(36, 111, 180, 0.842);
+    border-radius: 8px;
 }
 
