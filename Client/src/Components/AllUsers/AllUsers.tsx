@@ -1,5 +1,6 @@
 import Conversation from "../Conversation-box/Conversation";
 import "./AllUsers.css";
+import logOut from '../../assets/icons8-logout-50.png'
 import logo from "../../assets/Generate A Logo Named KK .its For A Social Media .png";
 import settings from "../../assets/icons8-settings-64.png";
 import React, { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
@@ -97,6 +98,7 @@ useEffect(() => {
         </div>
         <div className="app-name">
           <p>{name}</p>
+          <img src={logOut} alt="logout" />
         </div>
       </div>
       <div className="usersblock-second-section">
