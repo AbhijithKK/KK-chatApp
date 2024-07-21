@@ -169,15 +169,10 @@ export const userUpdate = async (req, res) => {
             error:true});    }
   };
 export const logOut = async (req, res) => {
-  const {userId,name}=req.body
+ 
     try {
       
-     
-     await userModel.updateOne({ _id: userId },{$set:{
-        name:name,image:req.file.filename
-      }});
-    
-      
+      res.clearCookie('token');
         res.status(200).json({data:true,error:false })
     } catch (error) {
         res.status(500).json({data:false,
