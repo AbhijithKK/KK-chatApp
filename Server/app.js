@@ -8,6 +8,8 @@ import morgan from "morgan";
 import userRouter from "./Routers/userRouter.js";
 import chatRouter from "./Routers/chatRoutes.js";
 import cookieParser from "cookie-parser";
+import path from 'path'
+import { fileURLToPath } from 'url';
 configDotenv();
 const app = Express();
 
@@ -15,6 +17,11 @@ app.use(cookieParser());
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json({ limit: "100mb" }));
 app.use(morgan("dev"));
+
+// Get the current directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(Express.static(path.join(__dirname, 'public')));
 app.use(
   cors({
     origin: process.env.REACT_URL,

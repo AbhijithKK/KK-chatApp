@@ -143,13 +143,27 @@ export const userDetails = async (req, res) => {
   };
 export const verifyOtp = async (req, res) => {
     try {
-      console.log('kk');
      let otp= otpGen.generate(6, 
         {digits:true, lowerCaseAlphabets: false,upperCaseAlphabets: false, specialChars: false });
         console.log(otp);
       nodeMailer(otp,req.body.mail)
       
         res.status(200).json({data:otp,error:false })
+    } catch (error) {
+        res.status(500).json({data:false,
+            error:true});    }
+  };
+export const userUpdate = async (req, res) => {
+  const {userId,name,number,image}=req.body
+    try {
+      
+     
+      const data = await userModel.updateOne({ _id: userId },{$set:{
+        name:name,number:number,image:image
+      }});
+    
+      
+        res.status(200).json({data:true,error:false })
     } catch (error) {
         res.status(500).json({data:false,
             error:true});    }

@@ -145,7 +145,13 @@ useEffect(() => {
         {
           settingsOpen&&
           createPortal(<Modal headding={'Settings'}
-          content={<div></div> } closeFnc={setSettings}/>,document.body )
+          content={<div>
+            <input type="text" />
+            <input type="text" />
+            <input type="text" />
+            <input type="text" />
+            <input type="text" />
+          </div> } closeFnc={setSettings}/>,document.body )
         }
     </div>
   );
