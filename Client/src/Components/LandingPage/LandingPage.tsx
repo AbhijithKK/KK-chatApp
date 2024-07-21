@@ -71,9 +71,9 @@ const LandingPage = () => {
       const data = await userDetailsApi();
       if (!data.error) {
         const newData = {
-          userId: data.data._id,
-          name: data.name,
-          image: data?.image,
+          userId: data?.data?._id,
+          name: data?.data?.name,
+          image: data?.data?.image,
         };
         dispatch(userUpdate(newData));
       }

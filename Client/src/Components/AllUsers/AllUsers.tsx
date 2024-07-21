@@ -56,6 +56,7 @@ const selectUser=async(userdata:selectData)=>{
 }
 const [onlineIds,setOnlineIds]=useState<[]>([])
 const { socket } = useSelector((state: RootState) => state.socketData);
+const { image,name } = useSelector((state: RootState) => state.userData);
   useEffect(() => {
     if (socket) {
       socket?.on("onlineusers", (msg) => {
@@ -92,10 +93,10 @@ useEffect(() => {
     <div className="allusers-container">
       <div className="users-headding">
         <div className="app-logo" title="Settings">
-          <img  src={logo} alt="applogo" />
+          <img  src={image?image:logo} alt="applogo" />
         </div>
         <div className="app-name">
-          <p>KK-ChatApp</p>
+          <p>{name}</p>
         </div>
       </div>
       <div className="usersblock-second-section">
