@@ -11,6 +11,7 @@ import { allusers, selectData, singleUserInterface } from "../Utils/Interface";
 import { useSelector } from "react-redux";
 import { RootState } from "../Utils/Redux/Store";
 import '../Utils/Common.css'
+import demoimg from '../../assets/icons8-test-account-48.png'
 interface AllUsersProps {
   chats: allusers[];
   refresh:Dispatch<SetStateAction<boolean>>;
@@ -26,6 +27,7 @@ const AllUsers: React.FC<AllUsersProps> = ({ chats,refresh ,refreshV,chatSelecto
   const [settingsOpen, setSettings] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [searchUsers, setSerchUsers] = useState<[]>([]);
+  
 // modal close fnc
   const closeFnc = (f: boolean) => {
     setIsclose(f);
@@ -56,9 +58,13 @@ const selectUser=async(userdata:selectData)=>{
 
 
 }
+
 const [onlineIds,setOnlineIds]=useState<[]>([])
 const { socket } = useSelector((state: RootState) => state.socketData);
 const { image,name,userId } = useSelector((state: RootState) => state.userData);
+const [updateName,setUpdateName]=useState<string>('')
+const [updateImage,setUpdateImage]=useState<any|null>(null)
+const [previewImage,setPriviewImage]=useState<any>(null)
   useEffect(() => {
     if (socket) {
       socket?.on("onlineusers", (msg) => {
@@ -89,12 +95,20 @@ useEffect(() => {
   };
   userDataFetcher();
 }, [memoizedChats, refreshV,socket]);
-const [updateName,setUpdateName]=useState<string>(name)
-const [updateImage,setUpdateImage]=useState<any>(image)
+useEffect(()=>{
+  setUpdateName(name)
+  setUpdateImage(image)
+},[settingsOpen])
 const handleUpdate=async()=>{
-
+if (updateName.trim()) {
+  
 }
-
+}
+const handleImageChange=(e:any)=>{
+  setUpdateImage(e.target.files[0])
+ const previewUrl=URL.createObjectURL(e.target.files[0])
+  setPriviewImage(previewUrl)
+}
   return (
     <div className="allusers-container">
       <div className="users-headding">
@@ -150,11 +164,15 @@ const handleUpdate=async()=>{
           settingsOpen&&
           createPortal(<Modal headding={'Settings'}
           content={<div>
-            <input type="text" onChange={(e)=>setUpdateName(e.target.value)} />
+            <input className="update-input" type="text" value={updateName} onChange={(e)=>setUpdateName(e.target.value)} />
+            <div className="update-image">
+
+            <img src={previewImage?previewImage:demoimg} alt="demo" style={{width:"20%"}} />
+            <input type="file" 
+             onChange={handleImageChange }/>
+            </div>
             
-            <input type="text" />
-            
-            <button type="button" onClick={handleUpdate}>update</button>
+            <button className="update-btn" type="button" onClick={handleUpdate}>update</button>
           </div> } closeFnc={setSettings}/>,document.body )
         }
     </div>
