@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../Utils/Redux/Store";
 import '../Utils/Common.css'
 import demoimg from '../../assets/icons8-test-account-48.png'
+import toast, { Toaster } from "react-hot-toast";
 interface AllUsersProps {
   chats: allusers[];
   refresh:Dispatch<SetStateAction<boolean>>;
@@ -102,7 +103,13 @@ useEffect(()=>{
 const handleUpdate=async()=>{
 if (updateName.trim()) {
 }  const data=await updateUserApi({userId:userId,name:updateName,image:updateImage})
-console.log(data.data);
+if (data.data) {
+  refresh(!refreshV)
+  
+}else{
+  setSettings(false)
+  toast("Can't Update try again")
+}
 
 
 }
@@ -112,10 +119,12 @@ const handleImageChange=(e:any)=>{
   setPriviewImage(previewUrl)
 }
   return (
+
     <div className="allusers-container">
+      <Toaster position="top-center" />
       <div className="users-headding">
         <div className="app-logo" title="Settings">
-          <img  src={image?image:logo} alt="applogo" />
+          <img  src={image?import.meta.env.VITE_BASE_URL+'/images/'+image :logo} alt="applogo" />
         </div>
         <div className="app-name">
           <p>{name}</p>

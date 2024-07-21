@@ -14,7 +14,7 @@ const ChatHeadding:React.FC<ChatComponentProps> = ({chat,setMobileView}) => {
     <div className='chatheadding-container'>
       <div className="profile-pic">
         <img onClick={()=>setMobileView(false)} src={backbtn} alt="backbtn" />
-        <img src={chat.image?chat?.image:dummypro} alt="propic" />
+        <img src={chat.image?import.meta.env.VITE_BASE_URL+'/images/'+chat?.image:dummypro} alt="propic" />
       </div>
       <div className="profile-name">
         

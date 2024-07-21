@@ -154,14 +154,13 @@ export const verifyOtp = async (req, res) => {
             error:true});    }
   };
 export const userUpdate = async (req, res) => {
-  const {userId,name,number}=req.body
-  console.log(req.file,userId,name);
+  const {userId,name}=req.body
     try {
       
      
-      // const data = await userModel.updateOne({ _id: userId },{$set:{
-      //   name:name,image:image
-      // }});
+     await userModel.updateOne({ _id: userId },{$set:{
+        name:name,image:req.file.filename
+      }});
     
       
         res.status(200).json({data:true,error:false })

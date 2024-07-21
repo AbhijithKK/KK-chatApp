@@ -18,7 +18,7 @@ const Conversation = ({
       }
     >
       <div className="conversation-left">
-        <img src={data?.image ? data?.image : proicon} alt="logo" />
+        <img src={data?.image ?import.meta.env.VITE_BASE_URL+'/images/'+ data?.image : proicon} alt="logo" />
       </div>
       <div className="conversation-right">
         <div className="conversation-name">
