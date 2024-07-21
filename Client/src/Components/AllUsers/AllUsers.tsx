@@ -16,14 +16,16 @@ import {
   allUserApi,
   createChatApi,
   fetchChatUserApi,
+  logoutApi,
   updateUserApi,
 } from "../Utils/api";
 import { allusers, selectData, singleUserInterface } from "../Utils/Interface";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Utils/Redux/Store";
 import "../Utils/Common.css";
 import demoimg from "../../assets/icons8-test-account-48.png";
 import toast, { Toaster } from "react-hot-toast";
+import { updateAuth } from "../Utils/Redux/AuthReducer";
 interface AllUsersProps {
   chats: allusers[];
   refresh: Dispatch<SetStateAction<boolean>>;
@@ -73,9 +75,11 @@ const AllUsers: React.FC<AllUsersProps> = ({
 
   const [onlineIds, setOnlineIds] = useState<[]>([]);
   const { socket } = useSelector((state: RootState) => state.socketData);
+  const auth  = useSelector((state: RootState) => state.authData.auth);
   const { image, name, userId } = useSelector(
     (state: RootState) => state.userData
   );
+  const Dispatch=useDispatch()
   const [updateName, setUpdateName] = useState<string>("");
   const [updateImage, setUpdateImage] = useState<any | null>(null);
   const [previewImage, setPriviewImage] = useState<any>(null);
@@ -139,8 +143,17 @@ const AllUsers: React.FC<AllUsersProps> = ({
     const previewUrl = URL.createObjectURL(e.target.files[0]);
     setPriviewImage(previewUrl);
   };
-  const handleLogout=async()=>{
+  const handleLogout=()=>{
+setLogout(true)
+  }
+  const handleModalLogout=async()=>{
+      const data=await logoutApi()
+      if (data.data) {
+        Dispatch(updateAuth(!auth))
+      }else{
+        toast("Can't logout right now try again");
 
+      }
   }
   return (
     <div className="allusers-container">
@@ -252,6 +265,13 @@ const AllUsers: React.FC<AllUsersProps> = ({
           />,
           document.body
         )}
+        {
+          logout&&
+          createPortal(
+            <Modal closeFnc={setLogout} headding={'Are you sure?'}
+            content={<><button onClick={handleModalLogout} className="logout-btn">Logout</button></>}
+            />,document.body)
+        }
     </div>
   );
 };

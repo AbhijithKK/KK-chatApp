@@ -137,4 +137,15 @@ const api = axios.create({
       return {error:true}
     }
   }
+  export const logoutApi=async()=>{
+    try {
+      const {data}=await api.get('/logout')
+      
+      
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
   
