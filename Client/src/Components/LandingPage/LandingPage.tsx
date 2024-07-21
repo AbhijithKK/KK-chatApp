@@ -33,8 +33,7 @@ const LandingPage = () => {
     const newSocket = io(import.meta.env.VITE_SOCKET_URL);
     newSocket.emit("register", userId);
 
-    newSocket.on("connect_error", (err) => {
-      console.error("Connection error:", err);
+    newSocket.on("connect_error", () => {
     });
     setSocket(newSocket);
 
@@ -79,7 +78,7 @@ const LandingPage = () => {
       }
     };
     apiHelper();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="landing-page">
