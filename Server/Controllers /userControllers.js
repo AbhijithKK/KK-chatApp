@@ -172,12 +172,11 @@ export const userUpdate = async (req, res) => {
 export const logOut = async (req, res) => {
  
     try {
-      console.log('gg');
       res.clearCookie('token', {
         sameSite: 'none',
         httpOnly: true,
         secure: true,
-        path: '/', // Ensure path is set correctly
+        path: '/', 
       });
         res.status(200).json({data:true,error:false })
     } catch (error) {
