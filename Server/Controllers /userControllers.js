@@ -154,7 +154,8 @@ export const verifyOtp = async (req, res) => {
             error:true});    }
   };
 export const userUpdate = async (req, res) => {
-  const {userId,name,number,image}=req.body
+  const {userId,name,number}=req.body
+  console.log(req.files);
     try {
       
      

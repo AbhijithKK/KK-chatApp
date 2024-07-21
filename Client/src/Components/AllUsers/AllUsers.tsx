@@ -58,7 +58,7 @@ const selectUser=async(userdata:selectData)=>{
 }
 const [onlineIds,setOnlineIds]=useState<[]>([])
 const { socket } = useSelector((state: RootState) => state.socketData);
-const { image,name } = useSelector((state: RootState) => state.userData);
+const { image,name,userId } = useSelector((state: RootState) => state.userData);
   useEffect(() => {
     if (socket) {
       socket?.on("onlineusers", (msg) => {
@@ -89,7 +89,10 @@ useEffect(() => {
   };
   userDataFetcher();
 }, [memoizedChats, refreshV,socket]);
+const [updateData,setUpdate]=useState()
+const handleUpdate=async()=>{
 
+}
 
   return (
     <div className="allusers-container">
@@ -151,6 +154,7 @@ useEffect(() => {
             <input type="text" />
             <input type="text" />
             <input type="text" />
+            <button type="button" onClick={handleUpdate}>update</button>
           </div> } closeFnc={setSettings}/>,document.body )
         }
     </div>

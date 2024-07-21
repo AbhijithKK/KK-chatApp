@@ -120,4 +120,21 @@ const api = axios.create({
       return {error:true}
     }
   }
+  interface updateApi{
+    userId:string
+    name:string
+    image:any
+  }
+  export const updateUserApi=async({userId,name,image}:updateApi)=>{
+    try {
+      const {data}=await api.put('/userupdate',
+      {userId,name,image},
+      {headers:{"Content-Type":"multipart/form-data"}
+      ,withCredentials:true})
+      return data
+
+    } catch (error) {
+      return {error:true}
+    }
+  }
   
