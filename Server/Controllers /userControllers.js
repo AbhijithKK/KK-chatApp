@@ -46,6 +46,7 @@ export const login = async (req, res) => {
             sameSite: "none",
             httpOnly: true,
             secure: true,
+            path: '/',
           })
           .json({
             data: {
@@ -171,8 +172,13 @@ export const userUpdate = async (req, res) => {
 export const logOut = async (req, res) => {
  
     try {
-      
-      res.clearCookie('token');
+      console.log('gg');
+      res.clearCookie('token', {
+        sameSite: 'none',
+        httpOnly: true,
+        secure: true,
+        path: '/', // Ensure path is set correctly
+      });
         res.status(200).json({data:true,error:false })
     } catch (error) {
         res.status(500).json({data:false,

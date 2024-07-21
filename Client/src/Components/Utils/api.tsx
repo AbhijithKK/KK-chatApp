@@ -139,7 +139,7 @@ const api = axios.create({
   }
   export const logoutApi=async()=>{
     try {
-      const {data}=await api.get('/logout')
+      const {data}=await api.post('/logout')
       
       
       return data

@@ -11,7 +11,7 @@ router.post('/verifyotp',verifyOtp)
 router.post('/userdata',auth,allUserData)
 router.put('/userupdate',auth,upload.single('image'),userUpdate)
 router.get('/alluser',auth,allUsers)
-router.get('/logout',auth,logOut)
+router.post('/logout',auth,logOut)
 router.get('/checkauth',checkAuth)
 router.get('/userdetails',auth,userDetails)
 export default router  
