@@ -46,7 +46,7 @@ export interface updateApi {
   name: string;
   image: any;
 }
-export interface Modal{
+export interface ModalIntrface{
   closeFnc:(f:boolean)=>void
   headding:string
   content:any

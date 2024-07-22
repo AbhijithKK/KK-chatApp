@@ -1,7 +1,7 @@
-import { Modal } from "../Utils/Interface";
+import { ModalIntrface } from "../Utils/Interface";
 import "./Modal.css";
 
-const Modal = ({ content, closeFnc, headding }:Modal) => {
+const Modal = ({ content, closeFnc, headding }:ModalIntrface) => {
   return (
     <div className="modal-container">
       <div className="modal-content">
