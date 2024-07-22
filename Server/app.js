@@ -10,6 +10,7 @@ import chatRouter from "./Routers/chatRoutes.js";
 import cookieParser from "cookie-parser";
 import path from 'path'
 import { fileURLToPath } from 'url';
+import helmet from 'helmet'
 configDotenv();
 const app = Express();
 
@@ -17,7 +18,7 @@ app.use(cookieParser());
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json({ limit: "100mb" }));
 app.use(morgan("dev"));
-
+app.use(helmet())
 // Get the current directory name
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
