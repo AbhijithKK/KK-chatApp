@@ -1,82 +1,72 @@
-.input-section-container{
-display: flex;
-align-items: center;
-justify-content: space-evenly;
-position: fixed;
-bottom: 10px;
-width: 60%;
-background-color: white;
-margin-bottom: -10px;
-padding-bottom: 20px;
-padding-top: 10px;
-border-top: 1px solid;
-background-color: rgb(59, 121, 179);
-right: 0;
-
+.input-section-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 10px;
+  width: 60%;
+  background-color: white;
+  margin-bottom: -10px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  border-top: 1px solid;
+  background-color: rgb(59, 121, 179);
+  right: 0;
 }
-.media-picker{
-width: 20%;
-display: flex;
-justify-content: center;
-align-items: center;
+.media-picker {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.media-picker img{
-    width: 2rem;
-    cursor: pointer;
-    filter: invert(100%) brightness(200%);
+.media-picker img {
+  width: 2rem;
+  cursor: pointer;
+  filter: invert(100%) brightness(200%);
 }
-.input-box{
-width: 60%;
-display: flex;
-justify-content: center;
-align-items: center;
+.input-box {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.input-box textarea{
-    height: 50px;
-    width: 100%;
-    border-radius: 5px;
-
-
+.input-box textarea {
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
 }
-.input-box textarea:focus{
-    outline: none;
-    border: 2px solid rgb(64, 175, 240);
-
+.input-box textarea:focus {
+  outline: none;
+  border: 2px solid rgb(64, 175, 240);
 }
-.send-btn{
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+.send-btn {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.send-btn button{
-    height: 50px;
-    width: 50px;
-    border-radius: 8px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-    transition: all 0.3s ease-in-out;
-    outline: none;
-    border: 0;
-    box-shadow: 1px 0.5px 5px ;
-
+.send-btn button {
+  height: 50px;
+  width: 50px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  border: 0;
+  box-shadow: 1px 0.5px 5px;
 }
-.send-btn button:hover{
-    cursor: pointer;
-    background-color: rgb(43, 132, 192);
-    color: white;
-    box-shadow: 1px 0.5px 30px rgb(0, 0, 0) ;
-
+.send-btn button:hover {
+  cursor: pointer;
+  background-color: rgb(43, 132, 192);
+  color: white;
+  box-shadow: 1px 0.5px 30px rgb(0, 0, 0);
 }
-.send-btn button img{
-    width: 100%;
-
+.send-btn button img {
+  width: 100%;
 }
-.send-btn button img:hover{
-    width: 110%;
-    filter: brightness(300%) invert(100%)   ;
-
+.send-btn button img:hover {
+  width: 110%;
+  filter: brightness(300%) invert(100%);
 }
-

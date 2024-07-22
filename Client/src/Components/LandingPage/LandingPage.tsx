@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { socketUpdate, userUpdate } from "../Utils/Redux/Reducers";
 import { RootState } from "../Utils/Redux/Store";
 import { updateAuth } from "../Utils/Redux/AuthReducer";
-import '../Utils/Common.css'
+import "../Utils/Common.css";
 const LandingPage = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [allUsers, setAllusers] = useState<allusers[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [mobileView, setMobileView] = useState<boolean>(false);
   const [refreshSocket, setRefreshSocket] = useState<boolean>(false);
-  const [chatIndex, setSelectedChatIndex] = useState<number|null>(null);
+  const [chatIndex, setSelectedChatIndex] = useState<number | null>(null);
   const [singleChat, setSingleChat] = useState<singleUserInterface>({
     name: "",
     _id: "",
@@ -33,8 +33,7 @@ const LandingPage = () => {
     const newSocket = io(import.meta.env.VITE_SOCKET_URL);
     newSocket.emit("register", userId);
 
-    newSocket.on("connect_error", () => {
-    });
+    newSocket.on("connect_error", () => {});
     setSocket(newSocket);
 
     return () => {
@@ -60,14 +59,14 @@ const LandingPage = () => {
   useEffect(() => {
     dispatch(updateAuth(!auth));
   }, []);
-  const chatSelector = (data: singleUserInterface,i:number): void => {
+  const chatSelector = (data: singleUserInterface, i: number): void => {
     setSingleChat(data);
-    setSelectedChatIndex(i)
-    setRefreshSocket(!refreshSocket)
-    setMobileView(true)
+    setSelectedChatIndex(i);
+    setRefreshSocket(!refreshSocket);
+    setMobileView(true);
   };
 
-// update user data
+  // update user data
   useEffect(() => {
     const apiHelper = async () => {
       const data = await userDetailsApi();
@@ -85,9 +84,11 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <div className={mobileView ?"left-side landing-page-block":"left-side"}>
+      <div
+        className={mobileView ? "left-side landing-page-block" : "left-side"}
+      >
         <AllUsers
-        mobileView={mobileView}
+          mobileView={mobileView}
           chatSelector={chatSelector}
           chats={allUsers}
           refresh={setRefresh}
@@ -95,8 +96,14 @@ const LandingPage = () => {
           chatIndex={chatIndex}
         />
       </div>
-      <div className={mobileView ?"right-side ":"right-side landing-page-block" }>
-        <ChatWindow setMobileView={setMobileView} refresh={refresh} chat={singleChat} />
+      <div
+        className={mobileView ? "right-side " : "right-side landing-page-block"}
+      >
+        <ChatWindow
+          setMobileView={setMobileView}
+          refresh={refresh}
+          chat={singleChat}
+        />
       </div>
     </div>
   );

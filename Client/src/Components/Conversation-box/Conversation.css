@@ -1,68 +1,63 @@
-.conversation-container{
-display: flex;
-align-items: center;
-width: 100%;
-justify-content: space-around;
-height: 5rem;
-border :1px solid rgb(255, 255, 255);
-border-radius: 5px;
-background-color: rgba(20, 57, 92, 0.747);
-background-color:transparent;
-gap: 10px;
-cursor: pointer;
+.conversation-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  height: 5rem;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background-color: rgba(20, 57, 92, 0.747);
+  background-color: transparent;
+  gap: 10px;
+  cursor: pointer;
 }
-.conversation-container-select{
-    display: flex;
-align-items: center;
-width: 100%;
-justify-content: space-around;
-height: 5rem;
-border :1px solid rgb(255, 255, 255);
-border-radius: 5px;
-background-color: rgba(20, 57, 92, 0.747);
-background-color:transparent;
-gap: 10px;
-cursor: pointer;
-    background-color: rgba(20, 57, 92, 0.747);
-
+.conversation-container-select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  height: 5rem;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background-color: rgba(20, 57, 92, 0.747);
+  background-color: transparent;
+  gap: 10px;
+  cursor: pointer;
+  background-color: rgba(20, 57, 92, 0.747);
 }
-.conversation-container:active{
-    border :2px solid rgb(0, 0, 0);
-
+.conversation-container:active {
+  border: 2px solid rgb(0, 0, 0);
 }
-.conversation-left{
-display: flex;
-align-items: center;
-justify-content: flex-start;
-width: 25%;
-margin-left: 10px;
-
+.conversation-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 25%;
+  margin-left: 10px;
 }
-.conversation-left img{
-    border: 50%;
-    width: 80%;
+.conversation-left img {
+  border: 50%;
+  width: 80%;
 }
-.conversation-right{
-    display: grid;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 5px;
-    width: 75%;
-
-    
+.conversation-right {
+  display: grid;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  width: 75%;
 }
 
-.conversation-name{
-    font-size: medium;
-    font-weight: bold;
-    font-family: sans-serif;
-    color: white;
+.conversation-name {
+  font-size: medium;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: white;
 }
-.conversaton-status-off{
-color: rgb(233, 65, 65);
-font-style: italic;
+.conversaton-status-off {
+  color: rgb(233, 65, 65);
+  font-style: italic;
 }
-.conversaton-status-on{
-color: rgb(82, 250, 110);
-font-style: italic;
+.conversaton-status-on {
+  color: rgb(82, 250, 110);
+  font-style: italic;
 }

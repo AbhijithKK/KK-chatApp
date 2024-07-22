@@ -1,4 +1,4 @@
-import {  useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import Login from "./Components/LoginPage/Login";
@@ -13,23 +13,34 @@ function App() {
   const [autht, setAuth] = useState<boolean>(false);
 
   useEffect(() => {
-    const apiHelper = async () => { 
-        const res = await checkAuthApi();
-        setAuth(res);
+    const apiHelper = async () => {
+      const res = await checkAuthApi();
+      setAuth(res);
     };
     apiHelper();
   }, [auth]);
   return (
     <>
       <Routes>
-        
-          <>
-            <Route path="/signup" element={autht?<Navigate to={'/home'}/>:<Signup />} />
-            <Route path="/" element={autht ? <Navigate to={'/home'}/> :<Login />} />
-            <Route path="/*" element={autht ? <Navigate to={'/home'}/> :<Login />} />
-          </>
-        
-        <Route path="/home" element={!autht ? <Navigate to={'/'}/> :<LandingPage />} />
+        <>
+          <Route
+            path="/signup"
+            element={autht ? <Navigate to={"/home"} /> : <Signup />}
+          />
+          <Route
+            path="/"
+            element={autht ? <Navigate to={"/home"} /> : <Login />}
+          />
+          <Route
+            path="/*"
+            element={autht ? <Navigate to={"/home"} /> : <Login />}
+          />
+        </>
+
+        <Route
+          path="/home"
+          element={!autht ? <Navigate to={"/"} /> : <LandingPage />}
+        />
       </Routes>
     </>
   );

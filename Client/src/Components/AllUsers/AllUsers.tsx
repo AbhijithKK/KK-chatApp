@@ -33,7 +33,7 @@ interface AllUsersProps {
   refreshV: boolean;
   chatSelector: (data: singleUserInterface, i: number) => void;
   chatIndex: number | null;
-  mobileView:boolean
+  mobileView: boolean;
 }
 
 const AllUsers: React.FC<AllUsersProps> = ({
@@ -43,7 +43,6 @@ const AllUsers: React.FC<AllUsersProps> = ({
   chatSelector,
   chatIndex,
   mobileView,
-  
 }) => {
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -79,24 +78,23 @@ const AllUsers: React.FC<AllUsersProps> = ({
 
   const [onlineIds, setOnlineIds] = useState<[]>([]);
   const { socket } = useSelector((state: RootState) => state.socketData);
-  const auth  = useSelector((state: RootState) => state.authData.auth);
+  const auth = useSelector((state: RootState) => state.authData.auth);
   const { image, name, userId } = useSelector(
     (state: RootState) => state.userData
   );
-  const Dispatch=useDispatch()
+  const Dispatch = useDispatch();
   const [updateName, setUpdateName] = useState<string>("");
   const [updateImage, setUpdateImage] = useState<any | null>(null);
   const [previewImage, setPriviewImage] = useState<any>(null);
   useEffect(() => {
     if (socket) {
-      const handleOnlineUsers = (msg:any) => {
+      const handleOnlineUsers = (msg: any) => {
         setOnlineIds(msg);
-        Dispatch(updateOnline( {onlineUsers: msg} ))
-
+        Dispatch(updateOnline({ onlineUsers: msg }));
       };
-      socket.on('onlineusers', handleOnlineUsers);
+      socket.on("onlineusers", handleOnlineUsers);
       return () => {
-        socket.off('onlineusers', handleOnlineUsers);
+        socket.off("onlineusers", handleOnlineUsers);
       };
     }
   }, [socket, chatIndex, auth, refreshV]);
@@ -119,7 +117,7 @@ const AllUsers: React.FC<AllUsersProps> = ({
       }
     };
     userDataFetcher();
-  }, [memoizedChats, refreshV, socket,auth,mobileView,onlineIds]);
+  }, [memoizedChats, refreshV, socket, auth, mobileView, onlineIds]);
   useEffect(() => {
     setUpdateName(name);
     setUpdateImage(image);
@@ -138,7 +136,6 @@ const AllUsers: React.FC<AllUsersProps> = ({
 
       refresh(!refreshV);
       toast("Successfully Update");
-
     } else {
       setSettings(false);
       toast("Can't Update try again");
@@ -150,18 +147,17 @@ const AllUsers: React.FC<AllUsersProps> = ({
     const previewUrl = URL.createObjectURL(e.target.files[0]);
     setPriviewImage(previewUrl);
   };
-  const handleLogout=()=>{
-setLogout(true)
-  }
-  const handleModalLogout=async()=>{
-      const data=await logoutApi()
-      if (data.data) {
-        Dispatch(updateAuth(!auth))
-      }else{
-        toast("Can't logout right now try again");
-
-      }
-  }
+  const handleLogout = () => {
+    setLogout(true);
+  };
+  const handleModalLogout = async () => {
+    const data = await logoutApi();
+    if (data.data) {
+      Dispatch(updateAuth(!auth));
+    } else {
+      toast("Can't logout right now try again");
+    }
+  };
   return (
     <div className="allusers-container">
       <Toaster position="top-center" />
@@ -272,13 +268,21 @@ setLogout(true)
           />,
           document.body
         )}
-        {
-          logout&&
-          createPortal(
-            <Modal closeFnc={setLogout} headding={'Are you sure?'}
-            content={<><button onClick={handleModalLogout} className="logout-btn">Logout</button></>}
-            />,document.body)
-        }
+      {logout &&
+        createPortal(
+          <Modal
+            closeFnc={setLogout}
+            headding={"Are you sure?"}
+            content={
+              <>
+                <button onClick={handleModalLogout} className="logout-btn">
+                  Logout
+                </button>
+              </>
+            }
+          />,
+          document.body
+        )}
     </div>
   );
 };

@@ -1,43 +1,41 @@
-.modal-container{
-    background-color: rgba(0, 0, 0, 0.5); 
-    backdrop-filter: blur(1px);
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
 }
-.modal-content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 100vh;
+.modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100vh;
 }
-.modal-ss{
-    background-color: aliceblue;
-    padding: 25px;
-    border-radius: 6px;
-    box-shadow: 1px 1px 8px 2px;
-    display: grid;
-    overflow-y: scroll;
+.modal-ss {
+  background-color: aliceblue;
+  padding: 25px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 8px 2px;
+  display: grid;
+  overflow-y: scroll;
 }
-.modal-hedding{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 5px;
-
+.modal-hedding {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
 }
-.modal-close-btn{
-border: 0;
-background-color: transparent;
-width: 10px;
-cursor: pointer;
-font-weight: bolder;
-color: red;
-font-size: 20px;
-
+.modal-close-btn {
+  border: 0;
+  background-color: transparent;
+  width: 10px;
+  cursor: pointer;
+  font-weight: bolder;
+  color: red;
+  font-size: 20px;
 }
-.modal-ss::-webkit-scrollbar{
-    width: 0;
+.modal-ss::-webkit-scrollbar {
+  width: 0;
 }

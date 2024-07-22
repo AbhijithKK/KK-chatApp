@@ -1,29 +1,29 @@
 import "./Signup.css";
-import logo from '../../assets/Generate A Logo Named KK .its For A Social Media .png'
+import logo from "../../assets/Generate A Logo Named KK .its For A Social Media .png";
 import { useFormik } from "formik";
 import { userSchema } from "../Utils/Validation";
 import { otpGenerateApi, signupApi } from "../Utils/api";
 import { user } from "../Utils/Interface";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
-import {  Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal";
 
 function Signup() {
-  const [isOpen,setIsopen]=useState<boolean>(false)
-  const [otp,setotp]=useState<string>('')
-  const [getOtp,setgetotp]=useState<string>('')
-  const [userData,setUserData]=useState<user>({
+  const [isOpen, setIsopen] = useState<boolean>(false);
+  const [otp, setotp] = useState<string>("");
+  const [getOtp, setgetotp] = useState<string>("");
+  const [userData, setUserData] = useState<user>({
     name: "",
-      email: "",
-      number: "",
-      password: "",
-      cpassword: "",
-  })
-  const Navigate=useNavigate()
-    const [throttil,setThrottil]=useState<boolean>(true)
-    const [throttil1,setThrottil1]=useState<boolean>(true)
+    email: "",
+    number: "",
+    password: "",
+    cpassword: "",
+  });
+  const Navigate = useNavigate();
+  const [throttil, setThrottil] = useState<boolean>(true);
+  const [throttil1, setThrottil1] = useState<boolean>(true);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -33,64 +33,56 @@ function Signup() {
       cpassword: "",
     },
 
-    onSubmit: async(values:user) => {
-      setUserData(values)
-        setIsopen(true)
-        if (throttil1) {
-        
-          setThrottil1(false)
-          const result=await otpGenerateApi(values.email)
-          if(!result.error){
-             setgetotp(result.data)
-          }else{
-              toast('Something wrong Plese try again')
-          }
-          
-          setTimeout(async() => {
-              setThrottil1(true)
-          
-      }, 6000);
-    }
-    },
-    validationSchema:userSchema
-  });
-  const handleCreateAccount=async()=>{
-if (getOtp===otp) {
-  setotp('')
+    onSubmit: async (values: user) => {
+      setUserData(values);
+      setIsopen(true);
+      if (throttil1) {
+        setThrottil1(false);
+        const result = await otpGenerateApi(values.email);
+        if (!result.error) {
+          setgetotp(result.data);
+        } else {
+          toast("Something wrong Plese try again");
+        }
 
-    if (throttil) {
-        
-      setThrottil(false)
-      const result=await signupApi(userData)
-      if(result){
-          Navigate('/')
-      }else{
-          toast('Already you have an account')
+        setTimeout(async () => {
+          setThrottil1(true);
+        }, 6000);
       }
-      
-      setTimeout(async() => {
-          setThrottil(true)
-      
-  }, 6000);
-}
-}else{
-  setotp('')
+    },
+    validationSchema: userSchema,
+  });
+  const handleCreateAccount = async () => {
+    if (getOtp === otp) {
+      setotp("");
 
-  toast('Wrong Otp')
-}
-  }
+      if (throttil) {
+        setThrottil(false);
+        const result = await signupApi(userData);
+        if (result) {
+          Navigate("/");
+        } else {
+          toast("Already you have an account");
+        }
+
+        setTimeout(async () => {
+          setThrottil(true);
+        }, 6000);
+      }
+    } else {
+      setotp("");
+
+      toast("Wrong Otp");
+    }
+  };
   return (
     <>
-    <Toaster
-  position="top-center"
-  reverseOrder={false}
-/>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="signup-container">
         <div className="form-outbox">
           <div className="signup-headder">
             <div className="signuplogo">
-
-            <img src={logo} alt="logo" />
+              <img src={logo} alt="logo" />
             </div>
             <p>KK-chatapp</p>
           </div>
@@ -132,7 +124,6 @@ if (getOtp===otp) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.number}
-                 
                 />
                 <small>{formik.errors.number}</small>
               </div>
@@ -166,22 +157,45 @@ if (getOtp===otp) {
                 <button type="submit">Sign Up</button>
               </div>
             </form>
-            
           </div>
           <div className="login-link">
-            <p>Already have an account? &nbsp;
-               <Link className="login-link-color" to={'/'}>Log in here</Link></p>
+            <p>
+              Already have an account? &nbsp;
+              <Link className="login-link-color" to={"/"}>
+                Log in here
+              </Link>
+            </p>
           </div>
         </div>
       </div>
       {isOpen &&
-        createPortal(<Modal headding={'Verify OTP '}
-        content={ <div className="Otp-container">
-          <input onChange={(e)=>setotp(e.target.value)} value={otp} className="Otp-input" type="text" max={6}  maxLength={6}/>
-          
-          <button type="button" onClick={handleCreateAccount} className="Otp-btn">Verify</button>
-        </div>} 
-        closeFnc={setIsopen} />, document.body)}
+        createPortal(
+          <Modal
+            headding={"Verify OTP "}
+            content={
+              <div className="Otp-container">
+                <input
+                  onChange={(e) => setotp(e.target.value)}
+                  value={otp}
+                  className="Otp-input"
+                  type="text"
+                  max={6}
+                  maxLength={6}
+                />
+
+                <button
+                  type="button"
+                  onClick={handleCreateAccount}
+                  className="Otp-btn"
+                >
+                  Verify
+                </button>
+              </div>
+            }
+            closeFnc={setIsopen}
+          />,
+          document.body
+        )}
     </>
   );
 }

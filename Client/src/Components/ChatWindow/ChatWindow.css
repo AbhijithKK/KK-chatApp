@@ -1,17 +1,17 @@
-.chat-window-container{
-    display: grid;
-    grid-template-rows: 20% 60% 20%;
-    overflow-x: hidden;
+.chat-window-container {
+  display: grid;
+  grid-template-rows: 20% 60% 20%;
+  overflow-x: hidden;
 }
-.chatwindow-middle{
-    margin-top: 100px;
-    margin-bottom: 80px;
+.chatwindow-middle {
+  margin-top: 100px;
+  margin-bottom: 80px;
 }
-.empty-conv{
-    text-align: center;
-    font-size: 20px;
+.empty-conv {
+  text-align: center;
+  font-size: 20px;
 }
-.empty-space{
-    padding: 30px;
-    height: 20px;
+.empty-space {
+  padding: 30px;
+  height: 20px;
 }
