@@ -1,6 +1,6 @@
-import nodemailer from 'nodemailer'
-import env from 'dotenv'
-env.config()
+import nodemailer from "nodemailer";
+import env from "dotenv";
+env.config();
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -11,14 +11,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function nodeMailer(otp,receiverMail) {
+export async function nodeMailer(otp, receiverMail) {
   const info = await transporter.sendMail({
     from: process.env.GMAIL,
-    to: receiverMail, 
-    subject: "OTP for KK-ChatApp", 
-    text: `Your OTP :${otp} `, 
+    to: receiverMail,
+    subject: "OTP for KK-ChatApp",
+    text: `Your OTP :${otp} `,
   });
 
   console.log("Message sent: %s", info);
 }
-

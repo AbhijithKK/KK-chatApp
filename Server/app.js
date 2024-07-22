@@ -8,10 +8,10 @@ import morgan from "morgan";
 import userRouter from "./Routers/userRouter.js";
 import chatRouter from "./Routers/chatRoutes.js";
 import cookieParser from "cookie-parser";
-import path from 'path'
-import { fileURLToPath } from 'url';
-import helmet from 'helmet'
-import mongoSanitize from 'express-mongo-sanitize'
+import path from "path";
+import { fileURLToPath } from "url";
+import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
 configDotenv();
 const app = Express();
 
@@ -19,20 +19,23 @@ app.use(cookieParser());
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json({ limit: "100mb" }));
 app.use(morgan("dev"));
+
+
 // Get the current directory name
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(Express.static(path.join(__dirname, 'Public')));
+app.use(Express.static(path.join(__dirname, "Public")));
 app.use(
   cors({
     origin: process.env.REACT_URL,
     credentials: true,
   })
   );
-  const server = createServer(app);
-  
-  app.use(helmet())
-  app.use(mongoSanitize())
+
+app.use(helmet());
+app.use(mongoSanitize());
+
+const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: process.env.REACT_URL,
@@ -43,22 +46,23 @@ const io = new Server(server, {
 app.use("/", userRouter);
 app.use("/chat", chatRouter);
 
-const connectedUsers=new Map();
+// socket start
+const connectedUsers = new Map();
 const emitOnlineUsers = () => {
-    const onlineUsers = Array.from(connectedUsers.keys()); 
-    io.emit('onlineusers', onlineUsers);
-  };
+  const onlineUsers = Array.from(connectedUsers.keys());
+  io.emit("onlineusers", onlineUsers);
+};
 io.on("connection", (socket) => {
-    socket.on("register",(userId)=>{
-connectedUsers.set(userId,socket.id)   
-emitOnlineUsers()
-})
+  socket.on("register", (userId) => {
+    connectedUsers.set(userId, socket.id);
+    emitOnlineUsers();
+  });
   console.log("connected");
   socket.on("post", (msg) => {
-    const {receiverId}=msg;
-    const ReceiverSocketId=connectedUsers.get(receiverId)
-    if (ReceiverSocketId) {   
-        io.to(ReceiverSocketId).emit("get", msg);
+    const { receiverId } = msg;
+    const ReceiverSocketId = connectedUsers.get(receiverId);
+    if (ReceiverSocketId) {
+      io.to(ReceiverSocketId).emit("get", msg);
     }
   });
   // Handle disconnection
@@ -69,12 +73,11 @@ emitOnlineUsers()
         break;
       }
     }
-    emitOnlineUsers()
+    emitOnlineUsers();
 
     console.log("disconnected");
   });
-  emitOnlineUsers()
-
+  emitOnlineUsers();
 });
 db();
 server.listen(3000, () => {

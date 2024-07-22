@@ -3,7 +3,7 @@ import { jwtVerify } from "../Middleware/Jwt.js";
 import { jwtSign } from "../Middleware/Jwt.js";
 import { userModel } from "../Model/UserModels/User.js";
 import bcrypt from "bcrypt";
-import otpGen from 'otp-generator'
+import otpGen from "otp-generator";
 
 export const signup = async (req, res) => {
   const { name, email, number, password, cpassword, image } = req.body;
@@ -46,7 +46,7 @@ export const login = async (req, res) => {
             sameSite: "none",
             httpOnly: true,
             secure: true,
-            path: '/',
+            path: "/",
           })
           .json({
             data: {
@@ -109,77 +109,83 @@ export const allUserData = async (req, res) => {
 };
 
 export const checkAuth = async (req, res) => {
-    try {
-      const token = await req.cookies.token;
-      const result = await jwtVerify(token);
-      const data = await userModel.findOne({ _id: result?.userId });
-      if (!data) {
-        res.status(500).json(false);
-        return
-      } else {
-        res.status(200).json(true);
-        return
-      }
-    } catch (error) {
+  try {
+    const token = await req.cookies.token;
+    const result = await jwtVerify(token);
+    const data = await userModel.findOne({ _id: result?.userId });
+    if (!data) {
       res.status(500).json(false);
+      return;
+    } else {
+      res.status(200).json(true);
+      return;
     }
-  };
+  } catch (error) {
+    res.status(500).json(false);
+  }
+};
 export const userDetails = async (req, res) => {
-    try {
-      const token = await req.cookies.token;
-      const result = await jwtVerify(token);
-      const data = await userModel.findOne({ _id: result?.userId }).select('-password -cpassword -number');
-      if (!data) {
-        res.status(500).json({data:false,
-        error:true});
-        return
-      } else {
-        res.status(200).json({data:data,
-        error:false});
-        return
-      }
-    } catch (error) {
-        res.status(500).json({data:false,
-            error:true});    }
-  };
+  try {
+    const token = await req.cookies.token;
+    const result = await jwtVerify(token);
+    const data = await userModel
+      .findOne({ _id: result?.userId })
+      .select("-password -cpassword -number");
+    if (!data) {
+      res.status(500).json({ data: false, error: true });
+      return;
+    } else {
+      res.status(200).json({ data: data, error: false });
+      return;
+    }
+  } catch (error) {
+    res.status(500).json({ data: false, error: true });
+  }
+};
 export const verifyOtp = async (req, res) => {
-    try {
-     let otp= otpGen.generate(6, 
-        {digits:true, lowerCaseAlphabets: false,upperCaseAlphabets: false, specialChars: false });
-        console.log(otp);
-      nodeMailer(otp,req.body.mail)
-      
-        res.status(200).json({data:otp,error:false })
-    } catch (error) {
-        res.status(500).json({data:false,
-            error:true});    }
-  };
+  try {
+    let otp = otpGen.generate(6, {
+      digits: true,
+      lowerCaseAlphabets: false,
+      upperCaseAlphabets: false,
+      specialChars: false,
+    });
+    console.log(otp);
+    nodeMailer(otp, req.body.mail);
+
+    res.status(200).json({ data: otp, error: false });
+  } catch (error) {
+    res.status(500).json({ data: false, error: true });
+  }
+};
 export const userUpdate = async (req, res) => {
-  const {userId,name}=req.body
-    try {
-      
-     
-     await userModel.updateOne({ _id: userId },{$set:{
-        name:name,image:req.file.filename
-      }});
-    
-      
-        res.status(200).json({data:true,error:false })
-    } catch (error) {
-        res.status(500).json({data:false,
-            error:true});    }
-  };
+  const { userId, name } = req.body;
+  try {
+    await userModel.updateOne(
+      { _id: userId },
+      {
+        $set: {
+          name: name,
+          image: req.file.filename,
+        },
+      }
+    );
+
+    res.status(200).json({ data: true, error: false });
+  } catch (error) {
+    res.status(500).json({ data: false, error: true });
+  }
+};
 export const logOut = async (req, res) => {
- 
-    try {
-      res.clearCookie('token', {
-        sameSite: 'none',
-        httpOnly: true,
-        secure: true,
-        path: '/', 
-      });
-        res.status(200).json({data:true,error:false })
-    } catch (error) {
-        res.status(500).json({data:false,
-            error:true});    }
-  };
+  try {
+    res.clearCookie("token", {
+      sameSite: "none",
+      httpOnly: true,
+      secure: true,
+      path: "/",
+    });
+    res.status(200).json({ data: true, error: false });
+  } catch (error) {
+    res.status(500).json({ data: false, error: true });
+  }
+};
