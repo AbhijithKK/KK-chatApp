@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import path from 'path'
 import { fileURLToPath } from 'url';
 import helmet from 'helmet'
+import mongoSanitize from 'express-mongo-sanitize'
 configDotenv();
 const app = Express();
 
@@ -18,7 +19,6 @@ app.use(cookieParser());
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json({ limit: "100mb" }));
 app.use(morgan("dev"));
-app.use(helmet())
 // Get the current directory name
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,9 +28,11 @@ app.use(
     origin: process.env.REACT_URL,
     credentials: true,
   })
-);
-const server = createServer(app);
-
+  );
+  const server = createServer(app);
+  
+  app.use(helmet())
+  app.use(mongoSanitize())
 const io = new Server(server, {
   cors: {
     origin: process.env.REACT_URL,
