@@ -84,6 +84,7 @@ const LandingPage = () => {
     <div className="landing-page">
       <div className={mobileView ?"left-side landing-page-block":"left-side"}>
         <AllUsers
+        mobileView={mobileView}
           chatSelector={chatSelector}
           chats={allUsers}
           refresh={setRefresh}

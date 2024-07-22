@@ -39,7 +39,7 @@ const   ChatWindow = ({chat,refresh,setMobileView}:chatWindow) => {
       }
     }
     apiHelper()
-  },[chat,refresh,msgSnt])
+  },[chat,refresh,msgSnt,socket])
   useEffect(()=>{
     const apiHelper=async()=>{
       if (getTextId._id) {
@@ -51,13 +51,13 @@ const   ChatWindow = ({chat,refresh,setMobileView}:chatWindow) => {
       }
     }
     apiHelper()
-  },[getTextId,refresh,msgSnt])
+  },[getTextId,refresh,msgSnt,socket])
 
   useEffect(()=>{
     if (chatText) {
       setRefresher(!refresher)
     }
-  },[chatText])
+  },[chatText,socket])
   
   useEffect(()=>{
 if (socket) {
@@ -65,7 +65,7 @@ socket.on("get",(msg:chatText)=>{
     setChatText([...chatText,msg])
   })
 }
-  },[chatText])
+  },[chatText,socket])
 const scrollRef:any=useRef(null)  
 useEffect(()=>{
   scrollRef?.current?.scrollIntoView({behavior:"smooth"})
@@ -75,7 +75,7 @@ useEffect(()=>{
       {
         getTextId._id
         ?
-        <ChatHeadding setMobileView={setMobileView} chat={chat} />
+        <ChatHeadding  setMobileView={setMobileView} chat={chat} />
         :''
       }
      <div className="chatwindow-middle">

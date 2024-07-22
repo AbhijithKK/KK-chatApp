@@ -32,6 +32,7 @@ interface AllUsersProps {
   refreshV: boolean;
   chatSelector: (data: singleUserInterface, i: number) => void;
   chatIndex: number | null;
+  mobileView:boolean
 }
 
 const AllUsers: React.FC<AllUsersProps> = ({
@@ -40,6 +41,7 @@ const AllUsers: React.FC<AllUsersProps> = ({
   refreshV,
   chatSelector,
   chatIndex,
+  mobileView
 }) => {
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -85,14 +87,16 @@ const AllUsers: React.FC<AllUsersProps> = ({
   const [previewImage, setPriviewImage] = useState<any>(null);
   useEffect(() => {
     if (socket) {
-      socket?.on("onlineusers", (msg) => {
+      const handleOnlineUsers = (msg:any) => {
+        console.log('Received online users:', msg);
         setOnlineIds(msg);
-      });
+      };
+      socket.on('onlineusers', handleOnlineUsers);
+      return () => {
+        socket.off('onlineusers', handleOnlineUsers);
+      };
     }
-    return () => {
-      socket?.off("onlineusers");
-    };
-  }, [socket, chatIndex]);
+  }, [socket, chatIndex, auth, refreshV]);
   //  fetch all user data
   const memoizedChats = useMemo(() => chats, [chats]);
   useEffect(() => {
@@ -112,7 +116,7 @@ const AllUsers: React.FC<AllUsersProps> = ({
       }
     };
     userDataFetcher();
-  }, [memoizedChats, refreshV, socket]);
+  }, [memoizedChats, refreshV, socket,auth,mobileView,onlineIds]);
   useEffect(() => {
     setUpdateName(name);
     setUpdateImage(image);
