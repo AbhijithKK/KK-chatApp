@@ -90,7 +90,6 @@ const AllUsers: React.FC<AllUsersProps> = ({
   useEffect(() => {
     if (socket) {
       const handleOnlineUsers = (msg:any) => {
-        console.log('Received online users:', msg);
         setOnlineIds(msg);
         Dispatch(updateOnline( {onlineUsers: msg} ))
 

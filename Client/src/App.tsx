@@ -19,9 +19,6 @@ function App() {
     };
     apiHelper();
   }, [auth]);
-console.log('selector',auth);
-console.log('aa',autht);
-
   return (
     <>
       <Routes>
