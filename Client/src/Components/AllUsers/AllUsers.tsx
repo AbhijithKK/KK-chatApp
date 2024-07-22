@@ -26,6 +26,7 @@ import "../Utils/Common.css";
 import demoimg from "../../assets/icons8-test-account-48.png";
 import toast, { Toaster } from "react-hot-toast";
 import { updateAuth } from "../Utils/Redux/AuthReducer";
+import { updateOnline } from "../Utils/Redux/OnlineReducer";
 interface AllUsersProps {
   chats: allusers[];
   refresh: Dispatch<SetStateAction<boolean>>;
@@ -41,7 +42,8 @@ const AllUsers: React.FC<AllUsersProps> = ({
   refreshV,
   chatSelector,
   chatIndex,
-  mobileView
+  mobileView,
+  
 }) => {
   const [state, setState] = useState<[]>([]);
   const [isOpen, setIsclose] = useState<boolean>(false);
@@ -90,6 +92,8 @@ const AllUsers: React.FC<AllUsersProps> = ({
       const handleOnlineUsers = (msg:any) => {
         console.log('Received online users:', msg);
         setOnlineIds(msg);
+        Dispatch(updateOnline( {onlineUsers: msg} ))
+
       };
       socket.on('onlineusers', handleOnlineUsers);
       return () => {

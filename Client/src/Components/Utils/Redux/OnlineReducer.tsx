@@ -1,16 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { singleUserInterface } from "../Interface";
 
 interface AuthState {
-  setSingleuser:()=>void
-  singleUser:singleUserInterface|null
-  onlineUsers:[]
+  onlineUsers?:[]
 }
 
 const initialState: AuthState = {
-  setSingleuser:()=>{},
-  singleUser:null,
-  onlineUsers:[]
+  onlineUsers:[],
+ 
 };
 export const authSlice = createSlice({
   name: "onlineStatus",
@@ -18,8 +14,6 @@ export const authSlice = createSlice({
   reducers: {
     updateOnline: (state, action: PayloadAction<AuthState>) => {
       state.onlineUsers = action.payload.onlineUsers as any;
-      state.singleUser=action.payload.singleUser as any
-      state.setSingleuser=action.payload.setSingleuser as any
     },
   },
 });

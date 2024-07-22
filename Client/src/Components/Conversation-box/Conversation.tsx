@@ -1,6 +1,7 @@
 import "./Conversation.css";
 import proicon from "../../assets/icons8-test-account-48.png";
 import { conversationInterface } from "../Utils/Interface";
+
 const Conversation = ({
   data,
   status,
@@ -8,6 +9,9 @@ const Conversation = ({
   index,
   chatIndex,
 }: conversationInterface) => { 
+  
+
+
   return (
     <div
       onClick={() => chatSelector(data, index)}

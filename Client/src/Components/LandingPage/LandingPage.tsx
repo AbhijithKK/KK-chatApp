@@ -66,6 +66,7 @@ const LandingPage = () => {
     setRefreshSocket(!refreshSocket)
     setMobileView(true)
   };
+
 // update user data
   useEffect(() => {
     const apiHelper = async () => {
