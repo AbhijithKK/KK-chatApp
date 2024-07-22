@@ -54,14 +54,14 @@
 
 @media (max-width: 500px) {
   .profile-pic img:nth-child(1) {
-    width: 30%;
+    width: 30px;
     border-radius: 50%;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
     display: block !important;
   }
   .profile-pic img:nth-child(2) {
-    width: 50%;
+    width: 40px;
     border-radius: 50%;
   }
 }
