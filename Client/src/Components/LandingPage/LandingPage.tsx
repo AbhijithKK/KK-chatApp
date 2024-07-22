@@ -41,6 +41,7 @@ const LandingPage = () => {
       newSocket.disconnect();
     };
   }, [refreshSocket]);
+  // socket update
   useEffect(() => {
     dispatch(socketUpdate(socket));
   }, [socket, dispatch]);
@@ -55,6 +56,7 @@ const LandingPage = () => {
     };
     apiFetch();
   }, [refresh]);
+  // auth refresh
   useEffect(() => {
     dispatch(updateAuth(!auth));
   }, []);
@@ -64,7 +66,7 @@ const LandingPage = () => {
     setRefreshSocket(!refreshSocket)
     setMobileView(true)
   };
-
+// update user data
   useEffect(() => {
     const apiHelper = async () => {
       const data = await userDetailsApi();
