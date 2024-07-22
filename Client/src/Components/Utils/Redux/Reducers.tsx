@@ -19,7 +19,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     userUpdate: (state, action: PayloadAction<ReduxUserstate>) => {
-      return action.payload;
+      state.image=action.payload.image 
+      state.name=action.payload.name
+      state.userId=action.payload.userId
     },
   },
 });
